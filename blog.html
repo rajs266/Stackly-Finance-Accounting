@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stackly Blog — Finance, Tax, GST, and Accounting insights for businesses in Tamil Nadu." />
+  <meta name="theme-color" content="#1A6B4A" />
+  <title>Blog — Stackly Finance & Accounting</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== BLOG PAGE SPECIFIC STYLES ===== */
+    
+    /* Search & Filter Bar */
+    .blog-filter-bar {
+      background: var(--clr-white);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-xl);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      animation: slide-up 0.7s var(--ease) 0.3s both;
+      transition: var(--theme-transition);
+    }
+    
+    .blog-search {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+    
+    .blog-search input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      background: var(--clr-bg-alt);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-full);
+      font-size: 0.9rem;
+      color: var(--clr-text-dark);
+      transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+    }
+    
+    .blog-search input:focus {
+      border-color: var(--clr-primary);
+      box-shadow: 0 0 0 3.5px rgba(26, 107, 74, 0.10);
+      outline: none;
+    }
+    
+    .blog-search i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--clr-text-muted);
+      font-size: 0.9rem;
+    }
+    
+    .blog-categories {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .blog-cat-btn {
+      padding: 0.55rem 1.1rem;
+      border-radius: var(--r-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1.5px solid var(--clr-border);
+      background: var(--clr-white);
+      color: var(--clr-text-body);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease);
+      white-space: nowrap;
+    }
+    
+    .blog-cat-btn:hover {
+      border-color: var(--clr-primary);
+      color: var(--clr-primary);
+      transform: translateY(-1px);
+    }
+    
+    .blog-cat-btn.active {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      border-color: var(--clr-primary);
+      box-shadow: var(--shadow-green);
+    }
+    
+    /* Featured Post Card */
+    .featured-post {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2.5rem;
+      background: var(--clr-white);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--dur-base) var(--ease-bounce), box-shadow var(--dur-base) var(--ease);
+    }
+    
+    .featured-post:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .featured-post__img-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+    
+    .featured-post__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--dur-slow) var(--ease);
+    }
+    
+    .featured-post:hover .featured-post__img {
+      transform: scale(1.05);
+    }
+    
+    .featured-post__cat {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: var(--clr-accent);
+      color: #1A1A00;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: var(--r-full);
+    }
+    
+    .featured-post__content {
+      padding: 2.5rem 2rem 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .featured-post__meta {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.82rem;
+      color: var(--clr-text-muted);
+      margin-bottom: 1rem;
+    }
+    
+    .featured-post__meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--clr-text-light);
+    }
+    
+    .featured-post__title {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      transition: color var(--dur-base) var(--ease);
+    }
+    
+    .featured-post:hover .featured-post__title {
+      color: var(--clr-primary);
+    }
+    
+    .featured-post__excerpt {
+      font-size: 0.92rem;
+      color: var(--clr-text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-post__author {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-top: auto;
+    }
+    
+    .featured-post__author-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid var(--clr-primary-pale);
+    }
+    
+    .featured-post__author-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--clr-text-dark);
+    }
+    
+    .featured-post__author-role {
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+    }
+    
+    /* Blog Grid */
+    .blog-page__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Enhanced Blog Card */
+    .blog-page-card {
+      background: var(--clr-white);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--dur-base) var(--ease-bounce), box-shadow var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+      position: relative;
+    }
+    
+    .blog-page-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+      transition: width var(--dur-slow) var(--ease);
+    }
+    
+    .blog-page-card:hover::after {
+      width: 100%;
+    }
+    
+    .blog-page-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--clr-primary-light);
+    }
+    
+    .blog-page-card__img-wrap {
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16 / 10;
+    }
+    
+    .blog-page-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--dur-slow) var(--ease);
+    }
+    
+    .blog-page-card:hover .blog-page-card__img {
+      transform: scale(1.08);
+    }
+    
+    .blog-page-card__cat {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--r-full);
+    }
+    
+    .blog-page-card__body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .blog-page-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+      margin-bottom: 0.75rem;
+    }
+    
+    .blog-page-card__meta i {
+      font-size: 0.7rem;
+      color: var(--clr-primary);
+    }
+    
+    .blog-page-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      line-height: 1.4;
+      margin-bottom: 0.65rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: color var(--dur-base) var(--ease);
+    }
+    
+    .blog-page-card:hover .blog-page-card__title {
+      color: var(--clr-primary);
+    }
+    
+    .blog-page-card__text {
+      font-size: 0.85rem;
+      color: var(--clr-text-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .blog-page-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--clr-border);
+    }
+    
+    .blog-page-card__read-time {
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    
+    .blog-page-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-primary);
+      transition: gap var(--dur-base) var(--ease);
+    }
+    
+    .blog-page-card__link:hover {
+      gap: 0.75rem;
+    }
+    
+    /* Pagination */
+    .blog-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .blog-page-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1.5px solid var(--clr-border);
+      background: var(--clr-white);
+      color: var(--clr-text-body);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease);
+    }
+    
+    .blog-page-btn:hover {
+      border-color: var(--clr-primary);
+      color: var(--clr-primary);
+      transform: translateY(-2px);
+    }
+    
+    .blog-page-btn.active {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      border-color: var(--clr-primary);
+      box-shadow: var(--shadow-green);
+    }
+    
+    .blog-page-btn.arrow {
+      font-size: 0.75rem;
+    }
+    
+    /* Newsletter CTA in Blog */
+    .blog-newsletter {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, #0A3D27 100%);
+      border-radius: var(--r-xl);
+      padding: 3rem 2.5rem;
+      margin-block: 3rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    
+    .blog-newsletter::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .blog-newsletter::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(240,165,0,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .blog-newsletter__title {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--clr-white);
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .blog-newsletter__text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .blog-newsletter__form {
+      display: flex;
+      max-width: 420px;
+      margin-inline: auto;
+      gap: 0;
+      border-radius: var(--r-full);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .blog-newsletter__form input {
+      flex: 1;
+      padding: 0.9rem 1.5rem;
+      font-size: 0.9rem;
+      background: var(--clr-white);
+      color: var(--clr-text-dark);
+      border: none;
+      outline: none;
+      min-width: 0;
+    }
+    
+    .blog-newsletter__form input::placeholder {
+      color: var(--clr-text-muted);
+    }
+    
+    .blog-newsletter__form button {
+      background: var(--clr-accent);
+      color: #1A1A00;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.9rem 1.75rem;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--dur-base) var(--ease), transform var(--dur-base) var(--ease-bounce);
+      flex-shrink: 0;
+    }
+    
+    .blog-newsletter__form button:hover {
+      background: #D49200;
+      transform: scale(1.03);
+    }
+    
+    /* Popular Tags Cloud */
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    
+    .tag-pill {
+      padding: 0.45rem 1rem;
+      background: var(--clr-primary-pale);
+      color: var(--clr-primary);
+      border-radius: var(--r-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease);
+      border: 1.5px solid transparent;
+    }
+    
+    .tag-pill:hover {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-green);
+    }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .blog-page__grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-post { grid-template-columns: 1fr; }
+      .featured-post__content { padding: 2rem; }
+      .featured-post__img-wrap { min-height: 260px; }
+    }
+    
+    @media (max-width: 768px) {
+      .blog-page__grid { grid-template-columns: 1fr; }
+      .blog-filter-bar { flex-direction: column; align-items: stretch; }
+      .blog-search { min-width: 100%; }
+      .blog-categories { justify-content: center; }
+      .featured-post__content { padding: 1.75rem; }
+      .blog-newsletter__form { flex-direction: column; border-radius: var(--r-md); }
+      .blog-newsletter__form input { border-radius: var(--r-md); margin-bottom: 0.5rem; }
+      .blog-newsletter__form button { border-radius: var(--r-md); }
+    }
+    
+    @media (max-width: 480px) {
+      .blog-hero { padding: calc(var(--nav-h) + 2rem) 0 2.5rem; }
+      .featured-post { margin-bottom: 2rem; }
+      .blog-page-card__body { padding: 1.25rem; }
+      .blog-newsletter { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader__inner">
+    <img src="assets/logo.webp" alt="Stackly Logo" class="preloader__logo" />
+    <div class="preloader__bar"></div>
+  </div>
+</div>
+
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+  <button class="mobile-overlay__close" id="overlayClose" aria-label="Close menu">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <nav class="mobile-nav" aria-label="Mobile Navigation">
+    <a href="index.html"   class="mobile-nav__link">Home</a>
+    <a href="about.html"   class="mobile-nav__link">About</a>
+    <a href="service.html" class="mobile-nav__link">Services</a>
+    <a href="blog.html"    class="mobile-nav__link active">Blog</a>
+    <a href="contact.html" class="mobile-nav__link">Contact</a>
+  </nav>
+  <div class="mobile-overlay__actions">
+    <a href="signin.html"      class="btn btn--outline">Sign In</a>
+    <a href="get-started.html" class="btn btn--primary">Get Started</a>
+  </div>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header__inner">
+    <a href="index.html" class="header__logo" aria-label="Stackly Home">
+      <img src="assets/logo.webp" alt="Stackly" width="60" height="60" />
+    </a>
+    <nav class="header__nav" aria-label="Main Navigation">
+      <a href="index.html"   class="nav__link">Home</a>
+      <a href="about.html"   class="nav__link">About</a>
+      <a href="service.html" class="nav__link">Services</a>
+      <a href="blog.html"    class="nav__link active">Blog</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
+    <div class="header__actions">
+      <a href="signin.html"      class="btn btn--outline btn--sm">Sign In</a>
+      <a href="get-started.html" class="btn btn--primary btn--sm">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero blog-hero-banner" aria-label="Blog Hero">
+    <div class="page-hero__content container">
+      <div class="page-hero__badge">
+        <span class="hero__badge-dot" style="background:var(--clr-accent);"></span>
+        Finance Insights & Updates
+      </div>
+      <h1 class="page-hero__title">
+        Expert <span>Finance, Tax & GST</span><br>
+        Knowledge Hub
+      </h1>
+      <p class="page-hero__text">
+        Stay ahead with the latest insights on tax planning, GST compliance, accounting best practices, and financial strategies tailored for Indian businesses.
+      </p>
+      <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep">/</span>
+        <span class="breadcrumb__current">Blog</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <!-- Filter Bar -->
+      <div class="blog-filter-bar reveal">
+        <div class="blog-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search articles, topics, tips..." id="blogSearch" />
+        </div>
+        <div class="blog-categories">
+          <button class="blog-cat-btn active" data-cat="all">All</button>
+          <button class="blog-cat-btn" data-cat="tax">Tax</button>
+          <button class="blog-cat-btn" data-cat="gst">GST</button>
+          <button class="blog-cat-btn" data-cat="accounting">Accounting</button>
+          <button class="blog-cat-btn" data-cat="payroll">Payroll</button>
+          <button class="blog-cat-btn" data-cat="audit">Audit</button>
+          <button class="blog-cat-btn" data-cat="startup">Startup</button>
+        </div>
+      </div>
+
+      <!-- Featured Post -->
+      <article class="featured-post reveal">
+        <div class="featured-post__img-wrap">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=900" alt="Budget 2026 Tax Updates" class="featured-post__img" />
+          <span class="featured-post__cat">Featured</span>
+        </div>
+        <div class="featured-post__content">
+          <div class="featured-post__meta">
+            <span><i class="fa-regular fa-calendar" style="margin-right:0.3rem;color:var(--clr-primary);"></i>Jun 05, 2026</span>
+            <span class="featured-post__meta-dot"></span>
+            <span><i class="fa-regular fa-clock" style="margin-right:0.3rem;color:var(--clr-primary);"></i>8 min read</span>
+            <span class="featured-post__meta-dot"></span>
+            <span style="color:var(--clr-primary);font-weight:600;">Tax</span>
+          </div>
+          <h2 class="featured-post__title">Union Budget 2026: Complete Guide to New Tax Slabs, Deductions & Compliance Changes</h2>
+          <p class="featured-post__excerpt">
+            The Union Budget 2026 introduces significant changes to personal and corporate tax structures. From revised income tax slabs to new GST compliance requirements, our CA experts break down everything businesses need to know to stay compliant and optimise their tax liability this financial year.
+          </p>
+          <div class="featured-post__author">
+            <div class="featured-post__author-img" style="background:var(--clr-primary-pale);display:flex;align-items:center;justify-content:center;">
+              <i class="fa-solid fa-user" style="color:var(--clr-primary);font-size:1rem;"></i>
+            </div>
+            <div>
+              <div class="featured-post__author-name">Arun Kumar CA</div>
+              <div class="featured-post__author-role">Senior Tax Consultant, Stackly</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Grid -->
+      <div class="blog-page__grid stagger-children" id="blogGrid">
+
+        <!-- Card 1 -->
+        <article class="blog-page-card" data-category="tax">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=600" alt="Tax Saving" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Tax</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> Jun 01, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 5 min</span>
+            </div>
+            <h3 class="blog-page-card__title">Top 10 Tax Saving Strategies for Small Businesses in 2026</h3>
+            <p class="blog-page-card__text">Discover proven, legal methods to reduce your income tax burden while keeping your business 100% compliant this financial year.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.4K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="blog-page-card" data-category="gst">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?auto=format&fit=crop&q=80&w=600" alt="GST Filing" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">GST</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> May 28, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 4 min</span>
+            </div>
+            <h3 class="blog-page-card__title">GST Return Filing: Common Mistakes and How to Avoid Them</h3>
+            <p class="blog-page-card__text">Many businesses face penalties due to avoidable GST errors. Here's a comprehensive guide to filing GSTR-1 and GSTR-3B correctly.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 3.1K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="blog-page-card" data-category="accounting">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Financial Statements" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Accounting</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> May 22, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 6 min</span>
+            </div>
+            <h3 class="blog-page-card__title">How to Read Your Financial Statements Like a Pro</h3>
+            <p class="blog-page-card__text">Balance sheets, P&L, and cash flow statements decoded — learn to understand what your numbers are truly telling you.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 1.8K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="blog-page-card" data-category="payroll">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=600" alt="Payroll Management" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Payroll</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> May 18, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 7 min</span>
+            </div>
+            <h3 class="blog-page-card__title">Complete Guide to PF, ESI & TDS Compliance for Employers</h3>
+            <p class="blog-page-card__text">Everything you need to know about employee statutory deductions, monthly filings, and avoiding compliance penalties.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.7K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="blog-page-card" data-category="startup">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600" alt="Startup Registration" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Startup</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> May 12, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 5 min</span>
+            </div>
+            <h3 class="blog-page-card__title">Company Registration in India: LLP vs Private Limited vs OPC</h3>
+            <p class="blog-page-card__text">Choosing the right business structure impacts your taxes, liability, and funding options. Here's a detailed comparison.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 4.2K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="blog-page-card" data-category="audit">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600" alt="Audit Process" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Audit</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> May 05, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 8 min</span>
+            </div>
+            <h3 class="blog-page-card__title">Internal Audit vs Statutory Audit: What's the Difference?</h3>
+            <p class="blog-page-card__text">Understanding when your business needs an internal audit versus a statutory audit can save you from regulatory issues.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 1.5K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="blog-page-card" data-category="tax">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&q=80&w=600" alt="TDS Filing" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Tax</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> Apr 28, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 4 min</span>
+            </div>
+            <h3 class="blog-page-card__title">TDS Return Filing: Quarterly Deadlines & Penalty Avoidance</h3>
+            <p class="blog-page-card__text">Stay on top of your TDS obligations with this complete calendar of due dates, forms, and late filing penalties.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 3.5K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="blog-page-card" data-category="gst">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600" alt="E-Invoicing" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">GST</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> Apr 20, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 6 min</span>
+            </div>
+            <h3 class="blog-page-card__title">E-Invoicing Under GST: Everything Businesses Need to Know</h3>
+            <p class="blog-page-card__text">Mandatory e-invoicing thresholds, IRN generation, and integration with your accounting software explained.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.9K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="blog-page-card" data-category="accounting">
+          <div class="blog-page-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Cloud Accounting" class="blog-page-card__img" />
+            <span class="blog-page-card__cat">Accounting</span>
+          </div>
+          <div class="blog-page-card__body">
+            <div class="blog-page-card__meta">
+              <span><i class="fa-regular fa-calendar"></i> Apr 15, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 5 min</span>
+            </div>
+            <h3 class="blog-page-card__title">Cloud Accounting vs Traditional: Which is Right for Your Business?</h3>
+            <p class="blog-page-card__text">Compare the benefits of cloud-based accounting software with traditional desktop solutions for Indian SMEs.</p>
+            <div class="blog-page-card__footer">
+              <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.1K views</span>
+              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Newsletter CTA -->
+      <div class="blog-newsletter reveal">
+        <h3 class="blog-newsletter__title">Never Miss a Finance Update</h3>
+        <p class="blog-newsletter__text">Join 5,000+ business owners who receive our weekly insights on tax, GST, audit, and financial planning — completely free.</p>
+        <form class="blog-newsletter__form" onsubmit="handleNewsletter(event)" novalidate>
+          <input type="email" placeholder="Enter your email address" aria-label="Email address" required />
+          <button type="submit">Subscribe Free</button>
+        </form>
+      </div>
+
+      <!-- Pagination -->
+      <div class="blog-pagination reveal">
+        <button class="blog-page-btn arrow" aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="blog-page-btn active">1</button>
+        <button class="blog-page-btn">2</button>
+        <button class="blog-page-btn">3</button>
+        <button class="blog-page-btn arrow" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+      <!-- Popular Tags -->
+      <div class="text-center" style="margin-top:3rem;">
+        <span class="section-tag reveal">Popular Topics</span>
+        <h3 class="section-title reveal" style="margin-bottom:1.5rem;">Browse by <span>Category</span></h3>
+        <div class="tags-cloud reveal">
+          <span class="tag-pill">Income Tax</span>
+          <span class="tag-pill">GST Filing</span>
+          <span class="tag-pill">TDS</span>
+          <span class="tag-pill">Bookkeeping</span>
+          <span class="tag-pill">Payroll</span>
+          <span class="tag-pill">Company Registration</span>
+          <span class="tag-pill">Audit</span>
+          <span class="tag-pill">MSME</span>
+          <span class="tag-pill">Startups</span>
+          <span class="tag-pill">Investment</span>
+          <span class="tag-pill">Digital India</span>
+          <span class="tag-pill">Compliance</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" aria-label="Site Footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-logo">
+          <img src="assets/logo.webp" alt="Stackly" width="54" height="54" />
+          <span class="footer__brand-name">Stack<span>ly</span></span>
+        </div>
+        <p class="footer__desc">
+          Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.
+        </p>
+        <address style="font-style:normal;font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:1.25rem;">
+          MMR Complex, Chinna Thirupathi,<br>
+          near Chinna Muniyappan Kovil,<br>
+          Salem, Tamil Nadu 636008
+        </address>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/" class="footer__social-link" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.x.com/" class="footer__social-link" aria-label="X / Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Resources</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="contact.html" class="footer__link">Privacy Policy</a></li>
+          <li><a href="about.html"   class="footer__link">About Us</a></li>
+          <li><a href="contact.html" class="footer__link">Careers</a></li>
+          <li><a href="blog.html"    class="footer__link">Blog & News</a></li>
+          <li><a href="contact.html" class="footer__link">Feedback</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Services</h4>
+        <ul class="footer__links">
+          <li><a href="service.html" class="footer__link">Accounting</a></li>
+          <li><a href="service.html" class="footer__link">GST Filing</a></li>
+          <li><a href="service.html" class="footer__link">Income Tax</a></li>
+          <li><a href="service.html" class="footer__link">Payroll</a></li>
+          <li><a href="service.html" class="footer__link">Audit & Assurance</a></li>
+          <li><a href="service.html" class="footer__link">Financial Advisory</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Office Hours</h4>
+        <div class="footer__hours">
+          <div class="footer__hour-item"><strong>Mon – Wed</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Thu – Fri</strong><span>8:00 AM – 6:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
+        </div>
+        <div style="margin-top:1.75rem;">
+          <h4 class="footer__col-title">Contact</h4>
+          <a href="tel:+919876543210" class="footer__link" style="font-size:0.88rem;">
+            <i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210
+          </a>
+          <a href="mailto:info@stackly.com" class="footer__link" style="font-size:0.88rem;margin-top:0.4rem;">
+            <i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Stackly. All rights reserved.</span>
+      <div class="footer__bottom-links">
+        <a href="contact.html">Privacy Policy</a>
+        <a href="contact.html">Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast toast--' + type + ' show';
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+window.addEventListener('load', () => {
+  const pre = document.getElementById('preloader');
+  setTimeout(() => pre.classList.add('hide'), 500);
+});
+
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
+}, { passive: true });
+
+const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById('mobileOverlay');
+const overlayClose = document.getElementById('overlayClose');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  overlay.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  hamburger.classList.remove('open');
+  overlay.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
+overlayClose.addEventListener('click', closeMenu);
+document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+document.getElementById('scrollTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const revealEls = document.querySelectorAll('.reveal, .stagger-children');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  showToast('✅ Subscribed! Welcome to Stackly Insights.');
+  e.target.reset();
+}
+
+/* Blog Category Filter */
+document.querySelectorAll('.blog-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.blog-cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    document.querySelectorAll('.blog-page-card').forEach(card => {
+      if (cat === 'all' || card.dataset.category === cat) {
+        card.style.display = '';
+        card.style.animation = 'slide-up 0.5s var(--ease) both';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+/* Blog Search */
+document.getElementById('blogSearch').addEventListener('input', function() {
+  const term = this.value.toLowerCase();
+  document.querySelectorAll('.blog-page-card').forEach(card => {
+    const title = card.querySelector('.blog-page-card__title').textContent.toLowerCase();
+    const text = card.querySelector('.blog-page-card__text').textContent.toLowerCase();
+    if (title.includes(term) || text.includes(term)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+</script>
+
+</body>
+</html>

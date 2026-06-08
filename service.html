@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stackly Services — Accounting, GST, Tax, Payroll, Audit, and Financial Advisory for businesses in Tamil Nadu." />
+  <meta name="theme-color" content="#1A6B4A" />
+  <title>Our Services — Stackly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .service-hero { padding-top: calc(var(--nav-h) + 3rem); }
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .service-detail-card {
+      background: var(--clr-white);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-xl);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all var(--dur-base) var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-detail-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+      transition: width var(--dur-slow) var(--ease);
+    }
+    .service-detail-card:hover::after { width: 100%; }
+    .service-detail-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--clr-primary-light);
+    }
+    .service-detail-card__icon {
+      width: 64px;
+      height: 64px;
+      background: var(--clr-primary-pale);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--clr-primary);
+      transition: all var(--dur-base) var(--ease-bounce);
+    }
+    .service-detail-card:hover .service-detail-card__icon {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      transform: scale(1.1) rotate(-8deg);
+    }
+    .service-detail-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+    }
+    .service-detail-card__desc {
+      font-size: 0.9rem;
+      color: var(--clr-text-muted);
+      line-height: 1.7;
+    }
+    .service-detail-card__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .service-detail-card__list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--clr-text-body);
+    }
+    .service-detail-card__list li i {
+      color: var(--clr-primary);
+      font-size: 0.75rem;
+    }
+    .process-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      transition: all var(--dur-base) var(--ease);
+    }
+    .process-step:hover {
+      border-color: var(--clr-primary-light);
+      transform: translateX(8px);
+      box-shadow: var(--shadow-sm);
+    }
+    .process-step__num {
+      width: 48px;
+      height: 48px;
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all var(--dur-base) var(--ease-bounce);
+    }
+    .process-step:hover .process-step__num {
+      transform: scale(1.15);
+      background: var(--clr-accent);
+      color: #1A1A00;
+    }
+    .process-step__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      margin-bottom: 0.4rem;
+    }
+    .process-step__text {
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      line-height: 1.65;
+    }
+    .industry-card {
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: all var(--dur-base) var(--ease-bounce);
+    }
+    .industry-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-md);
+      border-color: var(--clr-primary-light);
+    }
+    .industry-card__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--clr-primary-pale);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--clr-primary);
+      margin: 0 auto 1rem;
+      transition: all var(--dur-base) var(--ease);
+    }
+    .industry-card:hover .industry-card__icon {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      transform: rotate(-8deg) scale(1.1);
+    }
+    .industry-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      margin-bottom: 0.4rem;
+    }
+    .industry-card__text {
+      font-size: 0.82rem;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--clr-surface);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .comparison-table th {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .comparison-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--clr-border);
+      font-size: 0.88rem;
+      color: var(--clr-text-body);
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover td { background: var(--clr-primary-pale); }
+    .comparison-table .check { color: var(--clr-primary); font-weight: 700; }
+    .comparison-table .cross { color: var(--clr-text-light); }
+    @media (max-width: 768px) {
+      .service-detail-grid { grid-template-columns: 1fr; }
+      .comparison-table { font-size: 0.8rem; }
+      .comparison-table th, .comparison-table td { padding: 0.75rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader__inner">
+    <img src="assets/logo.webp" alt="Stackly Logo" class="preloader__logo" />
+    <div class="preloader__bar"></div>
+  </div>
+</div>
+
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+  <button class="mobile-overlay__close" id="overlayClose" aria-label="Close menu">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <nav class="mobile-nav" aria-label="Mobile Navigation">
+    <a href="index.html" class="mobile-nav__link">Home</a>
+    <a href="about.html" class="mobile-nav__link">About</a>
+    <a href="service.html" class="mobile-nav__link active">Services</a>
+    <a href="blog.html" class="mobile-nav__link">Blog</a>
+    <a href="contact.html" class="mobile-nav__link">Contact</a>
+  </nav>
+  <div class="mobile-overlay__actions">
+    <a href="signin.html" class="btn btn--outline">Sign In</a>
+    <a href="get-started.html" class="btn btn--primary">Get Started</a>
+  </div>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header__inner">
+    <a href="index.html" class="header__logo" aria-label="Stackly Home">
+      <img src="assets/logo.webp" alt="Stackly" width="60" height="60" />
+    </a>
+    <nav class="header__nav" aria-label="Main Navigation">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="service.html" class="nav__link active">Services</a>
+      <a href="blog.html" class="nav__link">Blog</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
+    <div class="header__actions">
+      <a href="signin.html" class="btn btn--outline btn--sm">Sign In</a>
+      <a href="get-started.html" class="btn btn--primary btn--sm">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero service-hero-banner" aria-label="Services Hero">
+    <div class="page-hero__content container">
+      <div class="page-hero__badge">
+        <span class="hero__badge-dot" style="background:var(--clr-accent);"></span>
+        What We Offer
+      </div>
+      <h1 class="page-hero__title">Comprehensive Financial <span>Solutions</span></h1>
+      <p class="page-hero__text">
+        From daily bookkeeping to complex audits — we handle it all so you can focus on growing your business with absolute confidence.
+      </p>
+      <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep">/</span>
+        <span class="breadcrumb__current">Services</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section" aria-label="All Services">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="section-tag reveal">What We Offer</span>
+        <h2 class="section-title reveal">Comprehensive Financial <span>Solutions</span></h2>
+        <p class="section-subtitle reveal" style="margin-inline:auto;">From daily bookkeeping to complex audits — we handle it all so you can focus on growing your business.</p>
+      </div>
+      <div class="service-detail-grid stagger-children">
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3 class="service-detail-card__title">Accounting & Bookkeeping</h3>
+          <p class="service-detail-card__desc">Complete financial record management with real-time updates, bank reconciliation, and monthly MIS reports tailored to your business needs.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Daily transaction recording</li>
+            <li><i class="fa-solid fa-check"></i> Bank & credit card reconciliation</li>
+            <li><i class="fa-solid fa-check"></i> Accounts payable/receivable management</li>
+            <li><i class="fa-solid fa-check"></i> Monthly balance sheet & P&L statements</li>
+            <li><i class="fa-solid fa-check"></i> Cloud-based access to your books 24/7</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <h3 class="service-detail-card__title">Tax Planning & Filing</h3>
+          <p class="service-detail-card__desc">Strategic tax planning to minimise liability while ensuring 100% compliance with Income Tax and GST regulations.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Income Tax Return (ITR) filing for all categories</li>
+            <li><i class="fa-solid fa-check"></i> Advance tax computation & planning</li>
+            <li><i class="fa-solid fa-check"></i> Tax deduction optimisation</li>
+            <li><i class="fa-solid fa-check"></i> Representation before tax authorities</li>
+            <li><i class="fa-solid fa-check"></i> Year-round tax advisory support</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="service-detail-card__title">Audit & Assurance</h3>
+          <p class="service-detail-card__desc">Independent audits that build stakeholder confidence and ensure your financial statements reflect true business performance.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Statutory audit under Companies Act</li>
+            <li><i class="fa-solid fa-check"></i> Internal audit & control assessment</li>
+            <li><i class="fa-solid fa-check"></i> Tax audit under Section 44AB</li>
+            <li><i class="fa-solid fa-check"></i> Forensic audit & fraud investigation</li>
+            <li><i class="fa-solid fa-check"></i> Management audit & operational review</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-users-gear"></i></div>
+          <h3 class="service-detail-card__title">Payroll Management</h3>
+          <p class="service-detail-card__desc">End-to-end payroll processing with complete statutory compliance — from salary calculation to Form 16 generation.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Monthly salary computation & disbursement</li>
+            <li><i class="fa-solid fa-check"></i> PF, ESI, PT & TDS compliance</li>
+            <li><i class="fa-solid fa-check"></i> Leave & attendance integration</li>
+            <li><i class="fa-solid fa-check"></i> Form 16 & 24Q generation</li>
+            <li><i class="fa-solid fa-check"></i> Employee self-service portal</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-receipt"></i></div>
+          <h3 class="service-detail-card__title">GST Compliance</h3>
+          <p class="service-detail-card__desc">Complete GST lifecycle management — from registration to return filing, reconciliation, and e-invoicing setup.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> GST registration (Regular/Composition)</li>
+            <li><i class="fa-solid fa-check"></i> Monthly GSTR-1 & GSTR-3B filing</li>
+            <li><i class="fa-solid fa-check"></i> Annual GSTR-9 & 9C reconciliation</li>
+            <li><i class="fa-solid fa-check"></i> E-invoicing & e-way bill compliance</li>
+            <li><i class="fa-solid fa-check"></i> GST refund claim assistance</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-handshake-angle"></i></div>
+          <h3 class="service-detail-card__title">Financial Advisory</h3>
+          <p class="service-detail-card__desc">CFO-level strategic guidance for business growth, funding, investment decisions, and financial restructuring.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Business valuation & due diligence</li>
+            <li><i class="fa-solid fa-check"></i> Investment portfolio management</li>
+            <li><i class="fa-solid fa-check"></i> Debt restructuring & funding advisory</li>
+            <li><i class="fa-solid fa-check"></i> M&A support & transaction advisory</li>
+            <li><i class="fa-solid fa-check"></i> Cash flow optimisation strategies</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-building"></i></div>
+          <h3 class="service-detail-card__title">Company Registration</h3>
+          <p class="service-detail-card__desc">Hassle-free business incorporation and compliance setup for startups, LLPs, and private limited companies.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Pvt Ltd / LLP / OPC registration</li>
+            <li><i class="fa-solid fa-check"></i> DSC & DIN application</li>
+            <li><i class="fa-solid fa-check"></i> MOA & AOA drafting</li>
+            <li><i class="fa-solid fa-check"></i> PAN, TAN & bank account assistance</li>
+            <li><i class="fa-solid fa-check"></i> Post-incorporation compliance</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-detail-card">
+          <div class="service-detail-card__icon"><i class="fa-solid fa-chart-pie"></i></div>
+          <h3 class="service-detail-card__title">MIS & Business Reporting</h3>
+          <p class="service-detail-card__desc">Data-driven insights through customised dashboards and reports that help you make informed business decisions.</p>
+          <ul class="service-detail-card__list">
+            <li><i class="fa-solid fa-check"></i> Monthly MIS reports with KPIs</li>
+            <li><i class="fa-solid fa-check"></i> Budget vs actual variance analysis</li>
+            <li><i class="fa-solid fa-check"></i> Cash flow forecasting</li>
+            <li><i class="fa-solid fa-check"></i> Break-even & profitability analysis</li>
+            <li><i class="fa-solid fa-check"></i> Custom dashboard creation</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-label="How It Works">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="section-tag reveal">Our Process</span>
+        <h2 class="section-title reveal">How Our <span>Services Work</span></h2>
+      </div>
+      <div style="max-width:800px;margin-inline:auto;">
+        <div class="stagger-children">
+          <div class="process-step reveal">
+            <span class="process-step__num">1</span>
+            <div>
+              <h4 class="process-step__title">Free Consultation</h4>
+              <p class="process-step__text">Schedule a free 30-minute call with our experts. We understand your business, current challenges, and financial goals.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="process-step__num">2</span>
+            <div>
+              <h4 class="process-step__title">Customised Proposal</h4>
+              <p class="process-step__text">Receive a detailed service proposal with transparent pricing, timelines, and deliverables tailored to your needs.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="process-step__num">3</span>
+            <div>
+              <h4 class="process-step__title">Onboarding & Setup</h4>
+              <p class="process-step__text">We set up your accounts, migrate data, and configure software. Your dedicated manager guides you through every step.</p>
+            </div>
+          </div>
+          <div class="process-step reveal">
+            <span class="process-step__num">4</span>
+            <div>
+              <h4 class="process-step__title">Ongoing Service & Support</h4>
+              <p class="process-step__text">Regular deliverables, monthly reviews, and 24/7 access to your financial data. We're with you at every growth stage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Industries We Serve">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="section-tag reveal">Industries</span>
+        <h2 class="section-title reveal">Industries We <span>Serve</span></h2>
+        <p class="section-subtitle reveal" style="margin-inline:auto;">Specialised expertise across diverse sectors.</p>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:1.5rem;">
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-industry"></i></div>
+          <h4 class="industry-card__title">Manufacturing</h4>
+          <p class="industry-card__text">Inventory accounting, cost management, and GST compliance for factories and production units.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-shop"></i></div>
+          <h4 class="industry-card__title">Retail & E-commerce</h4>
+          <p class="industry-card__text">Multi-channel accounting, payment reconciliation, and sales tax management.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-hospital"></i></div>
+          <h4 class="industry-card__title">Healthcare</h4>
+          <p class="industry-card__text">Medical practice accounting, insurance billing, and regulatory compliance.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4 class="industry-card__title">IT & Technology</h4>
+          <p class="industry-card__text">Export benefits, SEZ compliance, and international tax planning for tech companies.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-utensils"></i></div>
+          <h4 class="industry-card__title">Food & Hospitality</h4>
+          <p class="industry-card__text">FSSAI compliance, daily sales tracking, and F&B cost management.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h4 class="industry-card__title">Education</h4>
+          <p class="industry-card__text">Fee management, grant accounting, and trust/society compliance.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-truck"></i></div>
+          <h4 class="industry-card__title">Logistics</h4>
+          <p class="industry-card__text">Fleet accounting, fuel management, and interstate GST handling.</p>
+        </div>
+        <div class="industry-card reveal">
+          <div class="industry-card__icon"><i class="fa-solid fa-building-columns"></i></div>
+          <h4 class="industry-card__title">Real Estate</h4>
+          <p class="industry-card__text">Project accounting, RERA compliance, and joint venture structuring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-label="Service Comparison">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="section-tag reveal">Compare Plans</span>
+        <h2 class="section-title reveal">What's Included in <span>Each Plan</span></h2>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="comparison-table reveal">
+          <thead>
+            <tr>
+              <th>Features</th>
+              <th>Basic (₹4,999/mo)</th>
+              <th>Standard (₹9,999/mo)</th>
+              <th>Premium (₹19,999/mo)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Monthly Bookkeeping</td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>GST Return Filing</td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>Income Tax Return</td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>Email Support</td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>Payroll Management</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i> Up to 25</td><td class="check"><i class="fa-solid fa-check"></i> Unlimited</td></tr>
+            <tr><td>TDS Filing</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>MIS Reports</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i> Monthly</td><td class="check"><i class="fa-solid fa-check"></i> Weekly</td></tr>
+            <tr><td>Dedicated CA Manager</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i></td><td class="check"><i class="fa-solid fa-check"></i> Senior CA</td></tr>
+            <tr><td>Statutory Audit</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>CFO Advisory</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td>24/7 Priority Support</td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="cross"><i class="fa-solid fa-xmark"></i></td><td class="check"><i class="fa-solid fa-check"></i></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="get-started.html" class="btn btn--primary btn--lg">Choose Your Plan <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="CTA">
+    <div class="container">
+      <div class="cta-section reveal">
+        <span class="section-tag" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);">Get Started</span>
+        <h2 class="cta-section__title">Not Sure Which Service You Need?</h2>
+        <p class="cta-section__text">Talk to our experts for a free consultation. We'll analyse your needs and recommend the perfect solution.</p>
+        <a href="contact.html" class="btn btn--accent btn--lg">Book Free Consultation <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" aria-label="Site Footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-logo" style="margin-bottom:1.25rem;">
+          <img src="assets/logo.webp" alt="Stackly" width="54" height="54" />
+          <span class="footer__brand-name">Stack<span>ly</span></span>
+        </div>
+        <p class="footer__desc">Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.</p>
+        <address style="font-style:normal;font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:1.25rem;">
+          MMR Complex, Chinna Thirupathi,<br>
+          near Chinna Muniyappan Kovil,<br>
+          Salem, Tamil Nadu 636008
+        </address>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="footer__social-link" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Resources</h4>
+        <ul class="footer__links">
+            <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="contact.html" class="footer__link">Privacy Policy</a></li>
+          <li><a href="about.html" class="footer__link">About Us</a></li>
+          <li><a href="contact.html" class="footer__link">Careers</a></li>
+          <li><a href="blog.html" class="footer__link">Blog & News</a></li>
+          <li><a href="contact.html" class="footer__link">Feedback</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Services</h4>
+        <ul class="footer__links">
+          <li><a href="service.html" class="footer__link">Accounting</a></li>
+          <li><a href="service.html" class="footer__link">GST Filing</a></li>
+          <li><a href="service.html" class="footer__link">Income Tax</a></li>
+          <li><a href="service.html" class="footer__link">Payroll</a></li>
+          <li><a href="service.html" class="footer__link">Audit & Assurance</a></li>
+          <li><a href="service.html" class="footer__link">Financial Advisory</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__col-title">Office Hours</h4>
+        <div class="footer__hours">
+          <div class="footer__hour-item"><strong>Mon – Wed</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Thu – Fri</strong><span>8:00 AM – 6:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
+        </div>
+        <div style="margin-top:1.75rem;">
+          <h4 class="footer__col-title">Contact</h4>
+          <a href="tel:+919876543210" class="footer__link" style="font-size:0.88rem;"><i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210</a>
+          <a href="mailto:info@stackly.com" class="footer__link" style="font-size:0.88rem;margin-top:0.4rem;"><i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Stackly. All rights reserved.</span>
+      <div class="footer__bottom-links">
+        <a href="contact.html">Privacy Policy</a>
+        <a href="contact.html">Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast toast--' + type + ' show';
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+window.addEventListener('load', () => {
+  const pre = document.getElementById('preloader');
+  setTimeout(() => pre.classList.add('hide'), 500);
+});
+
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
+}, { passive: true });
+
+const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById('mobileOverlay');
+const overlayClose = document.getElementById('overlayClose');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  overlay.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  hamburger.classList.remove('open');
+  overlay.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
+overlayClose.addEventListener('click', closeMenu);
+document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+document.getElementById('scrollTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const revealEls = document.querySelectorAll('.reveal, .stagger-children');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
+</script>
+
+</body>
+</html>

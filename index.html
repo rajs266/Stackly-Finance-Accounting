@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stackly — Finance & Accounting Solutions. Smart financial management, audit, tax, and accounting services for businesses in Salem, Tamil Nadu." />
+  <meta name="theme-color" content="#1A6B4A" />
+  <title>Stackly — Finance & Accounting Solutions</title>
+
+  <!-- Preconnect for fast font load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =========================================================
+  SKIP LINK (Accessibility)
+========================================================= -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- =========================================================
+  PRELOADER
+========================================================= -->
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader__inner">
+    <img src="assets/logo.webp" alt="Stackly Logo" class="preloader__logo" />
+    <div class="preloader__circles">
+      <div class="preloader__circle preloader__circle--1"></div>
+      <div class="preloader__circle preloader__circle--2"></div>
+      <div class="preloader__circle preloader__circle--3"></div>
+    </div>
+    <div class="preloader__bar"></div>
+  </div>
+</div>
+
+<!-- =========================================================
+  MOBILE FULLSCREEN OVERLAY MENU
+========================================================= -->
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+  <button class="mobile-overlay__close" id="overlayClose" aria-label="Close menu">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <nav class="mobile-nav" aria-label="Mobile Navigation">
+    <a href="index.html"   class="mobile-nav__link active">Home</a>
+    <a href="about.html"   class="mobile-nav__link">About</a>
+    <a href="service.html" class="mobile-nav__link">Services</a>
+    <a href="blog.html"    class="mobile-nav__link">Blog</a>
+    <a href="contact.html" class="mobile-nav__link">Contact</a>
+  </nav>
+
+  <div class="mobile-overlay__actions">
+    <a href="signin.html"      class="btn btn--outline">Sign In</a>
+    <a href="get-started.html" class="btn btn--primary">Get Started</a>
+  </div>
+</div>
+
+<!-- =========================================================
+  HEADER / NAVBAR
+========================================================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header__inner">
+
+    <!-- Logo -->
+    <a href="index.html" class="header__logo" aria-label="Stackly Home">
+      <img src="assets/logo.webp" alt="Stackly" width="60" height="60" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="header__nav" aria-label="Main Navigation">
+      <a href="index.html"   class="nav__link active">Home</a>
+      <a href="about.html"   class="nav__link">About</a>
+      <a href="service.html" class="nav__link">Services</a>
+      <a href="blog.html"    class="nav__link">Blog</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="header__actions">
+      <a href="signin.html"      class="btn btn--outline btn--sm">Sign In</a>
+      <a href="get-started.html" class="btn btn--primary btn--sm">Get Started</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- =========================================================
+  MAIN CONTENT
+========================================================= -->
+<main id="main">
+
+  <!-- =====================================================
+    TICKER BAND
+  ===================================================== -->
+  <div class="ticker-band" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Smart Financial Management</span>
+      <span class="ticker-item">Tax Planning & Advisory</span>
+      <span class="ticker-item">Audit & Assurance</span>
+      <span class="ticker-item">Payroll Solutions</span>
+      <span class="ticker-item">GST Filing & Compliance</span>
+      <span class="ticker-item">Business Accounting</span>
+      <span class="ticker-item">Investment Consulting</span>
+      <span class="ticker-item">Risk Management</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ticker-item">Smart Financial Management</span>
+      <span class="ticker-item">Tax Planning & Advisory</span>
+      <span class="ticker-item">Audit & Assurance</span>
+      <span class="ticker-item">Payroll Solutions</span>
+      <span class="ticker-item">GST Filing & Compliance</span>
+      <span class="ticker-item">Business Accounting</span>
+      <span class="ticker-item">Investment Consulting</span>
+      <span class="ticker-item">Risk Management</span>
+    </div>
+  </div>
+
+  <!-- =====================================================
+    HERO SECTION
+  ===================================================== -->
+  <section class="hero" id="hero" aria-label="Hero">
+
+    <!-- Background Video -->
+    <div class="hero__video-wrap" aria-hidden="true">
+      <video class="hero__video" autoplay muted loop playsinline poster="assets/logo.webp">
+        <source src="assets/hero vid.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__video-overlay"></div>
+    </div>
+
+    <div class="hero__inner container">
+
+      <!-- Center: Content -->
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          Trusted by 1,000+ Businesses
+        </div>
+
+        <h1 class="hero__title">
+          Smart <em>Finance</em> &amp;<br />
+          Accounting for<br />
+          Modern Business
+        </h1>
+
+        <p class="hero__text">
+          Comprehensive financial management, audit, tax planning, and accounting solutions — designed to grow your business with confidence and clarity.
+        </p>
+
+        <div class="hero__buttons">
+          <a href="get-started.html" class="btn btn--primary btn--lg">
+            <i class="fa-solid fa-rocket"></i> Get Started Free
+          </a>
+          <a href="service.html" class="btn btn--outline btn--lg">
+            Explore Services <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div>
+            <div class="hero__stat-num">15+</div>
+            <div class="hero__stat-label">Years Experience</div>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div>
+            <div class="hero__stat-num">1K+</div>
+            <div class="hero__stat-label">Happy Clients</div>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div>
+            <div class="hero__stat-num">98%</div>
+            <div class="hero__stat-label">Success Rate</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+    BRAND / PARTNERS MARQUEE
+  ===================================================== -->
+  <section class="brands" aria-label="Our Partners">
+    <div class="container">
+      <p class="brands__label">Trusted by Leading Organizations</p>
+      <div class="brands__track-wrap">
+        <div class="brands__track">
+          <!-- Brand logos — replace with real images -->
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-building" style="color:var(--clr-primary)"></i> FinCorp</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-landmark" style="color:var(--clr-primary)"></i> AuditPlus</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-coins" style="color:var(--clr-primary)"></i> TaxWise</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-chart-bar" style="color:var(--clr-primary)"></i> GrowthCo</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-scale-balanced" style="color:var(--clr-primary)"></i> LexFirm</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-briefcase" style="color:var(--clr-primary)"></i> BizServe</div>
+          <!-- Duplicates for loop -->
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-building" style="color:var(--clr-primary)"></i> FinCorp</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-landmark" style="color:var(--clr-primary)"></i> AuditPlus</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-coins" style="color:var(--clr-primary)"></i> TaxWise</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-chart-bar" style="color:var(--clr-primary)"></i> GrowthCo</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-scale-balanced" style="color:var(--clr-primary)"></i> LexFirm</div>
+          <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-briefcase" style="color:var(--clr-primary)"></i> BizServe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    ABOUT SECTION
+  ===================================================== -->
+  <section class="section section--dark-teal" id="about" aria-label="About Us">
+    <div class="container">
+      <div class="about__grid">
+
+        <!-- Image Side -->
+        <div class="about__img-wrap reveal reveal--left">
+          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800" alt="Stackly Team Office" class="about__img" />
+
+          <!-- Floating experience badge -->
+          <div class="about__exp-badge">
+            <div class="about__exp-num">15+</div>
+            <div class="about__exp-label">Years of<br>Excellence</div>
+          </div>
+        </div>
+
+        <!-- Content Side -->
+        <div class="about__content reveal reveal--right">
+          <span class="section-tag">About Our Company</span>
+          <h2 class="section-title">
+            Providing Tailored <span>Financial Solutions</span> for Business Growth
+          </h2>
+
+          <!-- Clients -->
+          <div class="about__clients">
+            <div class="about__avatars">
+              <div class="about__avatar" style="background:var(--clr-primary-pale);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-primary);font-size:1rem"></i></div>
+              <div class="about__avatar" style="background:var(--clr-accent-light);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-accent);font-size:1rem"></i></div>
+              <div class="about__avatar" style="background:var(--clr-primary-pale);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-primary);font-size:1rem"></i></div>
+            </div>
+            <p class="about__client-text"><strong>800+ Clients</strong> trust us across India</p>
+          </div>
+
+          <p style="color:var(--clr-text-muted);font-size:0.95rem;line-height:1.75;margin-bottom:1rem;">
+            We are dedicated to transforming businesses through innovative and future-ready finance & accounting solutions. With a passion for numbers and a commitment to compliance excellence, we empower organisations of every size.
+          </p>
+
+          <ul class="about__checklist">
+            <li class="about__check-item">
+              <span class="about__check-icon"><i class="fa-solid fa-check"></i></span>
+              Tailored Financial & Tax Solutions
+            </li>
+            <li class="about__check-item">
+              <span class="about__check-icon"><i class="fa-solid fa-check"></i></span>
+              100% GST & Regulatory Compliance
+            </li>
+            <li class="about__check-item">
+              <span class="about__check-icon"><i class="fa-solid fa-check"></i></span>
+              Dedicated Account Manager for Every Client
+            </li>
+          </ul>
+
+          <a href="about.html" class="btn btn--primary">
+            Discover Our Story <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <div class="about__metrics">
+            <div>
+              <div class="about__metric-num">1,200+</div>
+              <div class="about__metric-label">Clients Served</div>
+            </div>
+            <div>
+              <div class="about__metric-num">₹500Cr+</div>
+              <div class="about__metric-label">Tax Filed</div>
+            </div>
+            <div>
+              <div class="about__metric-num">15+</div>
+              <div class="about__metric-label">Expert CAs</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    STATISTICS BAND
+  ===================================================== -->
+  <section class="stats-section section--light-blue" aria-label="Statistics">
+    <div class="container">
+      <div class="stats__grid stagger-children">
+
+        <div class="stat-item">
+          <div class="stat-item__num">1,200<span>+</span></div>
+          <div class="stat-item__label">Clients Across India</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-item__num">15<span>+</span></div>
+          <div class="stat-item__label">Years of Experience</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-item__num">98<span>%</span></div>
+          <div class="stat-item__label">Client Retention Rate</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-item__num">₹500<span>Cr+</span></div>
+          <div class="stat-item__label">Total Tax Filed</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    HOW WE WORK — STEPS
+  ===================================================== -->
+  <section class="section section--alt" aria-label="How We Work">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="section-tag reveal">How We Work</span>
+        <h2 class="section-title reveal">Transform Your Finances in <span>3 Simple Steps</span></h2>
+      </div>
+
+      <div class="steps__grid stagger-children">
+
+        <div class="step-card">
+          <div class="step-card__num">STEP 01</div>
+          <div class="step-card__icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h3 class="step-card__title">Discovery & Analysis</h3>
+          <p class="step-card__text">We dive deep into your business financials, identify gaps, compliance risks, and growth opportunities through a thorough consultation.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card__num">STEP 02</div>
+          <div class="step-card__icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <h3 class="step-card__title">Strategy & Implementation</h3>
+          <p class="step-card__text">Our CA team builds a customised financial plan — from tax optimisation to accounting setup — and executes it with precision.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card__num">STEP 03</div>
+          <div class="step-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3 class="step-card__title">Growth & Ongoing Support</h3>
+          <p class="step-card__text">We monitor, report, and continuously optimise your financial health — staying by your side as your business scales.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    SERVICES SECTION — FLIP CARDS
+  ===================================================== -->
+  <section class="section section--dark-navy" id="services" aria-label="Our Services">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:3rem;">
+        <span class="section-tag reveal">Explore Services</span>
+        <h2 class="section-title reveal">Reliable Financial Services for <span>Every Business</span></h2>
+        <p class="section-subtitle reveal" style="margin-inline:auto;">Hover over the cards to discover how each service empowers your financial success.</p>
+      </div>
+
+      <div class="services__grid stagger-children">
+
+        <!-- Card 1 -->
+        <div class="service-card" tabindex="0" role="article" aria-label="Accounting & Bookkeeping">
+          <div class="service-card__inner">
+            <div class="service-card__front">
+              <div class="service-card__icon"><i class="fa-solid fa-book-open"></i></div>
+              <h3 class="service-card__title">Accounting & Bookkeeping</h3>
+              <p class="service-card__text">Accurate, real-time records of every transaction. We handle your books so you focus on growing your business.</p>
+            </div>
+            <div class="service-card__back">
+              <div class="service-card__back-title">Accounting & Bookkeeping</div>
+              <p class="service-card__back-text">From ledger maintenance to MIS reports, bank reconciliation, and financial statements — complete end-to-end.</p>
+              <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card" tabindex="0" role="article" aria-label="Tax Planning & Filing">
+          <div class="service-card__inner">
+            <div class="service-card__front">
+              <div class="service-card__icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+              <h3 class="service-card__title">Tax Planning & Filing</h3>
+              <p class="service-card__text">Minimise tax liability legally. Income Tax, GST, TDS — we handle all filings on time, every time.</p>
+            </div>
+            <div class="service-card__back">
+              <div class="service-card__back-title">Tax Planning & Filing</div>
+              <p class="service-card__back-text">Expert strategies to reduce your tax burden while ensuring 100% compliance with current regulations.</p>
+              <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card" tabindex="0" role="article" aria-label="Audit & Assurance">
+          <div class="service-card__inner">
+            <div class="service-card__front">
+              <div class="service-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3 class="service-card__title">Audit & Assurance</h3>
+              <p class="service-card__text">Statutory, internal, and forensic audits that give stakeholders confidence in your financial integrity.</p>
+            </div>
+            <div class="service-card__back">
+              <div class="service-card__back-title">Audit & Assurance</div>
+              <p class="service-card__back-text">Thorough audit processes with detailed reporting — identify risks before they become problems.</p>
+              <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card" tabindex="0" role="article" aria-label="Payroll Management">
+          <div class="service-card__inner">
+            <div class="service-card__front">
+              <div class="service-card__icon"><i class="fa-solid fa-users-gear"></i></div>
+              <h3 class="service-card__title">Payroll Management</h3>
+              <p class="service-card__text">Accurate, timely payroll processing with full PF, ESI, and TDS compliance. Zero errors guaranteed.</p>
+            </div>
+            <div class="service-card__back">
+              <div class="service-card__back-title">Payroll Management</div>
+              <p class="service-card__back-text">End-to-end payroll — salary slips, Form 16, statutory filings, and employee portal integration.</p>
+              <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card" tabindex="0" role="article" aria-label="GST Compliance">
+          <div class="service-card__inner">
+            <div class="service-card__front">
+              <div class="service-card__icon"><i class="fa-solid fa-receipt"></i></div>
+              <h3 class="service-card__title">GST Compliance</h3>
+              <p class="service-card__text">Complete GST registration, return filing, reconciliation, and advisory to keep you penalty-free.</p>
+            </div>
+            <div class="service-card__back">
+              <div class="service-card__back-title">GST Compliance</div>
+              <p class="service-card__back-text">Monthly GSTR-1, GSTR-3B, annual returns, e-invoicing, and e-way bill management — all handled.</p>
+              <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card" tabindex="0" role="article" aria-label="Financial Advisory">
+          <div class="service-card__inner">
+            <div class="service-card__front">
+              <div class="service-card__icon"><i class="fa-solid fa-handshake-angle"></i></div>
+              <h3 class="service-card__title">Financial Advisory</h3>
+              <p class="service-card__text">Strategic guidance on investments, funding, business restructuring, and long-term financial planning.</p>
+            </div>
+            <div class="service-card__back">
+              <div class="service-card__back-title">Financial Advisory</div>
+              <p class="service-card__back-text">CFO-level insights without the full-time cost. We help you make confident business decisions backed by data.</p>
+              <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="service.html" class="btn btn--outline">View All Services <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    OUR TECHNOLOGIES — SLIDING CARD ANIMATION
+  ===================================================== -->
+  <section class="section section--light-orange" id="technologies" aria-label="Our Technologies">
+    <div class="container">
+
+      <div class="tech__header reveal">
+        <div>
+          <span class="section-tag">Our Technologies</span>
+          <h2 class="section-title">Tools We Use for <span>Effortless Finance</span> Management</h2>
+        </div>
+        <div>
+          <p class="section-subtitle">We integrate industry-leading platforms for seamless accounting, compliance, and reporting — all in one workflow.</p>
+          <a href="service.html" class="btn btn--primary" style="margin-top:1.25rem;">
+            Read More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="tech__grid tech__grid--physics stagger-children" aria-label="Draggable technology tools">
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:var(--clr-primary-pale);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-calculator" style="font-size:1.4rem;color:var(--clr-primary)"></i>
+          </div>
+          <span class="tech-card__name">Tally Prime</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#E8F0FF;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-brands fa-microsoft" style="font-size:1.4rem;color:#0078D4"></i>
+          </div>
+          <span class="tech-card__name">MS Excel</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#FFF0E8;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-cloud" style="font-size:1.4rem;color:#F76400"></i>
+          </div>
+          <span class="tech-card__name">Zoho Books</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#E8F5FF;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-file-invoice" style="font-size:1.4rem;color:#1976D2"></i>
+          </div>
+          <span class="tech-card__name">QuickBooks</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:var(--clr-primary-pale);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-receipt" style="font-size:1.4rem;color:var(--clr-primary)"></i>
+          </div>
+          <span class="tech-card__name">GST Portal</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:var(--clr-accent-light);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-coins" style="font-size:1.4rem;color:var(--clr-accent)"></i>
+          </div>
+          <span class="tech-card__name">IncomeTax Portal</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#F0E8FF;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-users" style="font-size:1.4rem;color:#7B2FBE"></i>
+          </div>
+          <span class="tech-card__name">Keka HR</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#E8FFF5;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-chart-pie" style="font-size:1.4rem;color:#00875A"></i>
+          </div>
+          <span class="tech-card__name">Razorpay</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#FFF8E8;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-shield-halved" style="font-size:1.4rem;color:#E65C00"></i>
+          </div>
+          <span class="tech-card__name">Cleartax</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#E8F5FF;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-brands fa-dropbox" style="font-size:1.4rem;color:#0061FF"></i>
+          </div>
+          <span class="tech-card__name">Dropbox</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#E8FFF5;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-brands fa-slack" style="font-size:1.4rem;color:#4A154B"></i>
+          </div>
+          <span class="tech-card__name">Slack</span>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-card__img" style="width:52px;height:52px;background:#E8F0FF;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;">
+            <i class="fa-solid fa-brain" style="font-size:1.4rem;color:#1A73E8"></i>
+          </div>
+          <span class="tech-card__name">AI Analytics</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    PRICING SECTION
+  ===================================================== -->
+  <section class="section section--dark-purple" id="pricing" aria-label="Pricing Plans">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:1.5rem;">
+        <span class="section-tag reveal">Best Pricing</span>
+        <h2 class="section-title reveal">Transparent Plans for <span>Every Business</span></h2>
+      </div>
+
+      <!-- Toggle -->
+      <div class="pricing__toggle reveal">
+        <span class="pricing__toggle-label active" id="monthlyLabel">Monthly</span>
+        <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Switch billing period"></div>
+        <span class="pricing__toggle-label" id="yearlyLabel">
+          Yearly <span class="pricing__badge">Save 20%</span>
+        </span>
+      </div>
+
+      <div class="pricing__grid stagger-children">
+
+        <!-- Basic -->
+        <div class="pricing-card">
+          <div class="pricing-card__plan">Starter</div>
+          <div class="pricing-card__title">Basic Plan</div>
+          <div class="pricing-card__price">
+            <span class="price-currency">₹</span>
+            <span class="price-amount" data-monthly="4999" data-yearly="3999">4,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="pricing-card__divider"></div>
+          <ul class="pricing-card__features">
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Monthly Bookkeeping</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> GST Return Filing</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Income Tax Return (ITR)</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Email Support</li>
+            <li class="pricing-feature pricing-feature--disabled"><span class="pricing-feature__check"><i class="fa-solid fa-xmark"></i></span> Payroll Management</li>
+            <li class="pricing-feature pricing-feature--disabled"><span class="pricing-feature__check"><i class="fa-solid fa-xmark"></i></span> Dedicated CA</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--outline">Choose Plan</a>
+        </div>
+
+        <!-- Standard (Featured) -->
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-card__badge">Most Popular</div>
+          <div class="pricing-card__plan">Growth</div>
+          <div class="pricing-card__title">Standard Plan</div>
+          <div class="pricing-card__price">
+            <span class="price-currency">₹</span>
+            <span class="price-amount" data-monthly="9999" data-yearly="7999">9,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="pricing-card__divider"></div>
+          <ul class="pricing-card__features">
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Everything in Basic</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Payroll (up to 25 staff)</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> TDS Filing & Compliance</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> MIS Reports Monthly</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Dedicated CA Manager</li>
+            <li class="pricing-feature pricing-feature--disabled"><span class="pricing-feature__check"><i class="fa-solid fa-xmark"></i></span> Statutory Audit</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--primary">Choose Plan</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="pricing-card">
+          <div class="pricing-card__plan">Enterprise</div>
+          <div class="pricing-card__title">Premium Plan</div>
+          <div class="pricing-card__price">
+            <span class="price-currency">₹</span>
+            <span class="price-amount" data-monthly="19999" data-yearly="15999">19,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="pricing-card__divider"></div>
+          <ul class="pricing-card__features">
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Everything in Standard</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Statutory & Internal Audit</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Unlimited Payroll Staff</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> CFO Advisory Service</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Priority 24/7 Support</li>
+            <li class="pricing-feature"><span class="pricing-feature__check"><i class="fa-solid fa-check"></i></span> Business Registration Help</li>
+          </ul>
+          <a href="get-started.html" class="btn btn--accent">Choose Plan</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    TESTIMONIALS
+  ===================================================== -->
+  <section class="section section--alt" id="testimonials" aria-label="Client Testimonials">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2.5rem;">
+        <span class="section-tag reveal">Success Stories</span>
+        <h2 class="section-title reveal">Building Trust Through <span>Client Results</span></h2>
+      </div>
+
+      <div class="testimonials__slider">
+        <div class="testimonials__track" id="testimonialTrack">
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">Stackly transformed our messy accounts into a streamlined system. Their GST compliance saved us from a ₹2L penalty. Truly professional.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__img" style="background:var(--clr-primary-pale);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-primary)"></i></div>
+              <div>
+                <div class="testimonial-card__name">Ramesh Sundaram</div>
+                <div class="testimonial-card__role">MD, Sundaram Textiles, Salem</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">Their dedicated CA team handled our entire payroll and TDS filing seamlessly. We now have zero compliance stress — it's a game-changer for our HR team.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__img" style="background:var(--clr-accent-light);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-accent)"></i></div>
+              <div>
+                <div class="testimonial-card__name">Priya Lakshmi</div>
+                <div class="testimonial-card__role">CEO, ProBuild Constructions</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">The monthly MIS reports from Stackly give me a crystal-clear picture of my business performance. Best financial decision I made this year.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__img" style="background:var(--clr-primary-pale);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-primary)"></i></div>
+              <div>
+                <div class="testimonial-card__name">Karthik Rajan</div>
+                <div class="testimonial-card__role">Founder, RK Pharma Distributors</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">From company registration to GST, Stackly handled everything end-to-end. Highly recommend to any startup in Tamil Nadu.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__img" style="background:var(--clr-accent-light);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-accent)"></i></div>
+              <div>
+                <div class="testimonial-card__name">Meena Devi</div>
+                <div class="testimonial-card__role">Co-Founder, SpiceRoute Foods</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Slider Nav -->
+      <div class="slider-nav">
+        <button class="slider-btn" id="testimonialPrev" aria-label="Previous testimonial">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="hero-slider__dots" style="position:relative;bottom:0;left:0;transform:none;display:flex;gap:0.4rem;" id="testimonialDots"></div>
+        <button class="slider-btn" id="testimonialNext" aria-label="Next testimonial">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    FAQ SECTION
+  ===================================================== -->
+  <section class="section section--light-blue" id="faq" aria-label="FAQ">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:2.5rem;">
+        <span class="section-tag reveal">Read Answers</span>
+        <h2 class="section-title reveal">Quick Answers to <span>Common Questions</span></h2>
+      </div>
+
+      <div class="faq__list reveal">
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">What accounting and financial services do you offer?</span>
+            <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-item__body">
+            <p class="faq-item__answer">We offer end-to-end accounting, bookkeeping, GST filing, income tax returns, payroll management, audit & assurance, financial advisory, and company registration services — tailored to your business size and industry.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">How can Stackly help reduce my tax liability?</span>
+            <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-item__body">
+            <p class="faq-item__answer">Our CA team analyses your business structure, income patterns, and eligible deductions to build a legal tax optimisation strategy — saving you money while ensuring full compliance with IT and GST laws.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Do you provide support after the engagement?</span>
+            <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-item__body">
+            <p class="faq-item__answer">Absolutely. All our plans include ongoing support. Our Standard and Premium plans come with a dedicated CA manager whom you can reach via call, WhatsApp, or email at any time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">How long does it take to set up accounting for my business?</span>
+            <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-item__body">
+            <p class="faq-item__answer">Typically 2–5 business days. Once you share your documents, our team migrates your data, sets up the software, and begins processing within the same week.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-item__header" aria-expanded="false">
+            <span class="faq-item__question">Is my financial data secure with Stackly?</span>
+            <span class="faq-item__icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-item__body">
+            <p class="faq-item__answer">Yes. We use encrypted cloud storage, signed NDAs, and strict data access controls. Your financial information is never shared with third parties — confidentiality is our core commitment.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    BLOG SECTION
+  ===================================================== -->
+  <section class="section section--alt" id="blog" aria-label="Latest Blog">
+    <div class="container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+        <div>
+          <span class="section-tag reveal">Explore Blogs</span>
+          <h2 class="section-title reveal">Latest <span>Finance & Tax</span> Insights</h2>
+        </div>
+        <a href="blog.html" class="btn btn--outline">View All Posts <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="blog__grid stagger-children">
+
+        <article class="blog-card">
+          <div class="blog-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=600" alt="Tax Savings" class="blog-card__img" />
+            <span class="blog-card__cat">Tax</span>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta">
+              <span>Jan 12, 2026</span>
+              <span class="blog-card__meta-dot"></span>
+              <span>5 min read</span>
+            </div>
+            <h3 class="blog-card__title">Top 10 Tax Saving Strategies for Small Businesses in 2026</h3>
+            <p class="blog-card__text">Discover proven, legal methods to reduce your income tax burden while keeping your business 100% compliant this financial year.</p>
+            <a href="blog.html" class="blog-card__link">Read More <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?auto=format&fit=crop&q=80&w=600" alt="GST Filing" class="blog-card__img" />
+            <span class="blog-card__cat">GST</span>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta">
+              <span>Feb 3, 2026</span>
+              <span class="blog-card__meta-dot"></span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="blog-card__title">GST Return Filing: Common Mistakes and How to Avoid Them</h3>
+            <p class="blog-card__text">Many businesses face penalties due to avoidable GST errors. Here's a comprehensive guide to filing GSTR-1 and GSTR-3B correctly.</p>
+            <a href="blog.html" class="blog-card__link">Read More <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Financial Statements" class="blog-card__img" />
+            <span class="blog-card__cat">Finance</span>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__meta">
+              <span>Mar 18, 2026</span>
+              <span class="blog-card__meta-dot"></span>
+              <span>6 min read</span>
+            </div>
+            <h3 class="blog-card__title">How to Read Your Financial Statements Like a Pro</h3>
+            <p class="blog-card__text">Balance sheets, P&amp;L, and cash flow statements decoded — learn to understand what your numbers are truly telling you about your business health.</p>
+            <a href="blog.html" class="blog-card__link">Read More <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    CTA / NEWSLETTER
+  ===================================================== -->
+  <section class="section section--dark-charcoal" aria-label="Newsletter">
+    <div class="container">
+      <div class="cta-section reveal">
+        <span class="section-tag" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);">Stay Updated</span>
+        <h2 class="cta-section__title">Get Free Finance &amp; Tax Tips in Your Inbox</h2>
+        <p class="cta-section__text">Join 5,000+ business owners who receive our weekly insights on tax, GST, audit, and financial planning — completely free.</p>
+        <form class="cta-newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+          <input type="email" placeholder="Enter your email address" aria-label="Email address" required />
+          <button type="submit">Subscribe Free</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+    CONTACT QUICK STRIP
+  ===================================================== -->
+  <section class="section section--alt" id="contact-strip" aria-label="Contact Information">
+    <div class="container">
+      <div class="contact__grid">
+
+        <!-- Info -->
+        <div class="reveal reveal--left">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let's Talk About Your <span>Financial Goals</span></h2>
+          <p style="color:var(--clr-text-muted);margin-bottom:2rem;font-size:0.95rem;">Whether you need GST help, tax planning, or a full accounting setup — we're ready to help. Reach out today.</p>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="contact__info-label">Office Address</div>
+              <div class="contact__info-value">MMR Complex, Chinna Thirupathi,<br>near Chinna Muniyappan Kovil,<br>Salem, Tamil Nadu 636008</div>
+            </div>
+          </div>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact__info-label">Phone</div>
+              <div class="contact__info-value">
+                <a href="tel:+919876543210" style="color:var(--clr-primary);font-weight:600;">+91 98765 43210</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact__info-label">Email</div>
+              <div class="contact__info-value">
+                <a href="mailto:info@stackly.com" style="color:var(--clr-primary);font-weight:600;">info@stackly.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="contact__info-label">Working Hours</div>
+              <div class="contact__info-value">Mon – Sat: 9:00 AM – 7:00 PM<br>Sunday: Closed</div>
+            </div>
+          </div>
+
+          <a href="contact.html" class="btn btn--primary" style="margin-top:0.5rem;">
+            <i class="fa-solid fa-paper-plane"></i> Send a Message
+          </a>
+        </div>
+
+        <!-- Quick Contact Form -->
+        <div class="contact-form reveal reveal--right">
+          <h3 style="font-size:1.25rem;font-weight:700;color:var(--clr-text-dark);margin-bottom:1.5rem;">Quick Enquiry</h3>
+          <form onsubmit="handleContact(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fname">First Name</label>
+                <input class="form-input" type="text" id="fname" placeholder="Ramesh" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lname">Last Name</label>
+                <input class="form-input" type="text" id="lname" placeholder="Kumar" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" placeholder="ramesh@company.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="service">Service Needed</label>
+              <select class="form-select" id="service">
+                <option value="">Select a service…</option>
+                <option>Accounting & Bookkeeping</option>
+                <option>GST Filing</option>
+                <option>Income Tax Return</option>
+                <option>Payroll Management</option>
+                <option>Audit & Assurance</option>
+                <option>Financial Advisory</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea class="form-textarea" id="message" placeholder="Tell us about your business and what you need help with…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;">
+              <i class="fa-solid fa-paper-plane"></i> Send Enquiry
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================================
+  FOOTER
+========================================================= -->
+<footer class="site-footer" aria-label="Site Footer">
+  <div class="container">
+    <div class="footer__grid">
+
+      <!-- Brand column -->
+      <div>
+        <div class="footer__brand-logo">
+          <img src="assets/logo.webp" alt="Stackly" width="54" height="54" />
+        </div>
+        <p class="footer__desc">
+          Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.
+        </p>
+        <address style="font-style:normal;font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:1.25rem;">
+          MMR Complex, Chinna Thirupathi,<br>
+          near Chinna Muniyappan Kovil,<br>
+          Salem, Tamil Nadu 636008
+        </address>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/" class="footer__social-link" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.x.com/" class="footer__social-link" aria-label="X / Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="footer__col-title">Resources</h4>
+        <ul class="footer__links">
+          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+          <li><a href="contact.html" class="footer__link">Privacy Policy</a></li>
+          <li><a href="about.html"   class="footer__link">About Us</a></li>
+          <li><a href="contact.html" class="footer__link">Careers</a></li>
+          <li><a href="blog.html"    class="footer__link">Blog & News</a></li>
+          <li><a href="contact.html" class="footer__link">Feedback</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="footer__col-title">Services</h4>
+        <ul class="footer__links">
+          <li><a href="service.html" class="footer__link">Accounting</a></li>
+          <li><a href="service.html" class="footer__link">GST Filing</a></li>
+          <li><a href="service.html" class="footer__link">Income Tax</a></li>
+          <li><a href="service.html" class="footer__link">Payroll</a></li>
+          <li><a href="service.html" class="footer__link">Audit & Assurance</a></li>
+          <li><a href="service.html" class="footer__link">Financial Advisory</a></li>
+        </ul>
+      </div>
+
+      <!-- Hours -->
+      <div>
+        <h4 class="footer__col-title">Office Hours</h4>
+        <div class="footer__hours">
+          <div class="footer__hour-item"><strong>Mon – Wed</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Thu – Fri</strong><span>8:00 AM – 6:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
+        </div>
+
+        <div style="margin-top:1.75rem;">
+          <h4 class="footer__col-title">Contact</h4>
+          <a href="tel:+919876543210" class="footer__link" style="font-size:0.88rem;">
+            <i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210
+          </a>
+          <a href="mailto:info@stackly.com" class="footer__link" style="font-size:0.88rem;margin-top:0.4rem;">
+            <i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer__bottom">
+      <span>&copy; 2026 Stackly. All rights reserved.</span>
+      <div class="footer__bottom-links">
+        <a href="contact.html">Privacy Policy</a>
+        <a href="contact.html">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================================
+  SCROLL TO TOP
+========================================================= -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- =========================================================
+  TOAST NOTIFICATION
+========================================================= -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<!-- =========================================================
+  JAVASCRIPT
+========================================================= -->
+<script>
+/* ── Utility ── */
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast toast--' + type + ' show';
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+/* ── Preloader — hide within 2 seconds ── */
+window.addEventListener('load', () => {
+  const pre = document.getElementById('preloader');
+  setTimeout(() => pre.classList.add('hide'), 500);
+});
+
+/* ── Dark Mode Toggle ── */
+/* ── Navbar scroll behaviour ── */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
+}, { passive: true });
+
+/* ── Hamburger + Mobile overlay ── */
+const hamburger  = document.getElementById('hamburger');
+const overlay    = document.getElementById('mobileOverlay');
+const overlayClose = document.getElementById('overlayClose');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  overlay.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  hamburger.classList.remove('open');
+  overlay.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
+overlayClose.addEventListener('click', closeMenu);
+
+/* Close on mobile nav link click */
+document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
+
+/* Close on Escape key */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ── Scroll to Top ── */
+document.getElementById('scrollTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ── Scroll-triggered Reveal (Intersection Observer) ── */
+const revealEls = document.querySelectorAll('.reveal, .stagger-children');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => revealObs.observe(el));
+
+/* ── FAQ Accordion ── */
+document.querySelectorAll('.faq-item__header').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item   = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    /* Close all */
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-item__header').setAttribute('aria-expanded', 'false');
+    });
+
+    /* Open clicked (if wasn't already open) */
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+/* ── Pricing Toggle ── */
+const toggle       = document.getElementById('billingToggle');
+const monthlyLabel = document.getElementById('monthlyLabel');
+const yearlyLabel  = document.getElementById('yearlyLabel');
+let isYearly = false;
+
+function updatePricing() {
+  document.querySelectorAll('.price-amount').forEach(el => {
+    const monthly = parseInt(el.dataset.monthly);
+    const yearly  = parseInt(el.dataset.yearly);
+    const val     = isYearly ? yearly : monthly;
+    el.textContent = val.toLocaleString('en-IN');
+  });
+}
+
+toggle.addEventListener('click', () => {
+  isYearly = !isYearly;
+  toggle.classList.toggle('active', isYearly);
+  toggle.setAttribute('aria-checked', isYearly);
+  monthlyLabel.classList.toggle('active', !isYearly);
+  yearlyLabel.classList.toggle('active', isYearly);
+  updatePricing();
+});
+
+toggle.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }
+});
+
+/* ── Testimonial Slider ── */
+(function () {
+  const track  = document.getElementById('testimonialTrack');
+  const cards  = track ? Array.from(track.children) : [];
+  const dotsEl = document.getElementById('testimonialDots');
+  if (!cards.length) return;
+
+  let current = 0;
+  let perView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+  let total   = Math.max(1, cards.length - perView + 1);
+  let autoTimer;
+
+  function buildDots() {
+    if (!dotsEl) return;
+    dotsEl.innerHTML = '';
+    total = Math.max(1, cards.length - perView + 1);
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('button');
+      d.className = 'slider-dot' + (i === current ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, total - 1));
+    const cardW = cards[0].offsetWidth + 24; // gap=1.5rem=24px approx
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    dotsEl && dotsEl.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current < total - 1 ? current + 1 : 0); }
+  function prev() { goTo(current > 0 ? current - 1 : total - 1); }
+
+  document.getElementById('testimonialNext') && document.getElementById('testimonialNext').addEventListener('click', () => { clearInterval(autoTimer); next(); startAuto(); });
+  document.getElementById('testimonialPrev') && document.getElementById('testimonialPrev').addEventListener('click', () => { clearInterval(autoTimer); prev(); startAuto(); });
+
+  function startAuto() { autoTimer = setInterval(next, 4500); }
+
+  window.addEventListener('resize', () => {
+    perView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    buildDots();
+    goTo(0);
+  }, { passive: true });
+
+  buildDots();
+  goTo(0);
+  startAuto();
+})();
+
+/* ── Lazy Image Loading ── */
+document.querySelectorAll('img.lazy').forEach(img => {
+  const obs = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      img.src = img.dataset.src;
+      img.classList.add('loaded');
+      obs.disconnect();
+    }
+  });
+  obs.observe(img);
+});
+
+/* ── Newsletter form ── */
+function handleNewsletter(e) {
+  e.preventDefault();
+  showToast('✅ Subscribed! Welcome to Stackly Insights.');
+  e.target.reset();
+}
+
+/* ── Contact form ── */
+function handleContact(e) {
+  e.preventDefault();
+  showToast('✅ Enquiry sent! We\'ll contact you within 24 hours.');
+  e.target.reset();
+}
+
+/* ── Active nav link on scroll ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.nav__link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    link.classList.toggle('active', href === 'index.html' || (current && href && href.includes(current)));
+  });
+}, { passive: true });
+
+/* ── Service flip card keyboard support ── */
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      card.classList.toggle('flipped');
+      const inner = card.querySelector('.service-card__inner');
+      if (card.classList.contains('flipped')) {
+        inner.style.transform = 'rotateY(180deg)';
+      } else {
+        inner.style.transform = '';
+      }
+    }
+  });
+});
+
+/* ── Counter animation for stats ── */
+function animateCounter(el) {
+  const target = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
+  const suffix = el.textContent.replace(/[0-9.,]/g, '').trim();
+  const duration = 1800;
+  const steps = 60;
+  let step = 0;
+
+  const timer = setInterval(() => {
+    step++;
+    const progress = step / steps;
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    el.textContent = current.toLocaleString('en-IN') + suffix;
+    if (step >= steps) { clearInterval(timer); el.textContent = target.toLocaleString('en-IN') + suffix; }
+  }, duration / steps);
+}
+
+const statsObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-item__num').forEach(num => {
+        animateCounter(num);
+      });
+      statsObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.stats__grid').forEach(g => statsObs.observe(g));
+</script>
+
+<!-- ▸ Matter.js — 2D Physics Engine -->
+
+<!-- ▸ Physics Sandbox — Our Technologies Section -->
+<script>
+(function () {
+  'use strict';
+  if (typeof Matter === 'undefined') return;
+
+  const { Engine, Bodies, World, Mouse, MouseConstraint, Events } = Matter;
+
+  /* ── Find the physics arena ── */
+  const arena = document.querySelector('.tech__grid--matter-disabled');
+  if (!arena) return;
+  const cards = Array.from(arena.querySelectorAll('.tech-card'));
+  if (!cards.length) return;
+
+  /* ── Card dimensions (match CSS) ── */
+  const WALL = 80;
+  let cardW = 116;
+  let cardH = 74;
+
+  /* ── Create transparent canvas overlay (captures pointer events) ── */
+  const canvas = document.createElement('canvas');
+  Object.assign(canvas.style, {
+    position   : 'absolute',
+    inset      : '0',
+    width      : '100%',
+    height     : '100%',
+    opacity    : '0',
+    zIndex     : '50',
+    cursor     : 'grab',
+    touchAction: 'none',
+    display    : 'block',
+  });
+  arena.appendChild(canvas);
+
+  /* ── Physics engine ── */
+  const engine = Engine.create({ gravity: { x: 0, y: 6.5 } });
+  const world  = engine.world;
+
+  let arenaW = 0, arenaH = 0, walls = [], bodies = [];
+
+  /* ── Measure container & resize canvas ── */
+  function measure() {
+    arenaW = arena.clientWidth  || 800;
+    arenaH = arena.clientHeight || 500;
+    cardW = arenaW < 420 ? 104 : 116;
+    cardH = arenaW < 420 ? 68 : 74;
+    canvas.width  = arenaW;
+    canvas.height = arenaH;
+  }
+
+  /* ── Rebuild invisible walls on resize ── */
+  function buildWalls() {
+    walls.forEach(w => World.remove(world, w));
+    walls = [
+      /* floor   */ Bodies.rectangle(arenaW / 2, arenaH + WALL / 2,  arenaW + WALL * 2, WALL, { isStatic: true, friction: 0.6, restitution: 0.3 }),
+      /* ceiling */ Bodies.rectangle(arenaW / 2, -WALL / 2,          arenaW + WALL * 2, WALL, { isStatic: true, friction: 0.1, restitution: 0.2 }),
+      /* left    */ Bodies.rectangle(-WALL / 2,  arenaH / 2,          WALL, arenaH + WALL * 2, { isStatic: true, friction: 0.6, restitution: 0.3 }),
+      /* right   */ Bodies.rectangle(arenaW + WALL / 2, arenaH / 2,   WALL, arenaH + WALL * 2, { isStatic: true, friction: 0.6, restitution: 0.3 }),
+    ];
+    World.add(world, walls);
+  }
+
+  measure();
+  buildWalls();
+
+  /* ── Create physics body for each card, spawned above the container ── */
+  const cols   = Math.max(1, Math.floor(arenaW / (cardW + 14)));
+  bodies = cards.map((card, i) => {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    /* stagger X slightly so they don't all stack in one column */
+    const x = 14 + col * (cardW + 14) + cardW / 2 + (Math.random() - 0.5) * 24;
+    const y = cardH / 2 + row * 8;
+    return Bodies.rectangle(x, y, cardW, cardH, {
+      restitution : 0.42,   /* bounciness */
+      friction    : 0.28,
+      frictionAir : 0.032,  /* air drag — keeps them from flying forever */
+      density     : 0.0022,
+      chamfer     : { radius: 8 }, /* rounded corners on physics body */
+    });
+  });
+  World.add(world, bodies);
+
+  /* ── Absolutely-position every DOM card so physics can move them ── */
+  cards.forEach(card => {
+    Object.assign(card.style, {
+      position       : 'absolute',
+      left           : '0',
+      top            : '0',
+      width          : cardW + 'px',
+      minHeight      : cardH + 'px',
+      margin         : '0',
+      willChange     : 'transform',
+      cursor         : 'grab',
+      transformOrigin: 'center center',
+      pointerEvents  : 'none',   /* canvas above handles all pointer events */
+      userSelect     : 'none',
+    });
+  });
+
+  /* ── Mouse / touch constraint for dragging ── */
+  const mouse = Mouse.create(canvas);
+  /* correct for devicePixelRatio so drag aligns correctly */
+  mouse.pixelRatio = window.devicePixelRatio || 1;
+
+  const mc = MouseConstraint.create(engine, {
+    mouse,
+    constraint: {
+      stiffness: 0.2,
+      angularStiffness: 0.05,
+      render: { visible: false },
+    },
+  });
+  World.add(world, mc);
+
+  /* change canvas cursor while dragging */
+  Events.on(mc, 'startdrag', () => { canvas.style.cursor = 'grabbing'; });
+  Events.on(mc, 'enddrag',   () => { canvas.style.cursor = 'grab'; });
+
+  /* ── Sync DOM card positions from physics bodies each frame ── */
+  function syncDom() {
+    bodies.forEach((body, i) => {
+      const { x, y } = body.position;
+      const a = body.angle;
+      cards[i].style.transform =
+        `translate(${(x - cardW / 2).toFixed(1)}px,` +
+        `${(y - cardH / 2).toFixed(1)}px)` +
+        ` rotate(${a.toFixed(5)}rad)`;
+    });
+  }
+
+  /* ── RAF animation loop ── */
+  let rafId, prevTime = null, running = false;
+
+  function startLoop() {
+    if (running) return;
+    running = true;
+    prevTime = null;
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function stopLoop() {
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
+
+  function loop(t) {
+    if (!running) return;
+    rafId = requestAnimationFrame(loop);
+    const dt = prevTime ? Math.min(t - prevTime, 33.33) : 16.67;
+    prevTime = t;
+    Engine.update(engine, dt);
+    syncDom();
+  }
+
+  /* ── Pause physics loop when section is off-screen (performance) ── */
+  const io = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      startLoop();
+    } else {
+      stopLoop();
+    }
+  }, { threshold: 0.05 });
+  io.observe(arena);
+
+  /* ── Rebuild walls on container resize ── */
+  if (window.ResizeObserver) {
+    new ResizeObserver(() => { measure(); buildWalls(); }).observe(arena);
+  }
+})();
+</script>
+
+<!-- Pure JS gravity cards - Our Technologies Section -->
+<script>
+(function () {
+  'use strict';
+
+  const arena = document.querySelector('.tech__grid--physics');
+  if (!arena) return;
+
+  const cards = Array.from(arena.querySelectorAll('.tech-card'));
+  if (!cards.length) return;
+
+  let items = [];
+  let arenaW = 0;
+  let arenaH = 0;
+  let rafId = 0;
+  let running = false;
+  let lastTime = 0;
+  let dragging = null;
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function measure() {
+    const rect = arena.getBoundingClientRect();
+    arenaW = rect.width;
+    arenaH = rect.height;
+  }
+
+  function layoutCards() {
+    measure();
+    const cardW = arenaW < 420 ? 104 : 116;
+    const cardH = arenaW < 420 ? 68 : 74;
+    const gap = arenaW < 420 ? 8 : 10;
+    const cols = Math.max(1, Math.floor((arenaW - gap) / (cardW + gap)));
+
+    items = cards.map((card, index) => {
+      const col = index % cols;
+      const row = Math.floor(index / cols);
+      const x = clamp(gap + col * (cardW + gap), 0, arenaW - cardW);
+      const y = Math.min(18 + row * 10, Math.max(0, arenaH - cardH - 12));
+
+      Object.assign(card.style, {
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        width: cardW + 'px',
+        minHeight: cardH + 'px',
+        margin: '0',
+        cursor: 'grab',
+        userSelect: 'none',
+        willChange: 'transform',
+        transformOrigin: 'center center',
+      });
+
+      return {
+        card,
+        x,
+        y,
+        w: cardW,
+        h: cardH,
+        vx: (Math.random() - 0.5) * 50,
+        vy: 0,
+        angle: (Math.random() - 0.5) * 0.12,
+        av: (Math.random() - 0.5) * 0.8,
+      };
+    });
+
+    syncDom();
+  }
+
+  function resolveWalls(item) {
+    const bounce = 0.42;
+
+    if (item.x < 0) {
+      item.x = 0;
+      item.vx = Math.abs(item.vx) * bounce;
+    } else if (item.x + item.w > arenaW) {
+      item.x = arenaW - item.w;
+      item.vx = -Math.abs(item.vx) * bounce;
+    }
+
+    if (item.y < 0) {
+      item.y = 0;
+      item.vy = Math.abs(item.vy) * bounce;
+    } else if (item.y + item.h > arenaH) {
+      item.y = arenaH - item.h;
+      item.vy = -Math.abs(item.vy) * bounce;
+      item.vx *= 0.86;
+      item.av *= 0.72;
+
+      if (Math.abs(item.vy) < 24) item.vy = 0;
+      if (Math.abs(item.vx) < 4) item.vx = 0;
+      if (Math.abs(item.av) < 0.02) item.av = 0;
+    }
+  }
+
+  function resolveCollisions() {
+    for (let i = 0; i < items.length; i++) {
+      for (let j = i + 1; j < items.length; j++) {
+        const a = items[i];
+        const b = items[j];
+        if (a === dragging || b === dragging) continue;
+
+        const overlapX = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+        const overlapY = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+        if (overlapX <= 0 || overlapY <= 0) continue;
+
+        if (overlapX < overlapY) {
+          const push = overlapX / 2;
+          if (a.x < b.x) {
+            a.x -= push;
+            b.x += push;
+          } else {
+            a.x += push;
+            b.x -= push;
+          }
+          const impulse = (a.vx - b.vx) * 0.18;
+          a.vx -= impulse;
+          b.vx += impulse;
+        } else {
+          const push = overlapY / 2;
+          if (a.y < b.y) {
+            a.y -= push;
+            b.y += push;
+          } else {
+            a.y += push;
+            b.y -= push;
+          }
+          const impulse = (a.vy - b.vy) * 0.18;
+          a.vy -= impulse;
+          b.vy += impulse;
+        }
+
+        resolveWalls(a);
+        resolveWalls(b);
+      }
+    }
+  }
+
+  function syncDom() {
+    items.forEach(item => {
+      item.card.style.transform =
+        `translate(${item.x.toFixed(1)}px, ${item.y.toFixed(1)}px) rotate(${item.angle.toFixed(4)}rad)`;
+    });
+  }
+
+  function step(time) {
+    if (!running) return;
+    rafId = requestAnimationFrame(step);
+
+    const dt = Math.min((time - lastTime) / 1000 || 0.016, 0.033);
+    lastTime = time;
+
+    items.forEach(item => {
+      if (item === dragging) return;
+
+      item.vy += 980 * dt;
+      item.x += item.vx * dt;
+      item.y += item.vy * dt;
+      item.angle += item.av * dt;
+      item.vx *= 0.995;
+      item.vy *= 0.998;
+      item.av *= 0.985;
+
+      resolveWalls(item);
+    });
+
+    resolveCollisions();
+    syncDom();
+  }
+
+  function start() {
+    if (running) return;
+    running = true;
+    lastTime = performance.now();
+    rafId = requestAnimationFrame(step);
+  }
+
+  function stop() {
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
+
+  cards.forEach((card, index) => {
+    card.addEventListener('pointerdown', event => {
+      const item = items[index];
+      if (!item) return;
+
+      event.preventDefault();
+      card.setPointerCapture(event.pointerId);
+      card.classList.add('is-dragging');
+
+      const arenaRect = arena.getBoundingClientRect();
+      dragging = item;
+      dragging.offsetX = event.clientX - arenaRect.left - item.x;
+      dragging.offsetY = event.clientY - arenaRect.top - item.y;
+      dragging.lastX = event.clientX;
+      dragging.lastY = event.clientY;
+      dragging.lastMove = performance.now();
+      dragging.vx = 0;
+      dragging.vy = 0;
+      start();
+    });
+
+    card.addEventListener('pointermove', event => {
+      const item = items[index];
+      if (dragging !== item) return;
+
+      const now = performance.now();
+      const arenaRect = arena.getBoundingClientRect();
+      const nextX = event.clientX - arenaRect.left - item.offsetX;
+      const nextY = event.clientY - arenaRect.top - item.offsetY;
+      const dt = Math.max((now - item.lastMove) / 1000, 0.016);
+
+      item.vx = (event.clientX - item.lastX) / dt;
+      item.vy = (event.clientY - item.lastY) / dt;
+      item.av = clamp(item.vx / 500, -2.4, 2.4);
+      item.x = clamp(nextX, 0, arenaW - item.w);
+      item.y = clamp(nextY, 0, arenaH - item.h);
+      item.angle += item.av * 0.015;
+
+      item.lastX = event.clientX;
+      item.lastY = event.clientY;
+      item.lastMove = now;
+      syncDom();
+    });
+
+    function release(event) {
+      const item = items[index];
+      if (dragging !== item) return;
+
+      card.classList.remove('is-dragging');
+      if (card.hasPointerCapture(event.pointerId)) {
+        card.releasePointerCapture(event.pointerId);
+      }
+      dragging = null;
+    }
+
+    card.addEventListener('pointerup', release);
+    card.addEventListener('pointercancel', release);
+  });
+
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) start();
+    else stop();
+  }, { threshold: 0.05 });
+
+  layoutCards();
+  observer.observe(arena);
+
+  if (window.ResizeObserver) {
+    let resizeTimer = 0;
+    new ResizeObserver(() => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layoutCards, 120);
+    }).observe(arena);
+  }
+})();
+</script>
+
+</body>
+</html>

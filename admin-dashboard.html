@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Admin Dashboard — Stackly Finance" />
+  <meta name="theme-color" content="#1A6B4A" />
+  <title>Admin Dashboard — Stackly</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ── Google Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --clr-primary:       #1A6B4A;
+      --clr-primary-light: #28A36E;
+      --clr-primary-pale:  #E0F2F1;
+      --clr-accent:        #FFB300;
+      --clr-accent-light:  #FFF8E1;
+      --clr-secondary-blue: #2196F3;
+      --clr-secondary-purple: #9C27B0;
+      --clr-secondary-red: #EF5350;
+
+      --clr-white:  #FFFFFF;
+      --clr-bg:     #F8F9FA;
+      --clr-bg-alt: #EFF2F5;
+      --clr-surface:#FFFFFF;
+      --clr-border: #E0E0E0;
+      --clr-text-dark:    #212529;
+      --clr-text-body:    #495057;
+      --clr-text-muted:   #6C757D;
+      --clr-text-light:   #ADB5BD;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', 'Segoe UI', sans-serif;
+      --r-sm:  8px;
+      --r-md:  14px;
+      --r-lg:  20px;
+      --r-xl:  32px;
+      --r-full: 9999px;
+      --shadow-sm:  0 2px 8px  rgba(13, 31, 45, 0.06);
+      --shadow-md:  0 6px 24px rgba(13, 31, 45, 0.10);
+      --shadow-lg:  0 16px 48px rgba(13, 31, 45, 0.13);
+      --shadow-green: 0 8px 32px rgba(26, 107, 74, 0.22);
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-fast: 0.18s;
+      --dur-base: 0.32s;
+
+      --sidebar-w: 260px;
+      --topbar-h: 68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* ===== LAYOUT ===== */
+    .dash-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===== SIDEBAR OVERLAY (mobile) ===== */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13,31,45,0.55);
+      z-index: 299;
+      backdrop-filter: blur(2px);
+    }
+
+    .sidebar-overlay.active { display: block; }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: var(--sidebar-w); /* Keep width */
+      background: linear-gradient(180deg, #212529 0%, #343A40 100%); /* Dark gradient for sidebar */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 300;
+      transition: transform var(--dur-base) var(--ease);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+
+    /* ===== SIDEBAR BRAND ===== */
+    .sidebar__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sidebar__brand-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--clr-primary);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sidebar__brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .sidebar__brand-name span { color: var(--clr-accent); }
+
+    .sidebar__brand-badge {
+      margin-left: auto;
+      background: rgba(0,121,107,0.25); /* New primary */
+      border: 1px solid rgba(0,121,107,0.4); /* New primary */
+      color: #6DDEA8;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--r-full);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* ===== SIDEBAR USER ===== */
+    .sidebar__user {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sidebar__user-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sidebar__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sidebar__user-info { min-width: 0; }
+
+    .sidebar__user-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar__user-email {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar__user-role {
+      margin-left: auto;
+      background: linear-gradient(135deg, #1A56DB, #1976D2);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      border-radius: var(--r-full);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* ===== SIDEBAR NAV ===== */
+    .sidebar__nav {
+      flex: 1;
+      padding: 1rem 0.75rem;
+    }
+
+    .sidebar__nav-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar__nav-section-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      padding: 0 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .sidebar__nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 0.75rem;
+      border-radius: var(--r-md);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      position: relative;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .sidebar__nav-item:hover {
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .sidebar__nav-item.active {
+      background: linear-gradient(135deg, rgba(0,121,107,0.35) 0%, rgba(0,121,107,0.15) 100%); /* New primary */
+      color: #6DDEA8;
+      font-weight: 600;
+    }
+
+    .sidebar__nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 3px;
+      background: var(--clr-primary-light);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .sidebar__nav-item i {
+      width: 20px;
+      text-align: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .sidebar__nav-badge {
+      margin-left: auto;
+      background: var(--clr-accent);
+      color: #1A1A00;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--r-full);
+    }
+
+    .sidebar__nav-badge.red { background: #E53E3E; color: #fff; }
+
+    /* ===== SIDEBAR BOTTOM ===== */
+    .sidebar__bottom {
+      padding: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sidebar__logout {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: var(--r-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,107,107,0.7);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar__logout:hover {
+      background: rgba(229,62,62,0.12);
+      color: #FC8181;
+    }
+
+    .sidebar__logout i { width: 20px; text-align: center; }
+
+    /* ===== MAIN CONTENT ===== */
+    .dash-main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      height: var(--topbar-h);
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .topbar__hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-sm);
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      color: var(--clr-text-dark);
+      font-size: 1.05rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .topbar__hamburger:hover { background: var(--clr-primary-pale); color: var(--clr-primary); }
+
+    .topbar__page-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      white-space: nowrap;
+    }
+
+    .topbar__page-title span { color: var(--clr-primary); }
+
+    .topbar__spacer { flex: 1; }
+
+    .topbar__search {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-full);
+      padding: 0.5rem 1rem;
+      max-width: 220px;
+      width: 100%;
+      transition: border-color var(--dur-base) var(--ease);
+    }
+
+    .topbar__search:focus-within { border-color: var(--clr-primary); }
+
+    .topbar__search i { color: var(--clr-text-muted); font-size: 0.85rem; }
+
+    .topbar__search input {
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--clr-text-dark);
+      width: 100%;
+    }
+
+    .topbar__search input::placeholder { color: var(--clr-text-light); }
+
+    .topbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .topbar__icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--r-sm);
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      color: var(--clr-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .topbar__icon-btn:hover { background: var(--clr-primary-pale); color: var(--clr-primary); border-color: var(--clr-primary); }
+
+    .topbar__notif-dot {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 7px;
+      height: 7px;
+      background: #E53E3E;
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+    }
+
+    .topbar__user {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--r-full);
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .topbar__user:hover { background: var(--clr-primary-pale); border-color: var(--clr-primary); }
+
+    .topbar__user-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .topbar__user-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-text-dark);
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ===== DASH CONTENT ===== */
+    .dash-content {
+      padding: 1.75rem 1.5rem 2.5rem;
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* ===== WELCOME BANNER ===== */
+    .welcome-banner {
+      background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1600');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: var(--r-xl);
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .welcome-banner__text { position: relative; z-index: 1; }
+
+    .welcome-banner__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--clr-white);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--r-full);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .welcome-banner__tag i { color: var(--clr-accent); }
+
+    .welcome-banner__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .welcome-banner__title span { color: var(--clr-accent); }
+
+    .welcome-banner__sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .welcome-banner__actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .welcome-banner__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--r-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+
+    .welcome-banner__btn--primary {
+      background: var(--clr-accent);
+      color: #1A1A00;
+      border: 2px solid var(--clr-accent);
+    }
+
+    .welcome-banner__btn--primary:hover { background: #D49200; border-color: #D49200; transform: translateY(-2px); }
+
+    .welcome-banner__btn--outline {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .welcome-banner__btn--outline:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+
+    /* ===== STAT CARDS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .stat-card {
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: box-shadow var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+      cursor: default;
+    }
+
+    .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+    .stat-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card__icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .stat-card__icon--green { background: var(--clr-primary-pale); color: var(--clr-primary); }
+    .stat-card__icon--gold  { background: var(--clr-accent-light); color: #B07800; }
+    .stat-card__icon--blue  { background: #E3F2FD; color: #1565C0; }
+    .stat-card__icon--red   { background: #FFF0F0; color: #C53030; }
+
+    .stat-card__trend {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .stat-card__trend.up { color: #2D9B5E; }
+    .stat-card__trend.down { color: #C53030; }
+
+    .stat-card__value {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--clr-text-dark);
+      line-height: 1;
+    }
+
+    .stat-card__label {
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      font-weight: 500;
+    }
+
+    .stat-card__bar {
+      height: 4px;
+      background: var(--clr-bg);
+      border-radius: var(--r-full);
+      overflow: hidden;
+    }
+
+    .stat-card__bar-fill {
+      height: 100%;
+      border-radius: var(--r-full);
+      background: var(--clr-primary);
+      transition: width 0.8s var(--ease);
+    }
+
+    /* ===== SECTION GRIDS ===== */
+    .dash-row {
+      display: grid;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .dash-row--2col { grid-template-columns: 1fr 1fr; }
+    .dash-row--3col { grid-template-columns: 2fr 1fr 1fr; }
+    .dash-row--chart { grid-template-columns: 2fr 1fr; }
+
+    /* ===== CARD BASE ===== */
+    .dash-card {
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .dash-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.25rem 0.9rem;
+      border-bottom: 1px solid var(--clr-border);
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .dash-card__title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+    }
+
+    .dash-card__action {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--clr-primary);
+      cursor: pointer;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--clr-primary-pale);
+      background: var(--clr-primary-pale);
+      transition: all var(--dur-fast) var(--ease);
+      white-space: nowrap;
+    }
+
+    .dash-card__action:hover { background: var(--clr-primary); color: #fff; }
+
+    .dash-card__body { padding: 1.25rem; }
+
+    /* ===== CHART PLACEHOLDER ===== */
+    .chart-area {
+      height: 220px;
+      border-radius: var(--r-md);
+      background: linear-gradient(180deg, var(--clr-bg) 0%, var(--clr-bg-alt) 100%);
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      padding: 1rem 0.75rem 0.75rem;
+      overflow: hidden;
+    }
+
+    .chart-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--clr-primary-light), var(--clr-primary));
+      min-width: 0;
+      transition: opacity var(--dur-fast) var(--ease);
+      cursor: pointer;
+    }
+
+    .chart-bar:hover { opacity: 0.8; }
+    .chart-bar.accent { background: linear-gradient(180deg, var(--clr-accent), #D49200); }
+
+    /* ===== CHART LEGEND ===== */
+    .chart-legend {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .chart-legend__item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+    }
+
+    .chart-legend__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* ===== DONUT CHART ===== */
+    .donut-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .donut-svg { filter: drop-shadow(0 4px 12px rgba(26,107,74,0.15)); }
+
+    .donut-legend {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .donut-legend__item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .donut-legend__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .donut-legend__label { flex: 1; color: var(--clr-text-body); }
+
+    .donut-legend__val {
+      font-weight: 700;
+      color: var(--clr-text-dark);
+    }
+
+    /* ===== TABLE ===== */
+    .dash-table-wrap { overflow-x: auto; }
+
+    .dash-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .dash-table th {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--clr-text-muted);
+      background: var(--clr-bg);
+      border-bottom: 1.5px solid var(--clr-border);
+      white-space: nowrap;
+    }
+
+    .dash-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--clr-border);
+      color: var(--clr-text-body);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .dash-table tr:last-child td { border-bottom: none; }
+
+    .dash-table tr:hover td { background: var(--clr-bg); }
+
+    .dash-table__name {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .dash-table__avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--clr-primary-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      flex-shrink: 0;
+    }
+
+    .dash-table__name-text { font-weight: 600; color: var(--clr-text-dark); }
+    .dash-table__email { font-size: 0.72rem; color: var(--clr-text-muted); }
+
+    /* ===== BADGES ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--r-full);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .badge--green { background: #E8F5EF; color: #1A6B4A; }
+    .badge--gold  { background: #FFF3CC; color: #B07800; }
+    .badge--red   { background: #FFF0F0; color: #C53030; }
+    .badge--blue  { background: #E3F2FD; color: #1565C0; }
+    .badge--gray  { background: #F0F4F8; color: #5A6A7A; }
+
+    .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+    /* ===== ACTIVITY FEED ===== */
+    .activity-list { display: flex; flex-direction: column; gap: 0; }
+
+    .activity-item {
+      display: flex;
+      gap: 0.85rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--clr-border);
+      align-items: flex-start;
+    }
+
+    .activity-item:last-child { border-bottom: none; }
+
+    .activity-item__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .activity-item__body { flex: 1; min-width: 0; }
+
+    .activity-item__text {
+      font-size: 0.82rem;
+      color: var(--clr-text-body);
+      line-height: 1.5;
+    }
+
+    .activity-item__text strong { color: var(--clr-text-dark); font-weight: 700; }
+
+    .activity-item__time {
+      font-size: 0.72rem;
+      color: var(--clr-text-light);
+      margin-top: 0.2rem;
+    }
+
+    /* ===== QUICK ACTIONS ===== */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .quick-action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      text-align: center;
+    }
+
+    .quick-action-btn:hover {
+      border-color: var(--clr-primary);
+      background: var(--clr-primary-pale);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quick-action-btn i {
+      font-size: 1.2rem;
+      color: var(--clr-primary);
+    }
+
+    .quick-action-btn span {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--clr-text-body);
+    }
+
+    /* ===== TASK LIST ===== */
+    .task-list { display: flex; flex-direction: column; gap: 0; }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--clr-border);
+      cursor: pointer;
+    }
+
+    .task-item:last-child { border-bottom: none; }
+
+    .task-item:hover .task-item__title { color: var(--clr-primary); }
+
+    .task-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 2px solid var(--clr-border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .task-checkbox.done { background: var(--clr-primary); border-color: var(--clr-primary); }
+    .task-checkbox.done::after { content: '✓'; font-size: 0.65rem; color: #fff; font-weight: 900; }
+
+    .task-item__title {
+      flex: 1;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--clr-text-body);
+      transition: color var(--dur-fast) var(--ease);
+    }
+
+    .task-item.completed .task-item__title {
+      text-decoration: line-through;
+      color: var(--clr-text-light);
+    }
+
+    .task-item__due {
+      font-size: 0.72rem;
+      color: var(--clr-text-light);
+      white-space: nowrap;
+    }
+
+    .task-item__due.urgent { color: #C53030; font-weight: 600; }
+
+    /* ===== PROGRESS RING ===== */
+    .progress-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .progress-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .progress-item__label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--clr-text-body);
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 7px;
+      background: var(--clr-bg);
+      border-radius: var(--r-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: var(--r-full);
+      transition: width 1s var(--ease);
+    }
+
+    .progress-item__pct {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      width: 38px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-left: 4px solid var(--clr-primary);
+      border-radius: var(--r-md);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.85rem;
+      color: var(--clr-text-dark);
+      z-index: 9999;
+      max-width: 300px;
+      transform: translateX(120%);
+      transition: transform var(--dur-base) var(--ease-bounce);
+      box-shadow: var(--shadow-md);
+    }
+
+    .toast.show { transform: translateX(0); }
+    .toast--error { border-left-color: #E53E3E; }
+
+    /* ===== LOGOUT CONFIRM MODAL ===== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13,31,45,0.6);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.active { display: flex; }
+
+    .modal {
+      background: var(--clr-surface);
+      border-radius: var(--r-xl);
+      padding: 2rem;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      animation: modal-in 0.3s var(--ease-bounce);
+      box-shadow: var(--shadow-xl);
+    }
+
+    @keyframes modal-in { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .modal__icon {
+      width: 60px;
+      height: 60px;
+      background: #FFF0F0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.4rem;
+      color: #C53030;
+    }
+
+    .modal__title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal__text {
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal__actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .modal__btn {
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--r-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      font-family: var(--font-body);
+      border: 2px solid transparent;
+    }
+
+    .modal__btn--cancel {
+      background: var(--clr-bg);
+      color: var(--clr-text-body);
+      border-color: var(--clr-border);
+    }
+
+    .modal__btn--cancel:hover { background: var(--clr-bg-alt); }
+
+    .modal__btn--logout {
+      background: #E53E3E;
+      color: #fff;
+      border-color: #E53E3E;
+    }
+
+    .modal__btn--logout:hover { background: #C53030; transform: translateY(-2px); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-up {
+      animation: slide-up 0.4s var(--ease) both;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .dash-row--3col { grid-template-columns: 1fr 1fr; }
+      .dash-row--chart { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .dash-main {
+        margin-left: 0;
+      }
+
+      .topbar__hamburger { display: flex; }
+
+      .topbar__search { max-width: 160px; }
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .dash-row--2col { grid-template-columns: 1fr; }
+      .dash-row--3col { grid-template-columns: 1fr; }
+      .welcome-banner { flex-direction: column; align-items: flex-start; }
+      .welcome-banner__actions { width: 100%; }
+      .welcome-banner__btn { flex: 1; justify-content: center; }
+      .dash-content { padding: 1.25rem 1rem 2rem; }
+      .topbar__search { display: none; }
+      .topbar__user-name { display: none; }
+      .quick-actions { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      :root { --topbar-h: 60px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .stat-card { padding: 1rem; }
+      .stat-card__value { font-size: 1.35rem; }
+      .topbar { padding: 0 1rem; }
+      .dash-content { padding: 1rem 0.875rem 2rem; }
+      .welcome-banner { padding: 1.25rem; }
+      .welcome-banner__actions { flex-direction: column; }
+      .welcome-banner__btn { width: 100%; }
+      .quick-actions { grid-template-columns: repeat(2, 1fr); }
+      .modal { padding: 1.5rem; }
+      .topbar__actions { gap: 0.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- Logout Modal -->
+<div class="modal-backdrop" id="logoutModal">
+  <div class="modal">
+    <div class="modal__icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+    <div class="modal__title">Confirm Logout</div>
+    <p class="modal__text">Are you sure you want to sign out? You'll be redirected to the sign-in page.</p>
+    <div class="modal__actions">
+      <button class="modal__btn modal__btn--cancel" onclick="closeLogoutModal()">Cancel</button>
+      <button class="modal__btn modal__btn--logout" onclick="confirmLogout()">Yes, Logout</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<div class="dash-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <span class="sidebar__brand-name">Stack<span>ly</span></span>
+      <!-- <span class="sidebar__brand-name">Stack<span>ly</span></span> -->
+      <span class="sidebar__brand-badge">Admin</span>
+    </div>
+
+    <div class="sidebar__user">
+      <div class="sidebar__user-inner">
+        <div class="sidebar__avatar" id="sidebarAvatarText">A</div>
+        <div class="sidebar__user-info">
+          <div class="sidebar__user-name" id="sidebarUserName">Admin User</div>
+          <div class="sidebar__user-email" id="sidebarUserEmail">admin@stackly.com</div>
+        </div>
+        <span class="sidebar__user-role">Admin</span>
+      </div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="sidebar__nav-section">
+        <div class="sidebar__nav-section-label">Main</div>
+        <a class="sidebar__nav-item active" onclick="setActive(this, 'Overview')">
+          <i class="fa-solid fa-gauge-high"></i> Overview
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Analytics')">
+          <i class="fa-solid fa-chart-bar"></i> Analytics
+          <span class="sidebar__nav-badge">New</span>
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Transactions')">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i> Transactions
+          <span class="sidebar__nav-badge red">12</span>
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Invoices')">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Invoices
+        </a>
+      </div>
+
+      <div class="sidebar__nav-section">
+        <div class="sidebar__nav-section-label">Management</div>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Users')">
+          <i class="fa-solid fa-users"></i> Users
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Clients')">
+          <i class="fa-solid fa-handshake"></i> Clients
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Reports')">
+          <i class="fa-solid fa-file-chart-column"></i> Reports
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Compliance')">
+          <i class="fa-solid fa-shield-check"></i> Compliance
+          <span class="sidebar__nav-badge red">3</span>
+        </a>
+      </div>
+
+      <div class="sidebar__nav-section">
+        <div class="sidebar__nav-section-label">System</div>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Settings')">
+          <i class="fa-solid fa-gear"></i> Settings
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Notifications')">
+          <i class="fa-solid fa-bell"></i> Notifications
+          <span class="sidebar__nav-badge">5</span>
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Help & Support')">
+          <i class="fa-solid fa-circle-question"></i> Help & Support
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <button class="sidebar__logout" onclick="showLogoutModal()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="dash-main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="topbar__hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars" id="hamburgerIcon"></i>
+      </button>
+
+      <div class="topbar__page-title">Admin <span>Dashboard</span></div>
+
+      <div class="topbar__spacer"></div>
+
+      <div class="topbar__search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search..." aria-label="Search" />
+      </div>
+
+      <div class="topbar__actions">
+        <button class="topbar__icon-btn" onclick="showToast('Notifications — 5 new alerts')" title="Notifications">
+          <i class="fa-solid fa-bell"></i>
+          <span class="topbar__notif-dot"></span>
+        </button>
+        <button class="topbar__icon-btn" onclick="showToast('Messages panel coming soon!')" title="Messages">
+          <i class="fa-solid fa-envelope"></i>
+        </button>
+        <button class="topbar__icon-btn" onclick="showToast('Refresh complete!')" title="Refresh">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </div>
+
+      <div class="topbar__user" onclick="showToast('Profile settings coming soon!')">
+        <div class="topbar__user-avatar" id="topbarAvatarText">A</div>
+        <span class="topbar__user-name" id="topbarUserName">Admin</span>
+        <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;color:var(--clr-text-muted);"></i>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dash-content">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner animate-up">
+        <div class="welcome-banner__text">
+          <div class="welcome-banner__tag">
+            <i class="fa-solid fa-user-shield"></i> Admin Portal
+          </div>
+          <h1 class="welcome-banner__title" style="color: var(--clr-white);">Welcome back, <span id="welcomeName" style="color: var(--clr-accent);">Admin</span>!</h1>
+          <p class="welcome-banner__sub" id="welcomeEmail">admin@stackly.com &nbsp;·&nbsp; Last login: Today, 9:42 AM</p>
+        </div>
+        <div class="welcome-banner__actions">
+          <button class="welcome-banner__btn welcome-banner__btn--outline" onclick="showToast('Generating report...')">
+            <i class="fa-solid fa-download"></i> Export
+          </button>
+          <button class="welcome-banner__btn welcome-banner__btn--primary" onclick="showToast('Opening invoice creator...')">
+            <i class="fa-solid fa-plus"></i> New Invoice
+          </button>
+        </div>
+        <!-- Overlay for welcome banner -->
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0, 121, 107, 0.85) 0%, rgba(33, 37, 41, 0.9) 100%); pointer-events: none;"></div>
+
+
+
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--green"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div class="stat-card__trend up" style="color: var(--clr-primary-light);"><i class="fa-solid fa-arrow-trend-up"></i> +12.4%</div>
+          </div>
+          <div class="stat-card__value">₹24.8L</div>
+          <div class="stat-card__label">Total Revenue</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:72%;background:var(--clr-primary);"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--gold"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-card__trend up" style="color: var(--clr-primary-light);"><i class="fa-solid fa-arrow-trend-up"></i> +8.1%</div>
+          </div>
+          <div class="stat-card__value">1,248</div>
+          <div class="stat-card__label">Active Clients</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:85%;background:var(--clr-accent);"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--blue"><i class="fa-solid fa-file-invoice"></i></div>
+            <div class="stat-card__trend up" style="color: var(--clr-primary-light);"><i class="fa-solid fa-arrow-trend-up"></i> +3.2%</div>
+          </div>
+          <div class="stat-card__value">342</div>
+          <div class="stat-card__label">Invoices Sent</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:58%;background:#1565C0;"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="stat-card__trend down" style="color: var(--clr-secondary-red);"><i class="fa-solid fa-arrow-trend-down"></i> -2.5%</div>
+          </div>
+          <div class="stat-card__value">18</div>
+          <div class="stat-card__label">Pending Compliance</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:30%;background:#C53030;"></div></div>
+        </div>
+      </div>
+
+      <!-- Revenue Chart + Donut -->
+      <div class="dash-row dash-row--chart">
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-chart-column" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Monthly Revenue</div>
+            <button class="dash-card__action" onclick="showToast('Opening full analytics...')"><i class="fa-solid fa-expand"></i> View Full</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="chart-area">
+              <div class="chart-bar" style="height:55%;" title="Jan: ₹1.8L"></div>
+              <div class="chart-bar" style="height:65%;" title="Feb: ₹2.1L"></div>
+              <div class="chart-bar" style="height:48%;" title="Mar: ₹1.6L"></div>
+              <div class="chart-bar" style="height:80%;" title="Apr: ₹2.6L"></div>
+              <div class="chart-bar accent" style="height:90%;" title="May: ₹2.9L"></div>
+              <div class="chart-bar" style="height:72%;" title="Jun: ₹2.3L"></div>
+              <div class="chart-bar" style="height:60%;" title="Jul: ₹1.9L"></div>
+              <div class="chart-bar" style="height:85%;" title="Aug: ₹2.8L"></div>
+              <div class="chart-bar accent" style="height:95%;" title="Sep: ₹3.1L"></div>
+              <div class="chart-bar" style="height:78%;" title="Oct: ₹2.5L"></div>
+              <div class="chart-bar" style="height:68%;" title="Nov: ₹2.2L"></div>
+              <div class="chart-bar accent" style="height:100%;" title="Dec: ₹3.2L"></div>
+            </div>
+            <div class="chart-legend">
+              <div class="chart-legend__item">
+                <div class="chart-legend__dot" style="background:var(--clr-primary);"></div>
+                Standard Months
+              </div>
+              <div class="chart-legend__item">
+                <div class="chart-legend__dot" style="background:var(--clr-accent);"></div>
+                Peak Months
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-chart-pie" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Revenue Split</div>
+            <button class="dash-card__action" onclick="showToast('Detailed breakdown loading...')">Details</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="donut-wrap">
+              <svg class="donut-svg" viewBox="0 0 120 120" width="140" height="140">
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#EEF2F8" stroke-width="18"/>
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#1A6B4A" stroke-width="18"
+                  stroke-dasharray="180 122" stroke-dashoffset="75" stroke-linecap="round"/>
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#FFB300" stroke-width="18"
+                  stroke-dasharray="75 227" stroke-dashoffset="-105" stroke-linecap="round"/>
+                <circle cx="60" cy="60" r="48" fill="none" stroke="#2196F3" stroke-width="18"
+                  stroke-dasharray="47 255" stroke-dashoffset="-180" stroke-linecap="round"/>
+                <text x="60" y="56" text-anchor="middle" font-size="11" font-weight="800" fill="var(--clr-text-dark)" font-family="var(--font-heading)">₹24.8L</text>
+                <text x="60" y="70" text-anchor="middle" font-size="7" fill="var(--clr-text-muted)" font-family="var(--font-body)">Total</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="donut-legend__item">
+                  <div class="donut-legend__dot" style="background:#1A6B4A;"></div>
+                  <span class="donut-legend__label">Consulting</span>
+                  <span class="donut-legend__val">59%</span>
+                </div>
+                <div class="donut-legend__item">
+                  <div class="donut-legend__dot" style="background:var(--clr-accent);"></div>
+                  <span class="donut-legend__label">Tax Filing</span>
+                  <span class="donut-legend__val">25%</span>
+                </div>
+                <div class="donut-legend__item">
+                  <div class="donut-legend__dot" style="background:#1565C0;"></div>
+                  <span class="donut-legend__label">Audit</span>
+                  <span class="donut-legend__val">16%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clients Table + Activity Feed -->
+      <div class="dash-row dash-row--chart">
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-users" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Recent Clients</div>
+            <button class="dash-card__action" onclick="showToast('Opening clients list...')">View All</button>
+          </div>
+          <div class="dash-card__body" style="padding:0;">
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Service</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="dash-table__name">
+                        <div class="dash-table__avatar">RK</div>
+                        <div>
+                          <div class="dash-table__name-text">Ramesh Kumar</div>
+                          <div class="dash-table__email">ramesh@abc.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Tax Filing</td>
+                    <td style="font-weight:700;color:var(--clr-text-dark);">₹12,500</td>
+                    <td><span class="badge badge--green">Paid</span></td>
+                    <td><button style="font-size:0.78rem;color:var(--clr-primary);font-weight:600;font-family:inherit;cursor:pointer;" onclick="showToast('Opening Ramesh Kumar profile...')">View →</button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="dash-table__name">
+                        <div class="dash-table__avatar" style="background:#FFF3CC;color:#B07800;">PA</div>
+                        <div>
+                          <div class="dash-table__name-text">Priya Anand</div>
+                          <div class="dash-table__email">priya@xyz.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Audit</td>
+                    <td style="font-weight:700;color:var(--clr-text-dark);">₹38,000</td>
+                    <td><span class="badge badge--gold">Pending</span></td>
+                    <td><button style="font-size:0.78rem;color:var(--clr-primary);font-weight:600;font-family:inherit;cursor:pointer;" onclick="showToast('Opening Priya Anand profile...')">View <i class="fa-solid fa-arrow-right"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="dash-table__name">
+                        <div class="dash-table__avatar" style="background:#E3F2FD;color:#1565C0;">VS</div>
+                        <div>
+                          <div class="dash-table__name-text">Vijay Sharma</div>
+                          <div class="dash-table__email">vijay@pvt.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Consulting</td>
+                    <td style="font-weight:700;color:var(--clr-text-dark);">₹8,200</td>
+                    <td><span class="badge badge--green">Paid</span></td>
+                    <td><button style="font-size:0.78rem;color:var(--clr-primary);font-weight:600;font-family:inherit;cursor:pointer;" onclick="showToast('Opening Vijay Sharma profile...')">View <i class="fa-solid fa-arrow-right"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="dash-table__name">
+                        <div class="dash-table__avatar" style="background:#FFF0F0;color:#C53030;">LN</div>
+                        <div>
+                          <div class="dash-table__name-text">Lakshmi Nair</div>
+                          <div class="dash-table__email">lakshmi@corp.in</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>GST Filing</td>
+                    <td style="font-weight:700;color:var(--clr-text-dark);">₹5,400</td>
+                    <td><span class="badge badge--red">Overdue</span></td>
+                    <td><button style="font-size:0.78rem;color:var(--clr-primary);font-weight:600;font-family:inherit;cursor:pointer;" onclick="showToast('Opening Lakshmi Nair profile...')">View <i class="fa-solid fa-arrow-right"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="dash-table__name">
+                        <div class="dash-table__avatar" style="background:#F3E8FF;color:#7C3AED;">SK</div>
+                        <div>
+                          <div class="dash-table__name-text">Suresh Krishnan</div>
+                          <div class="dash-table__email">suresh@tech.io</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Payroll</td>
+                    <td style="font-weight:700;color:var(--clr-text-dark);">₹22,000</td>
+                    <td><span class="badge badge--blue">Processing</span></td>
+                    <td><button style="font-size:0.78rem;color:var(--clr-primary);font-weight:600;font-family:inherit;cursor:pointer;" onclick="showToast('Opening Suresh Krishnan profile...')">View <i class="fa-solid fa-arrow-right"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity + Quick Actions -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <div class="dash-card__title"><i class="fa-solid fa-bolt" style="color:var(--clr-accent);margin-right:0.4rem;"></i> Quick Actions</div>
+            </div>
+            <div class="dash-card__body">
+              <div class="quick-actions">
+                <button class="quick-action-btn" onclick="showToast('New Invoice form opening...')">
+                  <i class="fa-solid fa-file-circle-plus"></i>
+                  <span>New Invoice</span>
+                </button>
+                <button class="quick-action-btn" onclick="showToast('Add Client form opening...')">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Add Client</span>
+                </button>
+                <button class="quick-action-btn" onclick="showToast('Report generator loading...')">
+                  <i class="fa-solid fa-file-export"></i>
+                  <span>Export Report</span>
+                </button>
+                <button class="quick-action-btn" onclick="showToast('Schedule meeting opening...')">
+                  <i class="fa-solid fa-calendar-plus"></i>
+                  <span>Schedule</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <div class="dash-card__title"><i class="fa-solid fa-clock-rotate-left" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Recent Activity</div>
+              <button class="dash-card__action" onclick="showToast('Loading full activity log...')">All</button>
+            </div>
+            <div class="dash-card__body" style="padding:0.5rem 1.25rem 1rem;">
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-item__icon" style="background:#E8F5EF;color:#1A6B4A;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                  <div class="activity-item__body">
+                    <div class="activity-item__text"><strong>Invoice #INV-0048</strong> sent to Priya Anand</div>
+                    <div class="activity-item__time">2 min ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon" style="background:#E3F2FD;color:#1565C0;"><i class="fa-solid fa-user-check"></i></div>
+                  <div class="activity-item__body" style="color: var(--clr-text-body);">
+                    <div class="activity-item__text"><strong>New client</strong> Suresh Krishnan registered</div>
+                    <div class="activity-item__time">18 min ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon" style="background:#FFF3CC;color:#B07800;"><i class="fa-solid fa-money-bill-wave"></i></div>
+                  <div class="activity-item__body">
+                    <div class="activity-item__text" style="color: var(--clr-text-body);"><strong>Payment ₹12,500</strong> received from Ramesh Kumar</div>
+                    <div class="activity-item__time">1 hr ago</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-item__icon" style="background:#FFF0F0;color:#C53030;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                  <div class="activity-item__body">
+                    <div class="activity-item__text"><strong>GST due date</strong> alert — 3 clients pending</div>
+                    <div class="activity-item__time" style="color: var(--clr-text-light);">3 hr ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tasks + Performance -->
+      <div class="dash-row dash-row--2col">
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-list-check" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Pending Tasks</div>
+            <button class="dash-card__action" onclick="showToast('Opening task manager...')">Manage All</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="task-list">
+              <div class="task-item" onclick="toggleTask(this)">
+                <div class="task-checkbox"></div>
+                <span class="task-item__title">Review Q3 GST filings for 5 clients</span>
+                <span class="task-item__due urgent">Today</span>
+              </div>
+              <div class="task-item" onclick="toggleTask(this)">
+                <div class="task-checkbox"></div>
+                <span class="task-item__title">Send reminder to Lakshmi Nair (overdue)</span>
+                <span class="task-item__due urgent">Today</span>
+              </div>
+              <div class="task-item" onclick="toggleTask(this)">
+                <div class="task-checkbox"></div>
+                <span class="task-item__title">Prepare audit report — Vijay Sharma</span>
+                <span class="task-item__due">Jun 12</span>
+              </div>
+              <div class="task-item completed" onclick="toggleTask(this)">
+                <div class="task-checkbox done"></div>
+                <span class="task-item__title">Upload PAN documents — Priya Anand</span>
+                <span class="task-item__due">Done</span>
+              </div>
+              <div class="task-item" onclick="toggleTask(this)">
+                <div class="task-checkbox"></div>
+                <span class="task-item__title">Monthly payroll processing — Suresh Co</span>
+                <span class="task-item__due">Jun 15</span>
+              </div>
+              <div class="task-item completed" onclick="toggleTask(this)">
+                <div class="task-checkbox done"></div>
+                <span class="task-item__title">ITR filing — Ramesh Kumar</span>
+                <span class="task-item__due">Done</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-chart-simple" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Team Performance</div>
+            <button class="dash-card__action" onclick="showToast('Opening team reports...')">Reports</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="progress-section">
+              <div class="progress-item">
+                <span class="progress-item__label">Tax Filing</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:87%;background:var(--clr-primary);"></div>
+                </div>
+                <span class="progress-item__pct">87%</span>
+              </div>
+              <div class="progress-item">
+                <span class="progress-item__label">Audit Completion</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:72%;background:var(--clr-accent);"></div>
+                </div>
+                <span class="progress-item__pct">72%</span>
+              </div>
+              <div class="progress-item">
+                <span class="progress-item__label" style="color: var(--clr-text-body);">Client Satisfaction</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:95%;background:#1565C0;"></div>
+                </div>
+                <span class="progress-item__pct">95%</span>
+              </div>
+              <div class="progress-item">
+                <span class="progress-item__label">Invoice Recovery</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:61%;background:var(--clr-secondary-red);"></div>
+                </div>
+                <span class="progress-item__pct">61%</span>
+              </div>
+              <div class="progress-item">
+                <span class="progress-item__label">Payroll Accuracy</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:99%;background:#2D9B5E;"></div>
+                </div>
+                <span class="progress-item__pct">99%</span>
+              </div>
+              <div class="progress-item">
+                <span class="progress-item__label" style="color: var(--clr-text-body);">Compliance Rate</span>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width:78%;background:#7C3AED;"></div>
+                </div>
+                <span class="progress-item__pct">78%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ──────────── AUTH GUARD ──────────── */
+  (function() {
+    const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
+    if (!user || !user.loggedIn) {
+      window.location.replace('signin.html');
+      return;
+    }
+    // Populate UI
+    const name = user.name || (user.firstName ? user.firstName + ' ' + user.lastName : 'Admin');
+    const email = user.email || 'admin@stackly.com';
+    const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+    document.getElementById('sidebarUserName').textContent = name;
+    document.getElementById('sidebarUserEmail').textContent = email;
+    document.getElementById('sidebarAvatarText').textContent = initials;
+    document.getElementById('topbarAvatarText').textContent = initials;
+    document.getElementById('topbarUserName').textContent = name.split(' ')[0];
+    document.getElementById('welcomeName').textContent = name.split(' ')[0];
+    document.getElementById('welcomeEmail').textContent = email + ' · Last login: Today, 9:42 AM';
+
+    // Set page title
+    document.title = 'Admin Dashboard — ' + name;
+  })();
+
+  /* ──────────── SIDEBAR ──────────── */
+  let sidebarOpen = false;
+
+  function toggleSidebar() {
+    sidebarOpen = !sidebarOpen;
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const icon = document.getElementById('hamburgerIcon');
+    if (sidebarOpen) {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+      icon.className = 'fa-solid fa-xmark';
+    } else {
+      closeSidebar();
+    }
+  }
+
+  function closeSidebar() {
+    sidebarOpen = false;
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('active');
+    document.getElementById('hamburgerIcon').className = 'fa-solid fa-bars';
+  }
+
+  /* ──────────── NAV ACTIVE ──────────── */
+  function setActive(el, sectionName) {
+    document.querySelectorAll('.sidebar__nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelector('.topbar__page-title').innerHTML = 'Admin <span>' + sectionName + '</span>';
+    // Close sidebar on mobile after click
+    if (window.innerWidth <= 1024) closeSidebar();
+    showToast('Navigated to ' + sectionName);
+  }
+
+  /* ──────────── TOAST ──────────── */
+  let toastTimeout;
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (type === 'error' ? ' toast--error' : '');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  /* ──────────── LOGOUT ──────────── */
+  function showLogoutModal() {
+    document.getElementById('logoutModal').classList.add('active');
+  }
+
+  function closeLogoutModal() {
+    document.getElementById('logoutModal').classList.remove('active');
+  }
+
+  function confirmLogout() {
+    localStorage.removeItem('stackly_user');
+    window.location.replace('signin.html');
+  }
+
+  // Close modal on backdrop click
+  document.getElementById('logoutModal').addEventListener('click', function(e) {
+    if (e.target === this) closeLogoutModal();
+  });
+
+  /* ──────────── TASKS ──────────── */
+  function toggleTask(item) {
+    item.classList.toggle('completed');
+    const cb = item.querySelector('.task-checkbox');
+    cb.classList.toggle('done');
+  }
+
+  /* ──────────── PREVENT BACK NAV ──────────── */
+  history.pushState(null, '', location.href);
+  window.addEventListener('popstate', function() {
+    const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
+    if (!user || !user.loggedIn) {
+      window.location.replace('signin.html');
+    } else {
+      history.pushState(null, '', location.href);
+    }
+  });
+
+  /* ────────── CLOSE SIDEBAR ON RESIZE ──────────── */
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 1024) closeSidebar();
+  });
+</script>
+</body>
+</html>

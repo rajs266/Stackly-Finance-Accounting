@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guest Dashboard — Stackly Finance" />
+  <meta name="theme-color" content="#1A6B4A" />
+  <title>Guest Dashboard — Stackly</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --clr-primary:       #1A6B4A;
+      --clr-primary-light: #28A36E;
+      --clr-primary-pale:  #E0F2F1;
+      --clr-accent:        #FFB300;
+      --clr-accent-light:  #FFF8E1;
+      --clr-secondary-blue: #2196F3;
+      --clr-secondary-purple: #9C27B0;
+      --clr-secondary-red: #EF5350;
+
+      --clr-white:  #FFFFFF;
+      --clr-bg:     #F8F9FA;
+      --clr-bg-alt: #EFF2F5;
+      --clr-surface:#FFFFFF;
+      --clr-border: #E0E0E0;
+      --clr-text-dark:    #212529;
+      --clr-text-body:    #495057;
+      --clr-text-muted:   #6C757D;
+      --clr-text-light:   #ADB5BD;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', 'Segoe UI', sans-serif;
+      --r-sm:  8px;
+      --r-md:  14px;
+      --r-lg:  20px;
+      --r-xl:  32px;
+      --r-full: 9999px;
+      --shadow-sm:  0 2px 8px  rgba(13, 31, 45, 0.06);
+      --shadow-md:  0 6px 24px rgba(13, 31, 45, 0.10);
+      --shadow-lg:  0 16px 48px rgba(13, 31, 45, 0.13);
+      --shadow-green: 0 8px 32px rgba(26, 107, 74, 0.22);
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-fast: 0.18s;
+      --dur-base: 0.32s;
+      --sidebar-w: 260px;
+      --topbar-h: 68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+    body { font-family: var(--font-body); background: var(--clr-bg); color: var(--clr-text-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    /* ===== LAYOUT ===== */
+    .dash-layout { display: flex; min-height: 100vh; }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13,31,45,0.55);
+      z-index: 299;
+      backdrop-filter: blur(2px);
+    }
+    .sidebar-overlay.active { display: block; }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: var(--sidebar-w); /* Keep width */
+      background: linear-gradient(180deg, #212529 0%, #343A40 100%); /* Dark gradient for sidebar */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 300;
+      transition: transform var(--dur-base) var(--ease);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+
+    .sidebar__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sidebar__brand-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--clr-primary);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sidebar__brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .sidebar__brand-name span { color: var(--clr-accent); }
+
+    .sidebar__brand-badge {
+      margin-left: auto;
+      background: rgba(255,179,0,0.2); /* New accent */
+      border: 1px solid rgba(255,179,0,0.35); /* New accent */
+      color: var(--clr-accent);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--r-full);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .sidebar__user {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sidebar__user-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sidebar__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; /* Keep border-radius */
+      background: linear-gradient(135deg, var(--clr-accent), #FF8F00); /* New accent and darker orange */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sidebar__user-info { min-width: 0; }
+
+    .sidebar__user-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar__user-email {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar__user-role {
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(255,179,0,0.25), rgba(255,179,0,0.15)); /* New accent */
+      color: var(--clr-accent);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      border-radius: var(--r-full);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(240,165,0,0.3);
+      flex-shrink: 0;
+    }
+
+    .sidebar__nav { flex: 1; padding: 1rem 0.75rem; }
+
+    .sidebar__nav-section { margin-bottom: 1.5rem; }
+
+    .sidebar__nav-section-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      padding: 0 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .sidebar__nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 0.75rem;
+      border-radius: var(--r-md);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      position: relative;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .sidebar__nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.9); }
+
+    .sidebar__nav-item.active {
+      background: linear-gradient(135deg, rgba(240,165,0,0.2) 0%, rgba(240,165,0,0.08) 100%);
+      color: var(--clr-accent);
+      font-weight: 600;
+    }
+
+    .sidebar__nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%; bottom: 20%;
+      width: 3px;
+      background: var(--clr-accent);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .sidebar__nav-item i { width: 20px; text-align: center; font-size: 0.95rem; flex-shrink: 0; }
+
+    .sidebar__nav-badge {
+      margin-left: auto;
+      background: var(--clr-accent);
+      color: #1A1A00;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--r-full);
+    }
+
+    /* Locked nav item */
+    .sidebar__nav-item.locked { opacity: 0.45; cursor: not-allowed; }
+    .sidebar__nav-item.locked:hover { background: none; }
+    .sidebar__lock-icon { margin-left: auto; font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+
+    .sidebar__bottom { padding: 0.75rem; border-top: 1px solid rgba(255,255,255,0.06); }
+
+    .sidebar__logout {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: var(--r-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,107,107,0.7);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar__logout:hover { background: rgba(229,62,62,0.12); color: #FC8181; }
+    .sidebar__logout i { width: 20px; text-align: center; }
+
+    /* ===== MAIN ===== */
+    .dash-main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      height: var(--topbar-h);
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .topbar__hamburger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: var(--r-sm);
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      color: var(--clr-text-dark);
+      font-size: 1.05rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .topbar__hamburger:hover { background: var(--clr-primary-pale); color: var(--clr-primary); }
+
+    .topbar__page-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+      white-space: nowrap;
+    }
+
+    .topbar__page-title span { color: var(--clr-primary); }
+    .topbar__spacer { flex: 1; }
+
+    .topbar__search {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-full);
+      padding: 0.5rem 1rem;
+      max-width: 200px;
+      width: 100%;
+      transition: border-color var(--dur-base) var(--ease);
+    }
+
+    .topbar__search:focus-within { border-color: var(--clr-primary); }
+    .topbar__search i { color: var(--clr-text-muted); font-size: 0.85rem; }
+    .topbar__search input { background: none; border: none; outline: none; font-family: var(--font-body); font-size: 0.85rem; color: var(--clr-text-dark); width: 100%; }
+    .topbar__search input::placeholder { color: var(--clr-text-light); }
+
+    .topbar__actions { display: flex; align-items: center; gap: 0.5rem; }
+
+    .topbar__icon-btn {
+      width: 38px; height: 38px;
+      border-radius: var(--r-sm);
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      color: var(--clr-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .topbar__icon-btn:hover { background: var(--clr-primary-pale); color: var(--clr-primary); border-color: var(--clr-primary); }
+
+    .topbar__notif-dot {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 7px; height: 7px;
+      background: #E53E3E;
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+    }
+
+    .topbar__user {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--r-full);
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .topbar__user:hover { background: var(--clr-accent-light); border-color: var(--clr-accent); }
+
+    .topbar__user-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F0A500, #FF6B35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .topbar__user-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-text-dark);
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ===== CONTENT ===== */
+    .dash-content {
+      padding: 1.75rem 1.5rem 2.5rem;
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* ===== WELCOME BANNER ===== */
+    .welcome-banner {
+      background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1600');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: var(--r-xl);
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .welcome-banner__text { position: relative; z-index: 1; }
+
+    .welcome-banner__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--clr-white);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--r-full);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .welcome-banner__tag i { color: var(--clr-accent); }
+
+    .welcome-banner__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 0.35rem;
+    }
+
+    .welcome-banner__sub { font-size: 0.85rem; color: rgba(255,255,255,0.75); }
+
+    .welcome-banner__actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .welcome-banner__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--r-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+
+    .welcome-banner__btn--primary {
+      background: var(--clr-text-dark); /* Use dark text color for primary button */
+      color: var(--clr-accent);
+      border: 2px solid #1A1A00;
+    }
+
+    .welcome-banner__btn--primary:hover { background: #0D0D00; transform: translateY(-2px); }
+
+    .welcome-banner__btn--outline {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(6px);
+    }
+
+    .welcome-banner__btn--outline:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+    /* ===== UPGRADE BANNER ===== */
+    .upgrade-banner {
+      background: linear-gradient(135deg, var(--clr-primary-pale) 0%, var(--clr-primary-light) 100%); /* New primary pale and light */
+      border: 1.5px solid rgba(26,107,74,0.2);
+      border-radius: var(--r-lg);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .upgrade-banner__icon {
+      width: 42px; height: 42px;
+      background: var(--clr-primary); /* Keep primary */
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .upgrade-banner__text { flex: 1; min-width: 0; }
+
+    .upgrade-banner__title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--clr-text-dark);
+      margin-bottom: 0.15rem;
+    }
+
+    .upgrade-banner__sub {
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+    }
+
+    .upgrade-banner__btn {
+      background: var(--clr-primary); /* Keep primary */
+      color: #fff;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--r-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      white-space: nowrap;
+      font-family: var(--font-body);
+      border: 2px solid var(--clr-primary);
+    }
+
+    .upgrade-banner__btn:hover { background: var(--clr-primary-light); border-color: var(--clr-primary-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,121,107,0.22); }
+
+    /* ===== STAT CARDS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .stat-card {
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: box-shadow var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+    }
+
+    .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+    .stat-card__header { display: flex; align-items: center; justify-content: space-between; }
+
+    .stat-card__icon {
+      width: 42px; height: 42px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .stat-card__icon--green { background: var(--clr-primary-pale); color: var(--clr-primary); }
+    .stat-card__icon--gold  { background: var(--clr-accent-light); color: #B07800; }
+    .stat-card__icon--blue  { background: #E3F2FD; color: #1565C0; }
+
+    .stat-card__trend { display: flex; align-items: center; gap: 0.25rem; font-size: 0.72rem; font-weight: 700; }
+    .stat-card__trend.up { color: #2D9B5E; }
+    .stat-card__value { font-family: var(--font-heading); font-size: 1.65rem; font-weight: 800; color: var(--clr-text-dark); line-height: 1; }
+    .stat-card__label { font-size: 0.8rem; color: var(--clr-text-muted); font-weight: 500; }
+    .stat-card__bar { height: 4px; background: var(--clr-bg); border-radius: var(--r-full); overflow: hidden; }
+    .stat-card__bar-fill { height: 100%; border-radius: var(--r-full); transition: width 0.8s var(--ease); }
+
+    /* ===== CARDS ===== */
+    .dash-row { display: grid; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .dash-row--2col { grid-template-columns: 1fr 1fr; }
+    .dash-row--chart { grid-template-columns: 3fr 2fr; }
+
+    .dash-card {
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .dash-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.25rem 0.9rem;
+      border-bottom: 1px solid var(--clr-border);
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .dash-card__title { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--clr-text-dark); }
+
+    .dash-card__action {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--clr-primary);
+      cursor: pointer;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--r-full);
+      border: 1.5px solid var(--clr-primary-pale);
+      background: var(--clr-primary-pale);
+      transition: all var(--dur-fast) var(--ease);
+      white-space: nowrap;
+    }
+
+    .dash-card__action:hover { background: var(--clr-primary); color: #fff; }
+    .dash-card__body { padding: 1.25rem; }
+
+    /* ===== INVOICE LIST ===== */
+    .invoice-list { display: flex; flex-direction: column; gap: 0; }
+
+    .invoice-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--clr-border);
+      cursor: pointer;
+      transition: background var(--dur-fast) var(--ease);
+    }
+
+    .invoice-item:last-child { border-bottom: none; }
+    .invoice-item:hover { padding-left: 0.3rem; }
+
+    .invoice-item__icon {
+      width: 38px; height: 38px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .invoice-item__body { flex: 1; min-width: 0; }
+    .invoice-item__title { font-size: 0.83rem; font-weight: 600; color: var(--clr-text-dark); }
+    .invoice-item__date { font-size: 0.72rem; color: var(--clr-text-muted); margin-top: 0.15rem; }
+
+    .invoice-item__amount {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--clr-text-dark);
+      text-align: right;
+    }
+
+    .invoice-item__status { text-align: right; margin-top: 0.15rem; }
+
+    /* ===== BADGES ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--r-full);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .badge--green { background: #E8F5EF; color: #1A6B4A; }
+    .badge--gold  { background: #FFF3CC; color: #B07800; }
+    .badge--red   { background: #FFF0F0; color: #C53030; }
+    .badge--blue  { background: #E3F2FD; color: #1565C0; }
+    .badge--gray  { background: #F0F4F8; color: #5A6A7A; }
+    .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+    /* ===== DOCUMENTS LIST ===== */
+    .doc-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .doc-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 0.85rem;
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .doc-item:hover { border-color: var(--clr-primary); background: var(--clr-primary-pale); }
+
+    .doc-item__icon { font-size: 1.2rem; flex-shrink: 0; }
+    .doc-item__body { flex: 1; min-width: 0; }
+    .doc-item__name { font-size: 0.82rem; font-weight: 600; color: var(--clr-text-dark); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .doc-item__meta { font-size: 0.72rem; color: var(--clr-text-muted); }
+
+    .doc-item__download {
+      color: var(--clr-primary);
+      font-size: 0.85rem;
+      transition: transform var(--dur-fast) var(--ease);
+      flex-shrink: 0;
+    }
+
+    .doc-item:hover .doc-item__download { transform: translateY(2px); }
+
+    /* ===== LOCKED SECTION ===== */
+    .locked-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locked-section__blur {
+      filter: blur(4px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .locked-section__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(247,249,252,0.85);
+      backdrop-filter: blur(2px);
+      z-index: 10;
+      gap: 0.5rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .locked-section__icon {
+      width: 50px; height: 50px;
+      background: var(--clr-accent-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--clr-accent);
+    }
+
+    .locked-section__title {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--clr-text-dark);
+    }
+
+    .locked-section__text { font-size: 0.75rem; color: var(--clr-text-muted); max-width: 200px; }
+
+    .locked-section__btn {
+      background: var(--clr-primary);
+      color: #fff;
+      padding: 0.45rem 1rem;
+      border-radius: var(--r-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      font-family: var(--font-body);
+      border: 2px solid var(--clr-primary);
+      margin-top: 0.25rem;
+    }
+
+    .locked-section__btn:hover { background: var(--clr-primary-light); }
+
+    /* ===== APPOINTMENT / UPCOMING ===== */
+    .appointment-list { display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .appt-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-md);
+      align-items: center;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+    }
+
+    .appt-item:hover { border-color: var(--clr-primary); }
+
+    .appt-item__date {
+      width: 42px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .appt-item__day {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--clr-primary);
+      line-height: 1;
+    }
+
+    .appt-item__month { font-size: 0.65rem; text-transform: uppercase; color: var(--clr-text-muted); font-weight: 600; }
+
+    .appt-item__divider { width: 1.5px; background: var(--clr-border); align-self: stretch; flex-shrink: 0; }
+
+    .appt-item__body { flex: 1; min-width: 0; }
+    .appt-item__title { font-size: 0.83rem; font-weight: 600; color: var(--clr-text-dark); }
+    .appt-item__time { font-size: 0.72rem; color: var(--clr-text-muted); margin-top: 0.15rem; }
+
+    /* ===== PROFILE CARD ===== */
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+      gap: 0.75rem;
+      text-align: center;
+    }
+
+    .profile-card__avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F0A500, #FF6B35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(240,165,0,0.35);
+    }
+
+    .profile-card__name { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--clr-text-dark); }
+    .profile-card__email { font-size: 0.8rem; color: var(--clr-text-muted); }
+    .profile-card__role {
+      background: var(--clr-accent-light);
+      color: #B07800;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.75rem;
+      border-radius: var(--r-full);
+      border: 1px solid rgba(240,165,0,0.3);
+    }
+
+    .profile-card__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+
+    .profile-card__stat {
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--r-md);
+      padding: 0.65rem;
+      text-align: center;
+    }
+
+    .profile-card__stat-num { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--clr-text-dark); }
+    .profile-card__stat-label { font-size: 0.68rem; color: var(--clr-text-muted); margin-top: 0.15rem; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: var(--clr-surface);
+      border: 1.5px solid var(--clr-border);
+      border-left: 4px solid var(--clr-accent);
+      border-radius: var(--r-md);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.85rem;
+      color: var(--clr-text-dark);
+      z-index: 9999;
+      max-width: 300px;
+      transform: translateX(120%);
+      transition: transform var(--dur-base) var(--ease-bounce);
+      box-shadow: var(--shadow-md);
+    }
+
+    .toast.show { transform: translateX(0); }
+
+    /* ===== LOGOUT MODAL ===== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13,31,45,0.6);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.active { display: flex; }
+
+    .modal {
+      background: var(--clr-surface);
+      border-radius: var(--r-xl);
+      padding: 2rem;
+      max-width: 380px;
+      width: 90%;
+      text-align: center;
+      animation: modal-in 0.3s var(--ease-bounce);
+      box-shadow: 0 32px 72px rgba(13, 31, 45, 0.18);
+    }
+
+    @keyframes modal-in { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .modal__icon {
+      width: 60px; height: 60px;
+      background: #FFF0F0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.4rem;
+      color: #C53030;
+    }
+
+    .modal__title { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--clr-text-dark); margin-bottom: 0.5rem; }
+    .modal__text { font-size: 0.88rem; color: var(--clr-text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .modal__actions { display: flex; gap: 0.75rem; justify-content: center; }
+
+    .modal__btn {
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--r-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-fast) var(--ease);
+      font-family: var(--font-body);
+      border: 2px solid transparent;
+    }
+
+    .modal__btn--cancel { background: var(--clr-bg); color: var(--clr-text-body); border-color: var(--clr-border); }
+    .modal__btn--cancel:hover { background: var(--clr-bg-alt); }
+    .modal__btn--logout { background: #E53E3E; color: #fff; border-color: #E53E3E; }
+    .modal__btn--logout:hover { background: #C53030; transform: translateY(-2px); }
+
+    @keyframes slide-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-up { animation: slide-up 0.4s var(--ease) both; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .dash-row--chart { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .dash-main { margin-left: 0; }
+      .topbar__hamburger { display: flex; }
+      .topbar__search { max-width: 160px; }
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .dash-row--2col { grid-template-columns: 1fr; }
+      .welcome-banner { flex-direction: column; align-items: flex-start; }
+      .welcome-banner__actions { width: 100%; }
+      .welcome-banner__btn { flex: 1; justify-content: center; }
+      .dash-content { padding: 1.25rem 1rem 2rem; }
+      .topbar__search { display: none; }
+      .topbar__user-name { display: none; }
+      .upgrade-banner { flex-direction: column; text-align: center; }
+      .upgrade-banner__text { text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --topbar-h: 60px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .stat-card { padding: 1rem; }
+      .stat-card__value { font-size: 1.35rem; }
+      .topbar { padding: 0 1rem; }
+      .dash-content { padding: 1rem 0.875rem 2rem; }
+      .welcome-banner { padding: 1.25rem; }
+      .welcome-banner__actions { flex-direction: column; }
+      .welcome-banner__btn { width: 100%; }
+      .modal { padding: 1.5rem; }
+      .topbar__actions { gap: 0.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<div class="modal-backdrop" id="logoutModal">
+  <div class="modal">
+    <div class="modal__icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+    <div class="modal__title">Confirm Logout</div>
+    <p class="modal__text">Are you sure you want to sign out? You'll be redirected to the sign-in page.</p>
+    <div class="modal__actions">
+      <button class="modal__btn modal__btn--cancel" onclick="closeLogoutModal()">Cancel</button>
+      <button class="modal__btn modal__btn--logout" onclick="confirmLogout()">Yes, Logout</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="dash-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <!-- <span class="sidebar__brand-name">Stack<span>ly</span></span> -->
+      <span class="sidebar__brand-badge">Guest</span>
+    </div>
+
+    <div class="sidebar__user">
+      <div class="sidebar__user-inner">
+        <div class="sidebar__avatar" id="sidebarAvatarText">G</div>
+        <div class="sidebar__user-info">
+          <div class="sidebar__user-name" id="sidebarUserName">Guest User</div>
+          <div class="sidebar__user-email" id="sidebarUserEmail">guest@stackly.com</div>
+        </div>
+        <span class="sidebar__user-role">Guest</span>
+      </div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="sidebar__nav-section">
+        <div class="sidebar__nav-section-label">My Portal</div>
+        <a class="sidebar__nav-item active" onclick="setActive(this, 'My Overview')">
+          <i class="fa-solid fa-house"></i> My Overview
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'My Invoices')">
+          <i class="fa-solid fa-file-invoice"></i> My Invoices
+          <span class="sidebar__nav-badge">3</span>
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'My Documents')">
+          <i class="fa-solid fa-folder-open"></i> My Documents
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Appointments')">
+          <i class="fa-solid fa-calendar-check"></i> Appointments
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'My Profile')">
+          <i class="fa-solid fa-user-circle"></i> My Profile
+        </a>
+      </div>
+
+      <div class="sidebar__nav-section">
+        <div class="sidebar__nav-section-label">Services</div>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Tax Services')">
+          <i class="fa-solid fa-receipt"></i> Tax Services
+        </a>
+        <a class="sidebar__nav-item" onclick="setActive(this, 'Support')">
+          <i class="fa-solid fa-headset"></i> Support
+        </a>
+      </div>
+
+      <div class="sidebar__nav-section">
+        <div class="sidebar__nav-section-label">Locked (Admin Only)</div>
+        <a class="sidebar__nav-item locked" onclick="showToast('This section requires Admin access.')">
+          <i class="fa-solid fa-chart-bar"></i> Analytics
+          <i class="fa-solid fa-lock sidebar__lock-icon"></i>
+        </a>
+        <a class="sidebar__nav-item locked" onclick="showToast('This section requires Admin access.')">
+          <i class="fa-solid fa-users"></i> All Clients
+          <i class="fa-solid fa-lock sidebar__lock-icon"></i>
+        </a>
+        <a class="sidebar__nav-item locked" onclick="showToast('This section requires Admin access.')">
+          <i class="fa-solid fa-gear"></i> System Settings
+          <i class="fa-solid fa-lock sidebar__lock-icon"></i>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar__bottom">
+      <button class="sidebar__logout" onclick="showLogoutModal()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="dash-main">
+
+    <header class="topbar">
+      <button class="topbar__hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars" id="hamburgerIcon"></i>
+      </button>
+
+      <div class="topbar__page-title">My <span>Dashboard</span></div>
+
+      <div class="topbar__spacer"></div>
+
+      <div class="topbar__search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search..." aria-label="Search" />
+      </div>
+
+      <div class="topbar__actions">
+        <button class="topbar__icon-btn" onclick="showToast('You have 1 new notification')" title="Notifications">
+          <i class="fa-solid fa-bell"></i>
+          <span class="topbar__notif-dot"></span>
+        </button>
+        <button class="topbar__icon-btn" onclick="showToast('Messages feature coming soon!')" title="Messages">
+          <i class="fa-solid fa-envelope"></i>
+        </button>
+      </div>
+
+      <div class="topbar__user" onclick="showToast('Profile settings coming soon!')">
+        <div class="topbar__user-avatar" id="topbarAvatarText">G</div>
+        <span class="topbar__user-name" id="topbarUserName">Guest</span>
+        <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;color:var(--clr-text-muted);"></i>
+      </div>
+    </header>
+
+    <div class="dash-content">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner animate-up">
+        <div class="welcome-banner__text">
+          <div class="welcome-banner__tag">
+            <i class="fa-solid fa-user"></i> Guest Portal
+          </div>
+          <h1 class="welcome-banner__title" style="color: var(--clr-white);">Welcome, <span id="welcomeName" style="color: var(--clr-accent);">Guest</span>!</h1>
+          <p class="welcome-banner__sub" id="welcomeEmail">guest@stackly.com &nbsp;·&nbsp; View-only access</p>
+        </div>
+        <div class="welcome-banner__actions">
+          <button class="welcome-banner__btn welcome-banner__btn--outline" onclick="showToast('Downloading your statement...')">
+            <i class="fa-solid fa-download"></i> Statement
+          </button>
+          <button class="welcome-banner__btn welcome-banner__btn--primary" onclick="showToast('Opening contact form...')">
+            <i class="fa-solid fa-phone"></i> Contact CA
+          </button>
+        </div>
+        <!-- Overlay for welcome banner -->
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255, 179, 0, 0.85) 0%, rgba(33, 37, 41, 0.9) 100%); pointer-events: none;"></div>
+
+      </div>
+
+      <!-- Upgrade Banner -->
+      <div class="upgrade-banner">
+        <div class="upgrade-banner__icon"><i class="fa-solid fa-crown"></i></div>
+        <div class="upgrade-banner__text">
+          <div class="upgrade-banner__title">Upgrade to Full Access</div>
+          <div class="upgrade-banner__sub">Unlock analytics, team reports, compliance tracking and more with Admin access.</div>
+        </div>
+        <button class="upgrade-banner__btn" onclick="showToast('Upgrade request sent to your CA!')" style="color: var(--clr-white);">
+          <i class="fa-solid fa-arrow-up"></i> Upgrade Now
+        </button>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--gold"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div class="stat-card__trend up" style="color: var(--clr-primary-light);"><i class="fa-solid fa-arrow-trend-up"></i> On Track</div>
+          </div>
+          <div class="stat-card__value">₹38K</div>
+          <div class="stat-card__label">Outstanding Balance</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:55%;background:var(--clr-accent);"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--blue"><i class="fa-solid fa-file-invoice"></i></div>
+            <div class="stat-card__trend up" style="color: var(--clr-primary-light);"><i class="fa-solid fa-circle-check"></i> 2 Paid</div>
+          </div>
+          <div class="stat-card__value">3</div>
+          <div class="stat-card__label">Open Invoices</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:40%;background:#1565C0;"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__header">
+            <div class="stat-card__icon stat-card__icon--green"><i class="fa-solid fa-calendar"></i></div>
+            <div class="stat-card__trend up" style="color: var(--clr-primary-light);"><i class="fa-solid fa-clock"></i> Soon</div>
+          </div>
+          <div class="stat-card__value">Jun 15</div>
+          <div class="stat-card__label">Next Appointment</div>
+          <div class="stat-card__bar"><div class="stat-card__bar-fill" style="width:80%;background:var(--clr-primary);"></div></div>
+        </div>
+      </div>
+
+      <!-- Invoices + Profile -->
+      <div class="dash-row dash-row--chart">
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-file-invoice-dollar" style="color:var(--clr-primary);margin-right:0.4rem;"></i> My Invoices</div>
+            <button class="dash-card__action" onclick="showToast('Opening all invoices...')">View All</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="invoice-list">
+              <div class="invoice-item" onclick="showToast('Opening Invoice INV-0048...')">
+                <div class="invoice-item__icon" style="background:#E8F5EF;color:#1A6B4A;"><i class="fa-solid fa-file-invoice"></i></div>
+                <div class="invoice-item__body">
+                  <div class="invoice-item__title">INV-0048 — Audit Services</div>
+                  <div class="invoice-item__date" style="color: var(--clr-text-muted);">Issued: Jun 5, 2026</div>
+                </div>
+                <div>
+                  <div class="invoice-item__amount">₹38,000</div>
+                  <div class="invoice-item__status"><span class="badge badge--gold">Pending</span></div>
+                </div>
+              </div>
+              <div class="invoice-item" onclick="showToast('Opening Invoice INV-0041...')">
+                <div class="invoice-item__icon" style="background:#E3F2FD;color:#1565C0;"><i class="fa-solid fa-file-invoice"></i></div>
+                <div class="invoice-item__body">
+                  <div class="invoice-item__title">INV-0041 — Tax Filing Q1</div>
+                  <div class="invoice-item__date" style="color: var(--clr-text-muted);">Issued: Apr 20, 2026</div>
+                </div>
+                <div>
+                  <div class="invoice-item__amount">₹12,500</div>
+                  <div class="invoice-item__status"><span class="badge badge--green">Paid</span></div>
+                </div>
+              </div>
+              <div class="invoice-item" onclick="showToast('Opening Invoice INV-0035...')">
+                <div class="invoice-item__icon" style="background:#FFF0F0;color:#C53030;"><i class="fa-solid fa-file-invoice"></i></div>
+                <div class="invoice-item__body">
+                  <div class="invoice-item__title">INV-0035 — GST Consultation</div>
+                  <div class="invoice-item__date" style="color: var(--clr-text-muted);">Issued: Mar 12, 2026</div>
+                </div>
+                <div>
+                  <div class="invoice-item__amount">₹6,000</div>
+                  <div class="invoice-item__status"><span class="badge badge--red">Overdue</span></div>
+                </div>
+              </div>
+              <div class="invoice-item" onclick="showToast('Opening Invoice INV-0028...')">
+                <div class="invoice-item__icon" style="background:#E8F5EF;color:#1A6B4A;"><i class="fa-solid fa-file-invoice"></i></div>
+                <div class="invoice-item__body">
+                  <div class="invoice-item__title">INV-0028 — ITR Filing FY25</div>
+                  <div class="invoice-item__date" style="color: var(--clr-text-muted);">Issued: Jan 10, 2026</div>
+                </div>
+                <div>
+                  <div class="invoice-item__amount">₹8,200</div>
+                  <div class="invoice-item__status"><span class="badge badge--green">Paid</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Card + Appointments -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;">
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <div class="dash-card__title"><i class="fa-solid fa-user-circle" style="color:var(--clr-accent);margin-right:0.4rem;"></i> My Profile</div>
+              <button class="dash-card__action" onclick="showToast('Opening profile editor...')">Edit</button>
+            </div>
+            <div class="profile-card">
+              <div class="profile-card__avatar" id="profileAvatarText">G</div>
+              <div class="profile-card__name" id="profileName">Guest User</div>
+              <div class="profile-card__email" id="profileEmail" style="color: var(--clr-text-muted);">guest@stackly.com</div>
+              <div class="profile-card__role">Guest Access</div>
+              <div class="profile-card__stats">
+                <div class="profile-card__stat">
+                  <div class="profile-card__stat-num">5</div>
+                  <div class="profile-card__stat-label">Total Invoices</div>
+                </div>
+                <div class="profile-card__stat">
+                  <div class="profile-card__stat-num" style="color: var(--clr-text-dark);">₹64.7K</div>
+                  <div class="profile-card__stat-label">Total Billed</div>
+                </div>
+                <div class="profile-card__stat">
+                  <div class="profile-card__stat-num">2</div>
+                  <div class="profile-card__stat-label">Upcoming</div>
+                </div>
+                <div class="profile-card__stat">
+                  <div class="profile-card__stat-num" style="color: var(--clr-text-dark);">98%</div>
+                  <div class="profile-card__stat-label">Compliance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents + Appointments -->
+      <div class="dash-row dash-row--2col">
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-folder-open" style="color:var(--clr-primary);margin-right:0.4rem;"></i> My Documents</div>
+            <button class="dash-card__action" onclick="showToast('Opening document vault...')">Upload</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="doc-list">
+              <div class="doc-item" onclick="showToast('Downloading GST Returns FY2026...')">
+                <span class="doc-item__icon" style="color:#C53030;">📄</span>
+                <div class="doc-item__body">
+                  <div class="doc-item__name">GST Returns FY2026.pdf</div>
+                  <div class="doc-item__meta" style="color: var(--clr-text-muted);">2.4 MB · Jun 2, 2026</div>
+                </div>
+                <i class="fa-solid fa-download doc-item__download"></i>
+              </div>
+              <div class="doc-item" onclick="showToast('Downloading ITR Acknowledgement FY25...')">
+                <span class="doc-item__icon" style="color:#1565C0;">📘</span>
+                <div class="doc-item__body">
+                  <div class="doc-item__name">ITR Acknowledgement FY25.pdf</div>
+                  <div class="doc-item__meta" style="color: var(--clr-text-muted);">580 KB · Feb 14, 2026</div>
+                </div>
+                <i class="fa-solid fa-download doc-item__download"></i>
+              </div>
+              <div class="doc-item" onclick="showToast('Downloading Audit Report Q4-2025...')">
+                <span class="doc-item__icon" style="color:#1A6B4A;">📗</span>
+                <div class="doc-item__body">
+                  <div class="doc-item__name">Audit Report Q4-2025.pdf</div>
+                  <div class="doc-item__meta" style="color: var(--clr-text-muted);">1.1 MB · Jan 20, 2026</div>
+                </div>
+                <i class="fa-solid fa-download doc-item__download"></i>
+              </div>
+              <div class="doc-item" onclick="showToast('Downloading PAN Card Copy...')">
+                <span class="doc-item__icon" style="color:#B07800;">🪙</span>
+                <div class="doc-item__body">
+                  <div class="doc-item__name">PAN Card Copy.jpg</div>
+                  <div class="doc-item__meta" style="color: var(--clr-text-muted);">240 KB · Nov 5, 2025</div>
+                </div>
+                <i class="fa-solid fa-download doc-item__download"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card__header">
+            <div class="dash-card__title"><i class="fa-solid fa-calendar-check" style="color:var(--clr-primary);margin-right:0.4rem;"></i> Upcoming Appointments</div>
+            <button class="dash-card__action" onclick="showToast('Opening appointment scheduler...')">Book</button>
+          </div>
+          <div class="dash-card__body">
+            <div class="appointment-list">
+              <div class="appt-item" onclick="showToast('Opening appointment details...')">
+                <div class="appt-item__date">
+                  <div class="appt-item__day">15</div>
+                  <div class="appt-item__month">Jun</div>
+                </div>
+                <div class="appt-item__divider"></div>
+                <div class="appt-item__body">
+                  <div class="appt-item__title" style="color: var(--clr-text-dark);">GST Review — CA Meena</div>
+                  <div class="appt-item__time"><i class="fa-regular fa-clock"></i> 11:00 AM – 12:00 PM</div>
+                </div>
+                <span class="badge badge--gold">Virtual</span>
+              </div>
+              <div class="appt-item" onclick="showToast('Opening appointment details...')">
+                <div class="appt-item__date">
+                  <div class="appt-item__day">22</div>
+                  <div class="appt-item__month">Jun</div>
+                </div>
+                <div class="appt-item__divider"></div>
+                <div class="appt-item__body">
+                  <div class="appt-item__title" style="color: var(--clr-text-dark);">Annual Audit Prep — CA Ravi</div>
+                  <div class="appt-item__time"><i class="fa-regular fa-clock"></i> 3:00 PM – 4:30 PM</div>
+                </div>
+                <span class="badge badge--green">In-Person</span>
+              </div>
+              <div class="appt-item" onclick="showToast('Opening appointment details...')">
+                <div class="appt-item__date">
+                  <div class="appt-item__day">05</div>
+                  <div class="appt-item__month">Jul</div>
+                </div>
+                <div class="appt-item__divider"></div>
+                <div class="appt-item__body">
+                  <div class="appt-item__title" style="color: var(--clr-text-dark);">ITR Filing Review</div>
+                  <div class="appt-item__time"><i class="fa-regular fa-clock"></i> 10:00 AM – 11:00 AM</div>
+                </div>
+                <span class="badge badge--blue">Scheduled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Locked Analytics Section -->
+      <div class="dash-card" style="margin-bottom:1.25rem;">
+        <div class="dash-card__header">
+          <div class="dash-card__title"><i class="fa-solid fa-lock" style="color:var(--clr-text-muted);margin-right:0.4rem;"></i> Advanced Analytics <span style="font-size:0.72rem;color:var(--clr-text-muted);font-weight:400;"> — Admin Only</span></div>
+          <button class="dash-card__action" onclick="showToast('Contact your CA to upgrade access.')">Upgrade</button>
+        </div>
+        <div class="dash-card__body locked-section" style="height:180px;">
+          <div class="locked-section__blur" style="display:flex;gap:1rem;height:100%;align-items:flex-end;padding:0.5rem;">
+            <div style="flex:1;background:var(--clr-primary);height:60%;border-radius:4px 4px 0 0;opacity:0.4;"></div>
+            <div style="flex:1;background:var(--clr-primary);height:80%;border-radius:4px 4px 0 0;opacity:0.4;"></div>
+            <div style="flex:1;background:var(--clr-accent);height:45%;border-radius:4px 4px 0 0;opacity:0.4;"></div>
+            <div style="flex:1;background:var(--clr-primary);height:90%;border-radius:4px 4px 0 0;opacity:0.4;"></div>
+            <div style="flex:1;background:var(--clr-primary);height:70%;border-radius:4px 4px 0 0;opacity:0.4;"></div>
+          </div>
+          <div class="locked-section__overlay">
+            <div class="locked-section__icon"><i class="fa-solid fa-lock"></i></div>
+            <div class="locked-section__title">Admin Access Required</div>
+            <div class="locked-section__text">Advanced charts and analytics are available to Admin users only.</div>
+            <button class="locked-section__btn" onclick="showToast('Upgrade request sent!')"><i class="fa-solid fa-crown"></i> Request Upgrade</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ──────────── AUTH GUARD ──────────── */
+  (function() {
+    const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
+    if (!user || !user.loggedIn) {
+      window.location.replace('signin.html');
+      return;
+    }
+    const name = user.name || (user.firstName ? user.firstName + ' ' + user.lastName : 'Guest');
+    const email = user.email || 'guest@stackly.com';
+    const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+    document.getElementById('sidebarUserName').textContent = name;
+    document.getElementById('sidebarUserEmail').textContent = email;
+    document.getElementById('sidebarAvatarText').textContent = initials;
+    document.getElementById('topbarAvatarText').textContent = initials;
+    document.getElementById('topbarUserName').textContent = name.split(' ')[0];
+    document.getElementById('welcomeName').textContent = name.split(' ')[0];
+    document.getElementById('welcomeEmail').textContent = email + ' · View-only access';
+    document.getElementById('profileAvatarText').textContent = initials;
+    document.getElementById('profileName').textContent = name;
+    document.getElementById('profileEmail').textContent = email;
+    document.title = 'Guest Dashboard — ' + name;
+  })();
+
+  /* ──────────── SIDEBAR ──────────── */
+  let sidebarOpen = false;
+
+  function toggleSidebar() {
+    sidebarOpen = !sidebarOpen;
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const icon = document.getElementById('hamburgerIcon');
+    if (sidebarOpen) {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+      icon.className = 'fa-solid fa-xmark';
+    } else {
+      closeSidebar();
+    }
+  }
+
+  function closeSidebar() {
+    sidebarOpen = false;
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('active');
+    document.getElementById('hamburgerIcon').className = 'fa-solid fa-bars';
+  }
+
+  function setActive(el, name) {
+    document.querySelectorAll('.sidebar__nav-item:not(.locked)').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelector('.topbar__page-title').innerHTML = 'My <span>' + name + '</span>';
+    if (window.innerWidth <= 1024) closeSidebar();
+    showToast('Navigated to ' + name);
+  }
+
+  let toastTimeout;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show';
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  function showLogoutModal() { document.getElementById('logoutModal').classList.add('active'); }
+  function closeLogoutModal() { document.getElementById('logoutModal').classList.remove('active'); }
+
+  function confirmLogout() {
+    localStorage.removeItem('stackly_user');
+    window.location.replace('signin.html');
+  }
+
+  document.getElementById('logoutModal').addEventListener('click', function(e) {
+    if (e.target === this) closeLogoutModal();
+  });
+
+  /* ──────────── PREVENT BACK NAV ──────────── */
+  history.pushState(null, '', location.href);
+  window.addEventListener('popstate', function() {
+    const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
+    if (!user || !user.loggedIn) {
+      window.location.replace('signin.html');
+    } else {
+      history.pushState(null, '', location.href);
+    }
+  });ell
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 1024) closeSidebar();
+  });
+</script>
+</body>
+</html>
