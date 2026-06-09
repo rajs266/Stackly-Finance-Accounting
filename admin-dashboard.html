@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -122,8 +122,10 @@
     }
 
     .sidebar__brand-icon {
-      width: 48px;
-      height: 48px;
+      width: 60px;
+      height: 60px;
+      width: 70px;
+      height: 70px;
       background: var(--clr-primary);
       border-radius: var(--r-sm);
       display: flex;
@@ -487,7 +489,7 @@
 
     /* ===== WELCOME BANNER ===== */
     .welcome-banner {
-      background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1600');
+      background-image: url('assets/bg_16.webp');
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -1256,12 +1258,12 @@
 
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar__brand">
+    <a href="index.html" class="sidebar__brand" aria-label="Go to Home">
       <div class="sidebar__brand-icon"><i class="fa-solid fa-chart-line"></i></div>
       <span class="sidebar__brand-name">Stack<span>ly</span></span>
       <!-- <span class="sidebar__brand-name">Stack<span>ly</span></span> -->
       <span class="sidebar__brand-badge">Admin</span>
-    </div>
+    </a>
 
     <div class="sidebar__user">
       <div class="sidebar__user-inner">

@@ -206,7 +206,7 @@
     .comparison-table .cross { color: var(--clr-text-light); }
     @media (max-width: 768px) {
       .service-detail-grid { grid-template-columns: 1fr; }
-      .comparison-table { font-size: 0.8rem; }
+      .comparison-table { font-size: 0.8rem; min-width: 540px; }
       .comparison-table th, .comparison-table td { padding: 0.75rem 0.6rem; }
     }
   </style>
@@ -216,9 +216,13 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <div id="preloader" role="status" aria-label="Loading">
-  <div class="preloader__inner">
-    <img src="assets/logo.webp" alt="Stackly Logo" class="preloader__logo" />
-    <div class="preloader__bar"></div>
+  <div class="preloader__content">
+    <div class="preloader__logo-container">
+      <img src="assets/img_2.webp" alt="Stackly Logo" class="preloader__logo" />
+    </div>
+    <div class="preloader__ring preloader__ring--1"></div>
+    <div class="preloader__ring preloader__ring--2"></div>
+    <div class="preloader__ring preloader__ring--3"></div>
   </div>
 </div>
 
@@ -234,15 +238,15 @@
     <a href="contact.html" class="mobile-nav__link">Contact</a>
   </nav>
   <div class="mobile-overlay__actions">
-    <a href="signin.html" class="btn btn--outline">Sign In</a>
-    <a href="get-started.html" class="btn btn--primary">Get Started</a>
+    <a href="signin.html" class="btn btn--primary">Sign In</a>
+    <a href="signup.html" class="btn btn--accent">Get Started</a>
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="header__inner">
     <a href="index.html" class="header__logo" aria-label="Stackly Home">
-      <img src="assets/logo.webp" alt="Stackly" width="60" height="60" />
+      <img src="assets/img_2.webp" alt="Stackly" width="120" height="120" />
     </a>
     <nav class="header__nav" aria-label="Main Navigation">
       <a href="index.html" class="nav__link">Home</a>
@@ -252,8 +256,8 @@
       <a href="contact.html" class="nav__link">Contact</a>
     </nav>
     <div class="header__actions">
-      <a href="signin.html" class="btn btn--outline btn--sm">Sign In</a>
-      <a href="get-started.html" class="btn btn--primary btn--sm">Get Started</a>
+      <a href="signin.html" class="btn btn--ghost btn--sm">Sign In</a>
+      <a href="signup.html" class="btn btn--accent btn--sm">Get Started</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -303,7 +307,7 @@
             <li><i class="fa-solid fa-check"></i> Monthly balance sheet & P&L statements</li>
             <li><i class="fa-solid fa-check"></i> Cloud-based access to your books 24/7</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -317,7 +321,7 @@
             <li><i class="fa-solid fa-check"></i> Representation before tax authorities</li>
             <li><i class="fa-solid fa-check"></i> Year-round tax advisory support</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -331,7 +335,7 @@
             <li><i class="fa-solid fa-check"></i> Forensic audit & fraud investigation</li>
             <li><i class="fa-solid fa-check"></i> Management audit & operational review</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -345,7 +349,7 @@
             <li><i class="fa-solid fa-check"></i> Form 16 & 24Q generation</li>
             <li><i class="fa-solid fa-check"></i> Employee self-service portal</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -359,7 +363,7 @@
             <li><i class="fa-solid fa-check"></i> E-invoicing & e-way bill compliance</li>
             <li><i class="fa-solid fa-check"></i> GST refund claim assistance</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -373,7 +377,7 @@
             <li><i class="fa-solid fa-check"></i> M&A support & transaction advisory</li>
             <li><i class="fa-solid fa-check"></i> Cash flow optimisation strategies</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -387,7 +391,7 @@
             <li><i class="fa-solid fa-check"></i> PAN, TAN & bank account assistance</li>
             <li><i class="fa-solid fa-check"></i> Post-incorporation compliance</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="service-detail-card">
@@ -401,7 +405,7 @@
             <li><i class="fa-solid fa-check"></i> Break-even & profitability analysis</li>
             <li><i class="fa-solid fa-check"></i> Custom dashboard creation</li>
           </ul>
-          <a href="get-started.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="signup.html" class="btn btn--primary" style="margin-top:auto;">Get Started <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
       </div>
@@ -456,7 +460,7 @@
         <h2 class="section-title reveal">Industries We <span>Serve</span></h2>
         <p class="section-subtitle reveal" style="margin-inline:auto;">Specialised expertise across diverse sectors.</p>
       </div>
-      <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:1.5rem;">
+      <div class="grid industries-grid">
         <div class="industry-card reveal">
           <div class="industry-card__icon"><i class="fa-solid fa-industry"></i></div>
           <h4 class="industry-card__title">Manufacturing</h4>
@@ -507,7 +511,7 @@
         <span class="section-tag reveal">Compare Plans</span>
         <h2 class="section-title reveal">What's Included in <span>Each Plan</span></h2>
       </div>
-      <div style="overflow-x:auto;">
+      <div style="overflow-x: auto; overflow-y: hidden; touch-action: pan-x; -webkit-overflow-scrolling: touch; padding-bottom: 10px;">
         <table class="comparison-table reveal">
           <thead>
             <tr>
@@ -533,12 +537,13 @@
         </table>
       </div>
       <div style="text-align:center;margin-top:2.5rem;">
-        <a href="get-started.html" class="btn btn--primary btn--lg">Choose Your Plan <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="404.html" class="btn btn--primary btn--lg">Choose Your Plan <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
 
   <section class="section" aria-label="CTA">
+  <section class="section" style="overflow-x: hidden;" aria-label="CTA">
     <div class="container">
       <div class="cta-section reveal">
         <span class="section-tag" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);">Get Started</span>
@@ -551,49 +556,59 @@
 
 </main>
 
-<footer class="site-footer" aria-label="Site Footer">
+<footer class="site-footer" style="background: linear-gradient(135deg, #1A3C34 0%, #102820 100%);" aria-label="Site Footer">
   <div class="container">
     <div class="footer__grid">
+
+      <!-- Brand column -->
       <div>
-        <div class="footer__brand-logo" style="margin-bottom:1.25rem;">
-          <img src="assets/logo.webp" alt="Stackly" width="54" height="54" />
-          <span class="footer__brand-name">Stack<span>ly</span></span>
+        <div class="footer__brand-logo">
+          <a href="index.html" aria-label="Go to homepage" style="display: flex; align-items: center; gap: 0.55rem;">
+            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" />
+          </a>
         </div>
-        <p class="footer__desc">Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.</p>
+        <p class="footer__desc">
+          Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.
+        </p>
         <address style="font-style:normal;font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:1.25rem;">
           MMR Complex, Chinna Thirupathi,<br>
           near Chinna Muniyappan Kovil,<br>
           Salem, Tamil Nadu 636008
         </address>
         <div class="footer__social">
-          <a href="#" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="footer__social-link" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
+
+      <!-- Resources -->
       <div>
-        <h4 class="footer__col-title">Resources</h4>
+        <h4 class="footer__col-title">Quick Links</h4>
         <ul class="footer__links">
-            <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-          <li><a href="contact.html" class="footer__link">Privacy Policy</a></li>
-          <li><a href="about.html" class="footer__link">About Us</a></li>
-          <li><a href="contact.html" class="footer__link">Careers</a></li>
-          <li><a href="blog.html" class="footer__link">Blog & News</a></li>
-          <li><a href="contact.html" class="footer__link">Feedback</a></li>
+          <li><a href="index.html" class="footer__link">Home</a></li>
+          <li><a href="about.html" class="footer__link">About</a></li>
+          <li><a href="service.html" class="footer__link">Services</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
         </ul>
       </div>
+
+      <!-- Services -->
       <div>
         <h4 class="footer__col-title">Services</h4>
         <ul class="footer__links">
-          <li><a href="service.html" class="footer__link">Accounting</a></li>
-          <li><a href="service.html" class="footer__link">GST Filing</a></li>
-          <li><a href="service.html" class="footer__link">Income Tax</a></li>
-          <li><a href="service.html" class="footer__link">Payroll</a></li>
-          <li><a href="service.html" class="footer__link">Audit & Assurance</a></li>
-          <li><a href="service.html" class="footer__link">Financial Advisory</a></li>
+          <li><a href="404.html" class="footer__link">Accounting</a></li>
+          <li><a href="404.html" class="footer__link">GST Filing</a></li>
+          <li><a href="404.html" class="footer__link">Income Tax</a></li>
+          <li><a href="404.html" class="footer__link">Payroll</a></li>
+          <li><a href="404.html" class="footer__link">Audit & Assurance</a></li>
+          <li><a href="404.html" class="footer__link">Financial Advisory</a></li>
         </ul>
       </div>
+
+      <!-- Hours -->
       <div>
         <h4 class="footer__col-title">Office Hours</h4>
         <div class="footer__hours">
@@ -602,84 +617,39 @@
           <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
           <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
         </div>
+
         <div style="margin-top:1.75rem;">
           <h4 class="footer__col-title">Contact</h4>
-          <a href="tel:+919876543210" class="footer__link" style="font-size:0.88rem;"><i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210</a>
-          <a href="mailto:info@stackly.com" class="footer__link" style="font-size:0.88rem;margin-top:0.4rem;"><i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com</a>
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;margin-bottom:0.4rem;">
+            <i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210
+          </div>
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;">
+            <i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com
+          </div>
         </div>
       </div>
+
     </div>
+
+    <!-- Bottom Bar -->
     <div class="footer__bottom">
       <span>&copy; 2026 Stackly. All rights reserved.</span>
       <div class="footer__bottom-links">
-        <a href="contact.html">Privacy Policy</a>
-        <a href="contact.html">Terms & Conditions</a>
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms &amp; Conditions</a>
       </div>
     </div>
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <i class="fa-solid fa-arrow-up"></i>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" style="background: transparent !important; box-shadow: none !important; padding: 0; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; overflow: visible; right: 5px !important; animation: none !important; transform: translateZ(0) !important; will-change: transform;">
+  <video id="scrollTopVideo" src="./assets/back to top.webm" type="video/webm" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;"></video>
+  <img id="scrollTopImg" src="./assets/img_14.webp" alt="launching" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none; display: none;" />
 </button>
 
 <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
-<script>
-function showToast(msg, type = 'success') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast toast--' + type + ' show';
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-window.addEventListener('load', () => {
-  const pre = document.getElementById('preloader');
-  setTimeout(() => pre.classList.add('hide'), 500);
-});
-
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
-}, { passive: true });
-
-const hamburger = document.getElementById('hamburger');
-const overlay = document.getElementById('mobileOverlay');
-const overlayClose = document.getElementById('overlayClose');
-
-function openMenu() {
-  hamburger.classList.add('open');
-  overlay.classList.add('open');
-  hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-  hamburger.classList.remove('open');
-  overlay.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
-overlayClose.addEventListener('click', closeMenu);
-document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-
-document.getElementById('scrollTop').addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-const revealEls = document.querySelectorAll('.reveal, .stagger-children');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => revealObs.observe(el));
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

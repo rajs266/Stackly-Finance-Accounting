@@ -24,21 +24,22 @@
       overflow: hidden;
     }
 
-    /* Left Side — Background Image Visual */
+    /* Left Side — Visual (Light theme now) */
     .signup-visual {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: flex-end;
+      justify-content: flex-start; padding-top: 15%;
       padding: 3rem;
-      overflow: hidden;
+      overflow: hidden; background: linear-gradient(160deg, var(--clr-primary-pale) 0%, var(--clr-bg) 100%);
     }
 
     .signup-visual__bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+      background: url('assets/bg_32.webp') center/cover no-repeat !important;
+      opacity: 0.33;
       z-index: 0;
     }
 
@@ -46,8 +47,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
       background-size: 48px 48px;
       z-index: 2;
       pointer-events: none;
@@ -65,7 +66,7 @@
       height: 400px;
       top: -100px;
       right: -100px;
-      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(26,107,74,0.05) 0%, transparent 70%);
       animation: float-slow 12s ease-in-out infinite;
     }
 
@@ -74,7 +75,7 @@
       height: 280px;
       bottom: -60px;
       left: -60px;
-      background: radial-gradient(circle, rgba(240,165,0,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(240,165,0,0.06) 0%, transparent 70%);
       animation: float-slow 16s ease-in-out infinite reverse;
     }
 
@@ -82,45 +83,47 @@
       position: relative;
       z-index: 3;
       max-width: 420px;
+      transform: translateY(-20px); /* shift content higher */
     }
 
     .signup-visual__logo {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.55rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 0;
       text-decoration: none;
+      width: fit-content;
     }
 
     .signup-visual__logo img {
-      width: 60px;
-      height: 60px;
+      width: 120px;
+      height: 120px;
       object-fit: contain;
-      filter: brightness(1.2);
+      filter: none;
     }
 
     .signup-visual__logo-text {
       font-family: var(--font-heading);
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--clr-white);
+      color: var(--clr-text-dark);
     }
 
     .signup-visual__logo-text span {
-      color: var(--clr-accent);
+      color: var(--clr-primary);
     }
 
     .signup-visual__tagline {
       font-family: var(--font-heading);
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 700;
-      color: var(--clr-white);
+      color: var(--clr-text-dark);
       line-height: 1.2;
       margin-bottom: 1rem;
     }
 
     .signup-visual__tagline em {
-      color: var(--clr-accent);
+      color: var(--clr-primary);
       font-style: normal;
       position: relative;
     }
@@ -132,39 +135,38 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, var(--clr-accent), var(--clr-primary));
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
       border-radius: var(--r-full);
-      opacity: 0.6;
+      opacity: 0.3;
     }
 
     .signup-visual__text {
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.7);
+      color: var(--clr-text-muted);
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
 
-    /* Testimonials on visual side */
+    /* Testimonial card on visual side */
     .signup-visual__testimonial {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--clr-white);
+      border: 1.5px solid var(--clr-border);
       border-radius: var(--r-xl);
       padding: 1.5rem;
-      max-width: 360px;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.5rem;
     }
 
     .signup-visual__testimonial-stars {
       color: var(--clr-accent);
       font-size: 0.85rem;
-      letter-spacing: 2px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .signup-visual__testimonial-text {
       font-size: 0.88rem;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.7;
+      color: var(--clr-text-body);
+      line-height: 1.6;
       font-style: italic;
       margin-bottom: 1rem;
     }
@@ -183,66 +185,58 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
       color: var(--clr-primary);
+      font-size: 0.9rem;
     }
 
     .signup-visual__testimonial-name {
       font-weight: 700;
       font-size: 0.85rem;
-      color: var(--clr-white);
+      color: var(--clr-text-dark);
     }
 
     .signup-visual__testimonial-role {
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.55);
+      color: var(--clr-text-muted);
     }
 
-    /* Back to Home Link */
-    .signup-visual__back-home {
-      position: absolute;
-      top: 2rem;
-      left: 3rem;
-      z-index: 4;
+    /* Back to Home Button (Form Side) */
+    .form-back-btn {
+      padding: 0.45rem 1rem;
+      border-radius: var(--r-full);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-white);
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: var(--r-full);
-      background: rgba(255,255,255,0.08);
-      border: 1.5px solid rgba(255,255,255,0.12);
+      gap: 0.4rem;
       transition: all var(--dur-base) var(--ease);
-      backdrop-filter: blur(8px);
+      width: fit-content;
+      margin-top: 4.5rem;
     }
-
-    .signup-visual__back-home:hover {
-      background: rgba(255,255,255,0.15);
-      color: var(--clr-white);
-      transform: translateX(-4px);
-      border-color: rgba(255,255,255,0.25);
+    .form-back-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
-
-    .signup-visual__back-home i {
+    .form-back-btn i {
       font-size: 0.8rem;
       transition: transform var(--dur-base) var(--ease);
     }
-
-    .signup-visual__back-home:hover i {
+    .form-back-btn:hover i {
       transform: translateX(-3px);
     }
-
-    /* Right Side — Form */
+    /* Right Side — Form (Dark theme gradient now) */
     .signup-form-side {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 3rem 3.5rem;
-      background: var(--clr-bg);
+      background: linear-gradient(160deg, rgba(20, 60, 50, 0.98) 0%, rgba(10, 35, 28, 0.99) 60%, rgba(15, 20, 18, 1) 100%);
       overflow-y: auto;
       position: relative;
     }
@@ -252,37 +246,21 @@
       max-width: 480px;
     }
 
-    /* Mobile back to home (visible only on mobile) */
-    .signup-mobile-back {
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--clr-primary);
-      text-decoration: none;
-      margin-bottom: 1.5rem;
-      transition: color var(--dur-base) var(--ease);
-    }
-
-    .signup-mobile-back:hover {
-      color: var(--clr-accent);
-    }
-
     .signup-form-box__header {
       margin-bottom: 2rem;
     }
 
     .signup-form-box__logo {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
+      width: fit-content;
     }
 
     .signup-form-box__logo img {
-      width: 54px;
-      height: 54px;
+      width: 120px;
+      height: 120px;
       object-fit: contain;
     }
 
@@ -772,12 +750,79 @@
       flex-shrink: 0;
     }
 
+    /* Dark Theme Form Overrides */
+    .signup-form-side .signup-form-box__title { color: var(--clr-white); }
+    .signup-form-side .signup-form-box__sub { color: rgba(255,255,255,0.7); }
+    .signup-form-side .signup-form-label { color: rgba(255,255,255,0.9); }
+    .signup-form-side .remember-me span { color: rgba(255,255,255,0.7); }
+    .signup-form-side .signup-footer { color: rgba(255,255,255,0.65); }
+    .signup-form-side .signup-footer a { color: var(--clr-accent); }
+    .signup-form-side .signup-benefit { color: rgba(255,255,255,0.8); }
+    .signup-form-side .signup-benefit i { background: rgba(255,255,255,0.15); color: var(--clr-accent); }
+    .signup-form-side .signup-divider { color: rgba(255,255,255,0.5); }
+    .signup-form-side .signup-divider::before,
+    .signup-form-side .signup-divider::after { background: rgba(255,255,255,0.15); }
+    .signup-form-side .form-checkbox-group label { color: rgba(255,255,255,0.7); }
+    .signup-form-side .form-checkbox-group label a { color: var(--clr-accent); }
+
+    .signup-form-side .signup-form-input {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--clr-white);
+    }
+    .signup-form-side .signup-form-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .signup-form-side .signup-form-input:focus {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3.5px rgba(240, 165, 0, 0.15);
+    }
+    .signup-form-side .signup-form-group__icon {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .signup-form-side .signup-form-input:focus + .signup-form-group__icon {
+      color: var(--clr-accent);
+    }
+
+    .signup-form-side .role-option__card {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+    .signup-form-side .role-option__card span {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .signup-form-side .role-option__card i {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .signup-form-side .role-option input:checked + .role-option__card {
+      background: rgba(26, 107, 74, 0.3);
+      border-color: var(--clr-accent);
+      box-shadow: 0 4px 16px rgba(240, 165, 0, 0.2);
+    }
+    .signup-form-side .role-option input:checked + .role-option__card i {
+      color: var(--clr-accent);
+    }
+    .signup-form-side .role-option input:checked + .role-option__card span {
+      color: var(--clr-accent);
+    }
+
+    .signup-form-side .social-auth-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--clr-white);
+    }
+    .signup-form-side .social-auth-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .signup-page { grid-template-columns: 1fr; }
       .signup-visual { display: none; }
       .signup-form-side { padding: 2.5rem 2rem; }
-      .signup-mobile-back { display: inline-flex; }
+      .signup-mobile-back { display: inline-flex; color: var(--clr-accent); }
     }
 
     @media (max-width: 768px) {
@@ -809,14 +854,9 @@
     <div class="signup-visual__decor-circle signup-visual__decor-circle--2"></div>
 
     <!-- Back to Home Link -->
-    <a href="index.html" class="signup-visual__back-home">
-      <i class="fa-solid fa-arrow-left"></i> Back to Home
-    </a>
-
     <div class="signup-visual__content">
       <a href="index.html" class="signup-visual__logo">
-        <img src="assets/logo.webp" alt="Stackly" />
-        <!-- <span class="signup-visual__logo-text">Stack<span>ly</span></span> -->
+        <img src="assets/img_30.webp" alt="Stackly" />
       </a>
 
       <h2 class="signup-visual__tagline">
@@ -846,35 +886,19 @@
   <div class="signup-form-side">
     <div class="signup-form-side__inner">
 
-      <!-- Mobile Back to Home -->
-      <a href="index.html" class="signup-mobile-back">
-        <i class="fa-solid fa-arrow-left"></i> Back to Home
-      </a>
-
       <div class="signup-form-box__header">
-        <div class="signup-form-box__logo">
-          <img src="assets/logo.webp" alt="Stackly" />
-          <span style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--clr-primary);">Stack<span style="color:var(--clr-accent);">ly</span></span>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 1.5rem;">
+          <a href="index.html" class="signup-form-box__logo" style="margin-bottom: 0;">
+            <img src="assets/img_2.webp" alt="Stackly" />
+          </a>
+          <a href="index.html" class="form-back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+          </a>
         </div>
         <h1 class="signup-form-box__title">Create Your Free Account</h1>
         <p class="signup-form-box__sub">Get started with smart financial management for your business. No credit card required.</p>
       </div>
 
-      <!-- Benefits -->
-      <div class="signup-benefits">
-        <div class="signup-benefit">
-          <i class="fa-solid fa-check"></i>
-          <span>Free 14-day trial with all features</span>
-        </div>
-        <div class="signup-benefit">
-          <i class="fa-solid fa-check"></i>
-          <span>Dedicated CA manager for your account</span>
-        </div>
-        <div class="signup-benefit">
-          <i class="fa-solid fa-check"></i>
-          <span>GST, ITR, and payroll handled end-to-end</span>
-        </div>
-      </div>
 
       <!-- Role Selector -->
       <div class="role-selector" id="roleSelector">
@@ -917,7 +941,7 @@
               />
               <i class="fa-solid fa-user signup-form-group__icon"></i>
             </div>
-            <span class="signup-form-error">Letters only, minimum 3 characters</span>
+            <span class="signup-form-error">Name contains only alphabets</span>
           </div>
 
           <div class="signup-form-group" id="lnameGroup">
@@ -934,7 +958,7 @@
               />
               <i class="fa-solid fa-user signup-form-group__icon"></i>
             </div>
-            <span class="signup-form-error">Letters only, minimum 3 characters</span>
+            <span class="signup-form-error">Name contains only alphabets</span>
           </div>
         </div>
 
@@ -1015,7 +1039,7 @@
             </div>
             <span class="password-strength__text" id="strengthText">Enter a password</span>
           </div>
-          <span class="signup-form-error">Password must be at least 8 characters with letters and numbers</span>
+          <span class="signup-form-error">Password must be at least 8 characters</span>
         </div>
 
         <!-- Confirm Password -->
@@ -1080,313 +1104,7 @@
 
 </div>
 
-<script>
-/* Toast Notification */
-function showSignupToast(msg, type = 'success') {
-  const t = document.getElementById('signupToast');
-  t.textContent = msg;
-  t.className = 'signup-toast signup-toast--' + type + ' show';
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-/* Role Selector Update */
-const roleInputs = document.querySelectorAll('input[name="role"]');
-const roleBadge = document.getElementById('roleBadge');
-
-roleInputs.forEach(input => {
-  input.addEventListener('change', () => {
-    const role = input.value;
-    const isAdmin = role === 'admin';
-    roleBadge.className = 'role-badge ' + (isAdmin ? 'role-badge--admin' : 'role-badge--guest');
-    roleBadge.innerHTML = isAdmin 
-      ? '<i class="fa-solid fa-user-shield"></i> Creating account as <strong>Admin</strong>'
-      : '<i class="fa-solid fa-user"></i> Creating account as <strong>Guest</strong>';
-  });
-});
-
-/* Password Toggle */
-document.getElementById('passwordToggle').addEventListener('click', function() {
-  const pw = document.getElementById('password');
-  const icon = this.querySelector('i');
-  if (pw.type === 'password') {
-    pw.type = 'text';
-    icon.className = 'fa-solid fa-eye-slash';
-  } else {
-    pw.type = 'password';
-    icon.className = 'fa-solid fa-eye';
-  }
-});
-
-document.getElementById('confirmToggle').addEventListener('click', function() {
-  const pw = document.getElementById('confirmPassword');
-  const icon = this.querySelector('i');
-  if (pw.type === 'password') {
-    pw.type = 'text';
-    icon.className = 'fa-solid fa-eye-slash';
-  } else {
-    pw.type = 'password';
-    icon.className = 'fa-solid fa-eye';
-  }
-});
-
-/* Password Strength Meter */
-document.getElementById('password').addEventListener('input', function() {
-  const val = this.value;
-  const strengthBar = document.getElementById('passwordStrength');
-  const fill = document.getElementById('strengthFill');
-  const text = document.getElementById('strengthText');
-
-  if (val.length === 0) {
-    strengthBar.classList.remove('show');
-    return;
-  }
-
-  strengthBar.classList.add('show');
-
-  let strength = 0;
-  if (val.length >= 8) strength++;
-  if (/[a-z]/.test(val) && /[A-Z]/.test(val)) strength++;
-  if (/[0-9]/.test(val)) strength++;
-  if (/[^a-zA-Z0-9]/.test(val)) strength++;
-
-  fill.className = 'password-strength__fill';
-  text.className = 'password-strength__text';
-
-  if (strength <= 1) {
-    fill.classList.add('weak');
-    text.classList.add('weak');
-    text.textContent = 'Weak — Add more characters and symbols';
-  } else if (strength === 2 || strength === 3) {
-    fill.classList.add('medium');
-    text.classList.add('medium');
-    text.textContent = 'Medium — Good, but could be stronger';
-  } else {
-    fill.classList.add('strong');
-    text.classList.add('strong');
-    text.textContent = 'Strong — Excellent password!';
-  }
-});
-
-/* Validation Functions */
-function validateName(name) {
-  return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 3;
-}
-
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function validatePhone(phone) {
-  const cleaned = phone.replace(/\D/g, '');
-  return cleaned.length === 10;
-}
-
-function validatePassword(pw) {
-  return pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
-}
-
-/* Handle Sign Up */
-function handleSignup(e) {
-  e.preventDefault();
-
-  const submitBtn = document.getElementById('signupSubmit');
-  const fnameGroup = document.getElementById('fnameGroup');
-  const lnameGroup = document.getElementById('lnameGroup');
-  const emailGroup = document.getElementById('emailGroup');
-  const phoneGroup = document.getElementById('phoneGroup');
-  const passwordGroup = document.getElementById('passwordGroup');
-  const confirmGroup = document.getElementById('confirmPasswordGroup');
-  const termsError = document.getElementById('termsError');
-
-  const firstName = document.getElementById('firstName').value.trim();
-  const lastName = document.getElementById('lastName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const terms = document.getElementById('terms').checked;
-  const role = document.querySelector('input[name="role"]:checked').value;
-
-  let isValid = true;
-
-  // Validate First Name (alphabets only)
-  if (!validateName(firstName)) {
-    fnameGroup.classList.add('has-error');
-    isValid = false;
-  } else {
-    fnameGroup.classList.remove('has-error');
-  }
-
-  // Validate Last Name (alphabets only)
-  if (!validateName(lastName)) {
-    lnameGroup.classList.add('has-error');
-    isValid = false;
-  } else {
-    lnameGroup.classList.remove('has-error');
-  }
-
-  // Validate Email
-  if (!validateEmail(email)) {
-    emailGroup.classList.add('has-error');
-    isValid = false;
-  } else {
-    emailGroup.classList.remove('has-error');
-  }
-
-  // Validate Phone
-  if (!validatePhone(phone)) {
-    phoneGroup.classList.add('has-error');
-    isValid = false;
-  } else {
-    phoneGroup.classList.remove('has-error');
-  }
-
-  // Validate Password
-  if (!validatePassword(password)) {
-    passwordGroup.classList.add('has-error');
-    isValid = false;
-  } else {
-    passwordGroup.classList.remove('has-error');
-  }
-
-  // Validate Confirm Password
-  if (password !== confirmPassword || confirmPassword === '') {
-    confirmGroup.classList.add('has-error');
-    isValid = false;
-  } else {
-    confirmGroup.classList.remove('has-error');
-  }
-
-  // Validate Terms
-  if (!terms) {
-    termsError.style.display = 'block';
-    isValid = false;
-  } else {
-    termsError.style.display = 'none';
-  }
-
-  if (!isValid) {
-    showSignupToast('Please fix the errors in the form.', 'error');
-    return;
-  }
-
-  // Show loading
-  submitBtn.classList.add('loading');
-  submitBtn.disabled = true;
-
-  // Simulate signup — ANY email works, redirects to dashboard
-  setTimeout(() => {
-    submitBtn.classList.remove('loading');
-    submitBtn.disabled = false;
-
-    // Store user info
-    localStorage.setItem('stackly_user', JSON.stringify({
-      firstName: firstName,
-      lastName: lastName,
-      name: firstName + ' ' + lastName,
-      email: email,
-      phone: phone,
-      company: document.getElementById('company').value,
-      role: role,
-      loggedIn: true,
-      signupTime: new Date().toISOString()
-    }));
-
-    showSignupToast('Account created successfully! Welcome to Stackly, ' + firstName + '!', 'success');
-
-    // Redirect to dashboard after short delay
-    setTimeout(() => {
-      window.location.href = 'dashboard.html';
-    }, 2000);
-
-  }, 1800);
-}
-
-/* Social Sign Up */
-function handleSocialSignup(provider) {
-  showSignupToast('Signing up with ' + provider + '...', 'success');
-
-  setTimeout(() => {
-    localStorage.setItem('stackly_user', JSON.stringify({
-      name: 'Social User',
-      email: 'user@' + provider.toLowerCase() + '.com',
-      role: document.querySelector('input[name="role"]:checked').value,
-      loggedIn: true,
-      signupTime: new Date().toISOString(),
-      provider: provider
-    }));
-    window.location.href = 'dashboard.html';
-  }, 1500);
-}
-
-/* Real-time validation on blur */
-document.getElementById('firstName').addEventListener('blur', function() {
-  const group = document.getElementById('fnameGroup');
-  if (this.value.trim() && !validateName(this.value.trim())) {
-    group.classList.add('has-error');
-  } else {
-    group.classList.remove('has-error');
-  }
-});
-
-document.getElementById('lastName').addEventListener('blur', function() {
-  const group = document.getElementById('lnameGroup');
-  if (this.value.trim() && !validateName(this.value.trim())) {
-    group.classList.add('has-error');
-  } else {
-    group.classList.remove('has-error');
-  }
-});
-
-document.getElementById('email').addEventListener('blur', function() {
-  const group = document.getElementById('emailGroup');
-  if (this.value.trim() && !validateEmail(this.value.trim())) {
-    group.classList.add('has-error');
-  } else {
-    group.classList.remove('has-error');
-  }
-});
-
-document.getElementById('phone').addEventListener('blur', function() {
-  const group = document.getElementById('phoneGroup');
-  if (this.value.trim() && !validatePhone(this.value.trim())) {
-    group.classList.add('has-error');
-  } else {
-    group.classList.remove('has-error');
-  }
-});
-
-document.getElementById('password').addEventListener('blur', function() {
-  const group = document.getElementById('passwordGroup');
-  if (this.value && !validatePassword(this.value)) {
-    group.classList.add('has-error');
-  } else {
-    group.classList.remove('has-error');
-  }
-});
-
-document.getElementById('confirmPassword').addEventListener('blur', function() {
-  const group = document.getElementById('confirmPasswordGroup');
-  const pw = document.getElementById('password').value;
-  if (this.value && (this.value !== pw || this.value === '')) {
-    group.classList.add('has-error');
-  } else {
-    group.classList.remove('has-error');
-  }
-});
-
-/* Clear error on input */
-document.querySelectorAll('.signup-form-input').forEach(input => {
-  input.addEventListener('input', function() {
-    this.closest('.signup-form-group').classList.remove('has-error');
-  });
-});
-
-/* Terms checkbox */
-document.getElementById('terms').addEventListener('change', function() {
-  document.getElementById('termsError').style.display = 'none';
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

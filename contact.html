@@ -19,7 +19,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
-      margin-top: -3rem;
+      margin-top: 2rem;
       position: relative;
       z-index: 2;
       margin-bottom: 4rem;
@@ -544,13 +544,20 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .contact-info-row { grid-template-columns: repeat(2, 1fr); }
-      .contact-main-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .contact-sidebar { order: -1; }
+      .contact-main-grid { 
+        display: flex !important; 
+        flex-direction: column; 
+        gap: 2.5rem; 
+        width: 100%;
+        overflow: hidden;
+      }
+      .contact-sidebar { order: -1; width: 100%; box-sizing: border-box; }
+      .contact-form-enhanced { width: 100%; box-sizing: border-box; }
       .map-container { height: 320px; }
     }
 
     @media (max-width: 768px) {
-      .contact-info-row { grid-template-columns: 1fr; margin-top: -2rem; }
+      .contact-info-row { grid-template-columns: 1fr; margin-top: 1.5rem; }
       .contact-form-enhanced { padding: 1.75rem; }
       .form-row { grid-template-columns: 1fr; }
       .map-container { height: 280px; }
@@ -561,7 +568,6 @@
     }
 
     @media (max-width: 480px) {
-      .contact-hero { padding: calc(var(--nav-h) + 2rem) 0 2.5rem; }
       .contact-info-card { padding: 1.5rem 1.25rem; }
       .contact-sidebar-card { padding: 1.5rem; }
       .contact-form-enhanced { padding: 1.5rem; }
@@ -574,9 +580,13 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <div id="preloader" role="status" aria-label="Loading">
-  <div class="preloader__inner">
-    <img src="assets/logo.webp" alt="Stackly Logo" class="preloader__logo" />
-    <div class="preloader__bar"></div>
+  <div class="preloader__content">
+    <div class="preloader__logo-container">
+      <img src="assets/img_2.webp" alt="Stackly Logo" class="preloader__logo" />
+    </div>
+    <div class="preloader__ring preloader__ring--1"></div>
+    <div class="preloader__ring preloader__ring--2"></div>
+    <div class="preloader__ring preloader__ring--3"></div>
   </div>
 </div>
 
@@ -592,15 +602,15 @@
     <a href="contact.html" class="mobile-nav__link active">Contact</a>
   </nav>
   <div class="mobile-overlay__actions">
-    <a href="signin.html"      class="btn btn--outline">Sign In</a>
-    <a href="get-started.html" class="btn btn--primary">Get Started</a>
+    <a href="signin.html"      class="btn btn--primary">Sign In</a>
+    <a href="signup.html" class="btn btn--accent">Get Started</a>
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="header__inner">
     <a href="index.html" class="header__logo" aria-label="Stackly Home">
-      <img src="assets/logo.webp" alt="Stackly" width="60" height="60" />
+      <img src="assets/img_2.webp" alt="Stackly" width="120" height="120" />
     </a>
     <nav class="header__nav" aria-label="Main Navigation">
       <a href="index.html"   class="nav__link">Home</a>
@@ -610,8 +620,8 @@
       <a href="contact.html" class="nav__link active">Contact</a>
     </nav>
     <div class="header__actions">
-      <a href="signin.html"      class="btn btn--outline btn--sm">Sign In</a>
-      <a href="get-started.html" class="btn btn--primary btn--sm">Get Started</a>
+      <a href="signin.html"      class="btn btn--ghost btn--sm">Sign In</a>
+      <a href="signup.html" class="btn btn--accent btn--sm">Get Started</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -623,22 +633,27 @@
 
 <main id="main">
 
-  <section class="page-hero contact-hero-banner" aria-label="Contact Hero">
+  <section class="page-hero contact-hero-banner" style="background-image: url('assets/bg_27.webp');" aria-label="Contact Hero">
     <div class="page-hero__content container">
-      <div class="contact-hero__badge">
+      <div class="page-hero__badge">
         <span class="hero__badge-dot" style="background:var(--clr-accent);"></span>
         We're Here to Help
       </div>
-      <h1 class="contact-hero__title">
+      <h1 class="page-hero__title">
         Get in Touch With Our<br><span>Finance Experts</span>
       </h1>
-      <p class="contact-hero__text">
+      <p class="page-hero__text">
         Have questions about tax, GST, accounting, or audit services? Our team of experienced CAs and financial consultants is ready to assist you. Reach out today and let's grow your business together.
       </p>
+      <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep">/</span>
+        <span class="breadcrumb__current">Contact</span>
+      </nav>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
+  <section class="section" style="padding-top:0; position: relative;">
     <div class="container">
 
       <!-- Info Cards -->
@@ -661,8 +676,8 @@
           </div>
           <h3 class="contact-info-card__title">Call Us</h3>
           <p class="contact-info-card__detail">
-            <a href="tel:+919876543210">+91 98765 43210</a><br>
-            <a href="tel:+914272345678">+91 4272 345 678</a>
+            +91 98765 43210<br>
+            +91 4272 345 678
           </p>
         </div>
 
@@ -672,8 +687,8 @@
           </div>
           <h3 class="contact-info-card__title">Email Us</h3>
           <p class="contact-info-card__detail">
-            <a href="mailto:info@stackly.com">info@stackly.com</a><br>
-            <a href="mailto:support@stackly.com">support@stackly.com</a>
+            info@stackly.com<br>
+            support@stackly.com
           </p>
         </div>
 
@@ -690,10 +705,10 @@
       </div>
 
       <!-- Main Contact Grid -->
-      <div class="contact-main-grid">
+      <div class="contact-main-grid" style="position: relative;">
 
         <!-- Contact Form -->
-        <div class="contact-form-enhanced reveal reveal--left">
+        <div class="contact-form-enhanced reveal">
           <h2 class="contact-form-enhanced__title">Send Us a Message</h2>
           <p class="contact-form-enhanced__sub">Fill out the form below and our team will get back to you within 24 hours.</p>
 
@@ -702,7 +717,7 @@
               <div class="form-group" id="fnameGroup">
                 <label class="form-label" for="fname">First Name <span class="required">*</span></label>
                 <input class="form-input" type="text" id="fname" name="fname" placeholder="Ramesh" required />
-                <span class="form-error">Please enter your first name (letters only, no special characters)</span>
+                <span class="form-error">name contains only alphabets</span>
               </div>
               <div class="form-group" id="lnameGroup">
                 <label class="form-label" for="lname">Last Name</label>
@@ -761,7 +776,7 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="contact-sidebar reveal reveal--right">
+        <div class="contact-sidebar reveal">
 
           <!-- Contact Details -->
           <div class="contact-sidebar-card">
@@ -790,8 +805,8 @@
               <div>
                 <div class="contact-detail-row__label">Phone</div>
                 <div class="contact-detail-row__value">
-                  <a href="tel:+919876543210">+91 98765 43210</a><br>
-                  <a href="tel:+914272345678">+91 4272 345 678</a>
+                  +91 98765 43210<br>
+                  +91 4272 345 678
                 </div>
               </div>
             </div>
@@ -803,8 +818,8 @@
               <div>
                 <div class="contact-detail-row__label">Email</div>
                 <div class="contact-detail-row__value">
-                  <a href="mailto:info@stackly.com">info@stackly.com</a><br>
-                  <a href="mailto:support@stackly.com">support@stackly.com</a>
+                  info@stackly.com<br>
+                  support@stackly.com
                 </div>
               </div>
             </div>
@@ -816,7 +831,7 @@
               <div>
                 <div class="contact-detail-row__label">WhatsApp</div>
                 <div class="contact-detail-row__value">
-                  <a href="https://wa.me/919876543210">+91 98765 43210</a>
+                  +91 98765 43210
                 </div>
               </div>
             </div>
@@ -868,19 +883,19 @@
               Stay updated with the latest tax news, GST updates, and financial tips by following us on social media.
             </p>
             <div class="contact-social-links">
-              <a href="https://www.facebook.com/" class="contact-social-link" aria-label="Facebook" target="_blank" rel="noopener">
+              <a href="404.html" class="contact-social-link" aria-label="Facebook">
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
-              <a href="https://www.instagram.com/" class="contact-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+              <a href="404.html" class="contact-social-link" aria-label="Instagram">
                 <i class="fa-brands fa-instagram"></i>
               </a>
-              <a href="https://www.x.com/" class="contact-social-link" aria-label="X / Twitter" target="_blank" rel="noopener">
+              <a href="404.html" class="contact-social-link" aria-label="X / Twitter">
                 <i class="fa-brands fa-x-twitter"></i>
               </a>
-              <a href="https://www.linkedin.com/" class="contact-social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <a href="404.html" class="contact-social-link" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin-in"></i>
               </a>
-              <a href="https://wa.me/919876543210" class="contact-social-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="404.html" class="contact-social-link" aria-label="WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
               </a>
             </div>
@@ -894,16 +909,16 @@
             <p style="font-size:0.88rem;color:var(--clr-text-body);line-height:1.65;margin-bottom:1rem;">
               Facing an urgent GST deadline or tax notice? Our Premium clients get 24/7 priority support.
             </p>
-            <a href="tel:+919876543210" class="btn btn--primary" style="width:100%;justify-content:center;">
+            <div class="btn btn--primary" style="width:100%;justify-content:center;cursor:default;">
               <i class="fa-solid fa-phone"></i> Call Emergency Line
-            </a>
+            </div>
           </div>
 
         </div>
       </div>
 
       <!-- Map Section -->
-      <div class="map-section reveal">
+      <div class="map-section reveal" style="overflow: hidden; position: relative;">
         <div class="text-center" style="margin-bottom:2rem;">
           <span class="section-tag">Find Us</span>
           <h2 class="section-title">Our <span>Office Location</span></h2>
@@ -1013,12 +1028,12 @@
         <h2 class="contact-cta-banner__title">Ready to Transform Your Finances?</h2>
         <p class="contact-cta-banner__text">Join 1,000+ businesses across Tamil Nadu who trust Stackly for their accounting, tax, and compliance needs. Get started today with a free consultation.</p>
         <div class="contact-cta-banner__buttons">
-          <a href="get-started.html" class="btn btn--accent btn--lg">
+          <a href="signup.html" class="btn btn--accent btn--lg">
             <i class="fa-solid fa-rocket"></i> Get Started Free
           </a>
-          <a href="tel:+919876543210" class="btn btn--ghost btn--lg">
+          <div class="btn btn--ghost btn--lg" style="cursor:default;">
             <i class="fa-solid fa-phone"></i> Call Us Now
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -1026,13 +1041,16 @@
 
 </main>
 
-<footer class="site-footer" aria-label="Site Footer">
+<footer class="site-footer" style="background: linear-gradient(135deg, #1A3C34 0%, #102820 100%);" aria-label="Site Footer">
   <div class="container">
     <div class="footer__grid">
+
+      <!-- Brand column -->
       <div>
-        <div class="footer__brand-logo" style="margin-bottom:1.25rem;">
-          <img src="assets/logo.webp" alt="Stackly" width="54" height="54" />
-          <span class="footer__brand-name">Stack<span>ly</span></span>
+        <div class="footer__brand-logo">
+          <a href="index.html" aria-label="Go to homepage" style="display: flex; align-items: center; gap: 0.55rem;">
+            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" />
+          </a>
         </div>
         <p class="footer__desc">
           Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.
@@ -1043,34 +1061,39 @@
           Salem, Tamil Nadu 636008
         </address>
         <div class="footer__social">
-          <a href="https://www.facebook.com/" class="footer__social-link" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.x.com/" class="footer__social-link" aria-label="X / Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://www.linkedin.com/" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
+
+      <!-- Resources -->
       <div>
-        <h4 class="footer__col-title">Resources</h4>
+        <h4 class="footer__col-title">Quick Links</h4>
         <ul class="footer__links">
-          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-          <li><a href="contact.html" class="footer__link">Privacy Policy</a></li>
-          <li><a href="about.html"   class="footer__link">About Us</a></li>
-          <li><a href="contact.html" class="footer__link">Careers</a></li>
-          <li><a href="blog.html"    class="footer__link">Blog & News</a></li>
-          <li><a href="contact.html" class="footer__link">Feedback</a></li>
+          <li><a href="index.html" class="footer__link">Home</a></li>
+          <li><a href="about.html" class="footer__link">About</a></li>
+          <li><a href="service.html" class="footer__link">Services</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
         </ul>
       </div>
+
+      <!-- Services -->
       <div>
         <h4 class="footer__col-title">Services</h4>
         <ul class="footer__links">
-          <li><a href="service.html" class="footer__link">Accounting</a></li>
-          <li><a href="service.html" class="footer__link">GST Filing</a></li>
-          <li><a href="service.html" class="footer__link">Income Tax</a></li>
-          <li><a href="service.html" class="footer__link">Payroll</a></li>
-          <li><a href="service.html" class="footer__link">Audit & Assurance</a></li>
-          <li><a href="service.html" class="footer__link">Financial Advisory</a></li>
+          <li><a href="404.html" class="footer__link">Accounting</a></li>
+          <li><a href="404.html" class="footer__link">GST Filing</a></li>
+          <li><a href="404.html" class="footer__link">Income Tax</a></li>
+          <li><a href="404.html" class="footer__link">Payroll</a></li>
+          <li><a href="404.html" class="footer__link">Audit & Assurance</a></li>
+          <li><a href="404.html" class="footer__link">Financial Advisory</a></li>
         </ul>
       </div>
+
+      <!-- Hours -->
       <div>
         <h4 class="footer__col-title">Office Hours</h4>
         <div class="footer__hours">
@@ -1079,219 +1102,39 @@
           <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
           <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
         </div>
+
         <div style="margin-top:1.75rem;">
           <h4 class="footer__col-title">Contact</h4>
-          <a href="tel:+919876543210" class="footer__link" style="font-size:0.88rem;">
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;margin-bottom:0.4rem;">
             <i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210
-          </a>
-          <a href="mailto:info@stackly.com" class="footer__link" style="font-size:0.88rem;margin-top:0.4rem;">
+          </div>
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;">
             <i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com
-          </a>
+          </div>
         </div>
       </div>
+
     </div>
+
+    <!-- Bottom Bar -->
     <div class="footer__bottom">
       <span>&copy; 2026 Stackly. All rights reserved.</span>
       <div class="footer__bottom-links">
-        <a href="contact.html">Privacy Policy</a>
-        <a href="contact.html">Terms & Conditions</a>
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms &amp; Conditions</a>
       </div>
     </div>
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <i class="fa-solid fa-arrow-up"></i>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" style="background: transparent !important; box-shadow: none !important; padding: 0; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; overflow: visible; right: 5px !important; animation: none !important; transform: translateZ(0) !important; will-change: transform;">
+  <video id="scrollTopVideo" src="assets/back%20to%20top.webm" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;"></video>
+  <img id="scrollTopImg" src="assets/img_14.webp" alt="launching" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none; display: none;" />
 </button>
 
 <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
-<script>
-function showToast(msg, type = 'success') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast toast--' + type + ' show';
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-window.addEventListener('load', () => {
-  const pre = document.getElementById('preloader');
-  setTimeout(() => pre.classList.add('hide'), 500);
-});
-
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
-}, { passive: true });
-
-const hamburger = document.getElementById('hamburger');
-const overlay = document.getElementById('mobileOverlay');
-const overlayClose = document.getElementById('overlayClose');
-
-function openMenu() {
-  hamburger.classList.add('open');
-  overlay.classList.add('open');
-  hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-  hamburger.classList.remove('open');
-  overlay.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
-overlayClose.addEventListener('click', closeMenu);
-document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-
-document.getElementById('scrollTop').addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-const revealEls = document.querySelectorAll('.reveal, .stagger-children');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => revealObs.observe(el));
-
-/* FAQ Accordion */
-document.querySelectorAll('.faq-item__header').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.faq-item__header').setAttribute('aria-expanded', 'false');
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
-  });
-});
-
-/* Contact Form Validation */
-function validateName(name) {
-  return /^[a-zA-Z\s]+$/.test(name) && name.length >= 2;
-}
-
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function validatePhone(phone) {
-  const cleaned = phone.replace(/\D/g, '');
-  return cleaned.length === 10;
-}
-
-function handleContactSubmit(e) {
-  e.preventDefault();
-  let isValid = true;
-
-  // First Name
-  const fname = document.getElementById('fname');
-  const fnameGroup = document.getElementById('fnameGroup');
-  if (!validateName(fname.value.trim())) {
-    fnameGroup.classList.add('error');
-    isValid = false;
-  } else {
-    fnameGroup.classList.remove('error');
-  }
-
-  // Email
-  const email = document.getElementById('email');
-  const emailGroup = document.getElementById('emailGroup');
-  if (!validateEmail(email.value.trim())) {
-    emailGroup.classList.add('error');
-    isValid = false;
-  } else {
-    emailGroup.classList.remove('error');
-  }
-
-  // Phone
-  const phone = document.getElementById('phone');
-  const phoneGroup = document.getElementById('phoneGroup');
-  if (!validatePhone(phone.value.trim())) {
-    phoneGroup.classList.add('error');
-    isValid = false;
-  } else {
-    phoneGroup.classList.remove('error');
-  }
-
-  // Message
-  const message = document.getElementById('message');
-  const messageGroup = document.getElementById('messageGroup');
-  if (message.value.trim().length < 10) {
-    messageGroup.classList.add('error');
-    isValid = false;
-  } else {
-    messageGroup.classList.remove('error');
-  }
-
-  if (isValid) {
-    showToast('✅ Enquiry sent successfully! We\'ll contact you within 24 hours.');
-    e.target.reset();
-  } else {
-    showToast('❌ Please fix the errors in the form.', 'error');
-  }
-}
-
-/* Real-time validation */
-document.getElementById('fname').addEventListener('blur', function() {
-  const group = document.getElementById('fnameGroup');
-  if (this.value.trim() && !validateName(this.value.trim())) {
-    group.classList.add('error');
-  } else {
-    group.classList.remove('error');
-  }
-});
-
-document.getElementById('email').addEventListener('blur', function() {
-  const group = document.getElementById('emailGroup');
-  if (this.value.trim() && !validateEmail(this.value.trim())) {
-    group.classList.add('error');
-  } else {
-    group.classList.remove('error');
-  }
-});
-
-document.getElementById('phone').addEventListener('blur', function() {
-  const group = document.getElementById('phoneGroup');
-  if (this.value.trim() && !validatePhone(this.value.trim())) {
-    group.classList.add('error');
-  } else {
-    group.classList.remove('error');
-  }
-});
-
-document.getElementById('message').addEventListener('blur', function() {
-  const group = document.getElementById('messageGroup');
-  if (this.value.trim() && this.value.trim().length < 10) {
-    group.classList.add('error');
-  } else {
-    group.classList.remove('error');
-  }
-});
-
-/* Highlight today's day in hours table */
-(function highlightToday() {
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const today = days[new Date().getDay()];
-  document.querySelectorAll('.hours-table td:first-child').forEach(td => {
-    if (td.textContent.trim() === today) {
-      td.classList.add('today');
-      td.nextElementSibling.classList.add('today');
-    }
-  });
-})();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

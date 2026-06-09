@@ -567,9 +567,13 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <div id="preloader" role="status" aria-label="Loading">
-  <div class="preloader__inner">
-    <img src="assets/logo.webp" alt="Stackly Logo" class="preloader__logo" />
-    <div class="preloader__bar"></div>
+  <div class="preloader__content">
+    <div class="preloader__logo-container">
+      <img src="assets/img_2.webp" alt="Stackly Logo" class="preloader__logo" />
+    </div>
+    <div class="preloader__ring preloader__ring--1"></div>
+    <div class="preloader__ring preloader__ring--2"></div>
+    <div class="preloader__ring preloader__ring--3"></div>
   </div>
 </div>
 
@@ -585,15 +589,15 @@
     <a href="contact.html" class="mobile-nav__link">Contact</a>
   </nav>
   <div class="mobile-overlay__actions">
-    <a href="signin.html"      class="btn btn--outline">Sign In</a>
-    <a href="get-started.html" class="btn btn--primary">Get Started</a>
+    <a href="signin.html"      class="btn btn--primary">Sign In</a>
+    <a href="signup.html" class="btn btn--accent">Get Started</a>
   </div>
 </div>
 
 <header class="site-header" id="siteHeader">
   <div class="header__inner">
     <a href="index.html" class="header__logo" aria-label="Stackly Home">
-      <img src="assets/logo.webp" alt="Stackly" width="60" height="60" />
+      <img src="assets/img_2.webp" alt="Stackly" width="120" height="120" />
     </a>
     <nav class="header__nav" aria-label="Main Navigation">
       <a href="index.html"   class="nav__link">Home</a>
@@ -603,8 +607,8 @@
       <a href="contact.html" class="nav__link">Contact</a>
     </nav>
     <div class="header__actions">
-      <a href="signin.html"      class="btn btn--outline btn--sm">Sign In</a>
-      <a href="get-started.html" class="btn btn--primary btn--sm">Get Started</a>
+      <a href="signin.html"      class="btn btn--ghost btn--sm">Sign In</a>
+      <a href="signup.html" class="btn btn--accent btn--sm">Get Started</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -660,7 +664,7 @@
       <!-- Featured Post -->
       <article class="featured-post reveal">
         <div class="featured-post__img-wrap">
-          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=900" alt="Budget 2026 Tax Updates" class="featured-post__img" />
+          <img src="assets/img_17.webp" alt="Budget 2026 Tax Updates" class="featured-post__img" />
           <span class="featured-post__cat">Featured</span>
         </div>
         <div class="featured-post__content">
@@ -693,7 +697,7 @@
         <!-- Card 1 -->
         <article class="blog-page-card" data-category="tax">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=600" alt="Tax Saving" class="blog-page-card__img" />
+            <img src="assets/img_18.webp" alt="Tax Saving" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Tax</span>
           </div>
           <div class="blog-page-card__body">
@@ -705,7 +709,7 @@
             <p class="blog-page-card__text">Discover proven, legal methods to reduce your income tax burden while keeping your business 100% compliant this financial year.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.4K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -713,7 +717,7 @@
         <!-- Card 2 -->
         <article class="blog-page-card" data-category="gst">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?auto=format&fit=crop&q=80&w=600" alt="GST Filing" class="blog-page-card__img" />
+            <img src="assets/img_19.webp" alt="GST Filing" class="blog-page-card__img" />
             <span class="blog-page-card__cat">GST</span>
           </div>
           <div class="blog-page-card__body">
@@ -725,7 +729,7 @@
             <p class="blog-page-card__text">Many businesses face penalties due to avoidable GST errors. Here's a comprehensive guide to filing GSTR-1 and GSTR-3B correctly.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 3.1K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -733,7 +737,7 @@
         <!-- Card 3 -->
         <article class="blog-page-card" data-category="accounting">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="Financial Statements" class="blog-page-card__img" />
+            <img src="assets/img_20.webp" alt="Financial Statements" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Accounting</span>
           </div>
           <div class="blog-page-card__body">
@@ -745,7 +749,7 @@
             <p class="blog-page-card__text">Balance sheets, P&L, and cash flow statements decoded — learn to understand what your numbers are truly telling you.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 1.8K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -753,7 +757,7 @@
         <!-- Card 4 -->
         <article class="blog-page-card" data-category="payroll">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=600" alt="Payroll Management" class="blog-page-card__img" />
+            <img src="assets/img_21.webp" alt="Payroll Management" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Payroll</span>
           </div>
           <div class="blog-page-card__body">
@@ -765,7 +769,7 @@
             <p class="blog-page-card__text">Everything you need to know about employee statutory deductions, monthly filings, and avoiding compliance penalties.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.7K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -773,7 +777,7 @@
         <!-- Card 5 -->
         <article class="blog-page-card" data-category="startup">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600" alt="Startup Registration" class="blog-page-card__img" />
+            <img src="assets/img_22.webp" alt="Startup Registration" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Startup</span>
           </div>
           <div class="blog-page-card__body">
@@ -785,7 +789,7 @@
             <p class="blog-page-card__text">Choosing the right business structure impacts your taxes, liability, and funding options. Here's a detailed comparison.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 4.2K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -793,7 +797,7 @@
         <!-- Card 6 -->
         <article class="blog-page-card" data-category="audit">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=600" alt="Audit Process" class="blog-page-card__img" />
+            <img src="assets/img_23.webp" alt="Audit Process" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Audit</span>
           </div>
           <div class="blog-page-card__body">
@@ -805,7 +809,7 @@
             <p class="blog-page-card__text">Understanding when your business needs an internal audit versus a statutory audit can save you from regulatory issues.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 1.5K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -813,7 +817,7 @@
         <!-- Card 7 -->
         <article class="blog-page-card" data-category="tax">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&q=80&w=600" alt="TDS Filing" class="blog-page-card__img" />
+            <img src="assets/img_24.webp" alt="TDS Filing" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Tax</span>
           </div>
           <div class="blog-page-card__body">
@@ -825,7 +829,7 @@
             <p class="blog-page-card__text">Stay on top of your TDS obligations with this complete calendar of due dates, forms, and late filing penalties.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 3.5K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -833,7 +837,7 @@
         <!-- Card 8 -->
         <article class="blog-page-card" data-category="gst">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600" alt="E-Invoicing" class="blog-page-card__img" />
+            <img src="assets/img_25.webp" alt="E-Invoicing" class="blog-page-card__img" />
             <span class="blog-page-card__cat">GST</span>
           </div>
           <div class="blog-page-card__body">
@@ -845,7 +849,7 @@
             <p class="blog-page-card__text">Mandatory e-invoicing thresholds, IRN generation, and integration with your accounting software explained.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.9K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -853,7 +857,7 @@
         <!-- Card 9 -->
         <article class="blog-page-card" data-category="accounting">
           <div class="blog-page-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Cloud Accounting" class="blog-page-card__img" />
+            <img src="assets/img_26.webp" alt="Cloud Accounting" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Accounting</span>
           </div>
           <div class="blog-page-card__body">
@@ -865,7 +869,7 @@
             <p class="blog-page-card__text">Compare the benefits of cloud-based accounting software with traditional desktop solutions for Indian SMEs.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 2.1K views</span>
-              <a href="#" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
         </article>
@@ -916,13 +920,16 @@
 
 </main>
 
-<footer class="site-footer" aria-label="Site Footer">
+<footer class="site-footer" style="background: linear-gradient(135deg, #1A3C34 0%, #102820 100%);" aria-label="Site Footer">
   <div class="container">
     <div class="footer__grid">
+
+      <!-- Brand column -->
       <div>
         <div class="footer__brand-logo">
-          <img src="assets/logo.webp" alt="Stackly" width="54" height="54" />
-          <span class="footer__brand-name">Stack<span>ly</span></span>
+          <a href="index.html" aria-label="Go to homepage" style="display: flex; align-items: center; gap: 0.55rem;">
+            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" />
+          </a>
         </div>
         <p class="footer__desc">
           Your trusted partner for finance, accounting, and tax solutions. Serving 1,000+ businesses across Tamil Nadu with precision and dedication.
@@ -933,34 +940,39 @@
           Salem, Tamil Nadu 636008
         </address>
         <div class="footer__social">
-          <a href="https://www.facebook.com/" class="footer__social-link" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.x.com/" class="footer__social-link" aria-label="X / Twitter" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://www.linkedin.com/" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="404.html" class="footer__social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
+
+      <!-- Resources -->
       <div>
-        <h4 class="footer__col-title">Resources</h4>
+        <h4 class="footer__col-title">Quick Links</h4>
         <ul class="footer__links">
-          <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-          <li><a href="contact.html" class="footer__link">Privacy Policy</a></li>
-          <li><a href="about.html"   class="footer__link">About Us</a></li>
-          <li><a href="contact.html" class="footer__link">Careers</a></li>
-          <li><a href="blog.html"    class="footer__link">Blog & News</a></li>
-          <li><a href="contact.html" class="footer__link">Feedback</a></li>
+          <li><a href="index.html" class="footer__link">Home</a></li>
+          <li><a href="about.html" class="footer__link">About</a></li>
+          <li><a href="service.html" class="footer__link">Services</a></li>
+          <li><a href="blog.html" class="footer__link">Blog</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
         </ul>
       </div>
+
+      <!-- Services -->
       <div>
         <h4 class="footer__col-title">Services</h4>
         <ul class="footer__links">
-          <li><a href="service.html" class="footer__link">Accounting</a></li>
-          <li><a href="service.html" class="footer__link">GST Filing</a></li>
-          <li><a href="service.html" class="footer__link">Income Tax</a></li>
-          <li><a href="service.html" class="footer__link">Payroll</a></li>
-          <li><a href="service.html" class="footer__link">Audit & Assurance</a></li>
-          <li><a href="service.html" class="footer__link">Financial Advisory</a></li>
+          <li><a href="404.html" class="footer__link">Accounting</a></li>
+          <li><a href="404.html" class="footer__link">GST Filing</a></li>
+          <li><a href="404.html" class="footer__link">Income Tax</a></li>
+          <li><a href="404.html" class="footer__link">Payroll</a></li>
+          <li><a href="404.html" class="footer__link">Audit & Assurance</a></li>
+          <li><a href="404.html" class="footer__link">Financial Advisory</a></li>
         </ul>
       </div>
+
+      <!-- Hours -->
       <div>
         <h4 class="footer__col-title">Office Hours</h4>
         <div class="footer__hours">
@@ -969,125 +981,39 @@
           <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
           <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
         </div>
+
         <div style="margin-top:1.75rem;">
           <h4 class="footer__col-title">Contact</h4>
-          <a href="tel:+919876543210" class="footer__link" style="font-size:0.88rem;">
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;margin-bottom:0.4rem;">
             <i class="fa-solid fa-phone" style="margin-right:0.4rem;"></i>+91 98765 43210
-          </a>
-          <a href="mailto:info@stackly.com" class="footer__link" style="font-size:0.88rem;margin-top:0.4rem;">
+          </div>
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.6);display:flex;align-items:center;">
             <i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>info@stackly.com
-          </a>
+          </div>
         </div>
       </div>
+
     </div>
+
+    <!-- Bottom Bar -->
     <div class="footer__bottom">
       <span>&copy; 2026 Stackly. All rights reserved.</span>
       <div class="footer__bottom-links">
-        <a href="contact.html">Privacy Policy</a>
-        <a href="contact.html">Terms & Conditions</a>
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms &amp; Conditions</a>
       </div>
     </div>
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-  <i class="fa-solid fa-arrow-up"></i>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" style="background: transparent !important; box-shadow: none !important; padding: 0; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; overflow: visible; right: 5px !important; animation: none !important; transform: translateZ(0) !important; will-change: transform;">
+  <video id="scrollTopVideo" src="assets/back%20to%20top.webm" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;"></video>
+  <img id="scrollTopImg" src="assets/img_14.webp" alt="launching" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none; display: none;" />
 </button>
 
 <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
-<script>
-function showToast(msg, type = 'success') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast toast--' + type + ' show';
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-window.addEventListener('load', () => {
-  const pre = document.getElementById('preloader');
-  setTimeout(() => pre.classList.add('hide'), 500);
-});
-
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 300);
-}, { passive: true });
-
-const hamburger = document.getElementById('hamburger');
-const overlay = document.getElementById('mobileOverlay');
-const overlayClose = document.getElementById('overlayClose');
-
-function openMenu() {
-  hamburger.classList.add('open');
-  overlay.classList.add('open');
-  hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-  hamburger.classList.remove('open');
-  overlay.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
-overlayClose.addEventListener('click', closeMenu);
-document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-
-document.getElementById('scrollTop').addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-const revealEls = document.querySelectorAll('.reveal, .stagger-children');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => revealObs.observe(el));
-
-function handleNewsletter(e) {
-  e.preventDefault();
-  showToast('✅ Subscribed! Welcome to Stackly Insights.');
-  e.target.reset();
-}
-
-/* Blog Category Filter */
-document.querySelectorAll('.blog-cat-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.blog-cat-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const cat = btn.dataset.cat;
-    document.querySelectorAll('.blog-page-card').forEach(card => {
-      if (cat === 'all' || card.dataset.category === cat) {
-        card.style.display = '';
-        card.style.animation = 'slide-up 0.5s var(--ease) both';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-});
-
-/* Blog Search */
-document.getElementById('blogSearch').addEventListener('input', function() {
-  const term = this.value.toLowerCase();
-  document.querySelectorAll('.blog-page-card').forEach(card => {
-    const title = card.querySelector('.blog-page-card__title').textContent.toLowerCase();
-    const text = card.querySelector('.blog-page-card__text').textContent.toLowerCase();
-    if (title.includes(term) || text.includes(term)) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
