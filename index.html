@@ -6,28 +6,20 @@
   <meta name="description" content="Stackly - Finance & Accounting Solutions. Smart financial management, audit, tax, and accounting services for businesses in Salem, Tamil Nadu." />
   <meta name="theme-color" content="#1A6B4A" />
   <title>Stackly - Finance & Accounting Solutions</title>
+  <link rel="icon" href="assets/top-logo.webp" type="image/webp" />
 
-  <!-- Preconnect for fast font load -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- =========================================================
-  SKIP LINK (Accessibility)
-========================================================= -->
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- =========================================================
-  PRELOADER
-========================================================= -->
 <div id="preloader" role="status" aria-label="Loading">
   <div class="preloader__content">
     <div class="preloader__logo-container">
@@ -39,13 +31,14 @@
   </div>
 </div>
 
-<!-- =========================================================
-  MOBILE FULLSCREEN OVERLAY MENU
-========================================================= -->
 <div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-modal="true" aria-label="Navigation Menu">
   <button class="mobile-overlay__close" id="overlayClose" aria-label="Close menu">
     <i class="fa-solid fa-xmark"></i>
   </button>
+
+  <a href="index.html" class="mobile-overlay__logo" aria-label="Stackly Home">
+    <img src="assets/logo1.webp" alt="Stackly" width="100" height="100" />
+  </a>
 
   <nav class="mobile-nav" aria-label="Mobile Navigation">
     <a href="index.html"   class="mobile-nav__link active">Home</a>
@@ -61,18 +54,13 @@
   </div>
 </div>
 
-<!-- =========================================================
-  HEADER / NAVBAR
-========================================================= -->
 <header class="site-header" id="siteHeader">
   <div class="header__inner">
 
-    <!-- Logo -->
     <a href="index.html" class="header__logo" aria-label="Stackly Home">
       <img src="assets/img_2.webp" alt="Stackly" width="120" height="120" />
     </a>
 
-    <!-- Desktop Nav -->
     <nav class="header__nav" aria-label="Main Navigation">
       <a href="index.html"   class="nav__link active">Home</a>
       <a href="about.html"   class="nav__link">About</a>
@@ -81,7 +69,6 @@
       <a href="contact.html" class="nav__link">Contact</a>
     </nav>
 
-    <!-- Actions -->
     <div class="header__actions">
       <a href="signin.html"      class="btn btn--ghost btn--sm">Sign In</a>
       <a href="signup.html" class="btn btn--accent btn--sm">Get Started</a>
@@ -95,14 +82,8 @@
   </div>
 </header>
 
-<!-- =========================================================
-  MAIN CONTENT
-========================================================= -->
 <main id="main">
 
-  <!-- =====================================================
-    TICKER BAND
-  ===================================================== -->
   <div class="ticker-band" aria-hidden="true">
     <div class="ticker-track">
       <span class="ticker-item">Smart Financial Management</span>
@@ -113,7 +94,7 @@
       <span class="ticker-item">Business Accounting</span>
       <span class="ticker-item">Investment Consulting</span>
       <span class="ticker-item">Risk Management</span>
-      <!-- Duplicate for seamless loop -->
+      
       <span class="ticker-item">Smart Financial Management</span>
       <span class="ticker-item">Tax Planning & Advisory</span>
       <span class="ticker-item">Audit & Assurance</span>
@@ -125,12 +106,8 @@
     </div>
   </div>
 
-  <!-- =====================================================
-    HERO SECTION
-  ===================================================== -->
   <section class="hero" id="hero" aria-label="Hero">
 
-    <!-- Background Video -->
     <div class="hero__video-wrap" aria-hidden="true">
       <video class="hero__video" autoplay muted loop playsinline poster="assets/img_2.webp">
         <source src="assets/hero vid.mp4" type="video/mp4" />
@@ -140,7 +117,6 @@
 
     <div class="hero__inner container">
 
-      <!-- Center: Content -->
       <div class="hero__content">
         <div class="hero__badge">
           <span class="hero__badge-dot"></span>
@@ -187,22 +163,19 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    BRAND / PARTNERS MARQUEE
-  ===================================================== -->
   <section class="brands" aria-label="Our Partners">
     <div class="container">
       <p class="brands__label">Trusted by Leading Organizations</p>
       <div class="brands__track-wrap">
         <div class="brands__track">
-          <!-- Brand logos - replace with real images -->
+          
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-building" style="color:var(--clr-primary)"></i> FinCorp</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-landmark" style="color:var(--clr-primary)"></i> AuditPlus</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-coins" style="color:var(--clr-primary)"></i> TaxWise</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-chart-bar" style="color:var(--clr-primary)"></i> GrowthCo</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-scale-balanced" style="color:var(--clr-primary)"></i> LexFirm</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-briefcase" style="color:var(--clr-primary)"></i> BizServe</div>
-          <!-- Duplicates for loop -->
+          
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-building" style="color:var(--clr-primary)"></i> FinCorp</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-landmark" style="color:var(--clr-primary)"></i> AuditPlus</div>
           <div style="display:flex;align-items:center;gap:0.5rem;opacity:0.55;white-space:nowrap;font-weight:700;font-size:1rem;color:var(--clr-text-dark)"><i class="fa-solid fa-coins" style="color:var(--clr-primary)"></i> TaxWise</div>
@@ -214,34 +187,27 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    ABOUT SECTION
-  ===================================================== -->
   <section class="section section--alt" id="about" aria-label="About Us">
     <div class="container">
       <div class="about__grid">
 
-        <!-- Image Side -->
         <div class="about__img-container" style="position:relative;">
           <div class="about__img-wrap img-reveal reveal reveal--left">
             <img src="assets/img_28.webp" alt="Stackly Team Office" class="about__img" />
           </div>
 
-          <!-- Floating experience badge -->
           <div class="about__exp-badge">
             <div class="about__exp-num">15+</div>
             <div class="about__exp-label">Years of<br>Excellence</div>
           </div>
         </div>
 
-        <!-- Content Side -->
         <div class="about__content reveal reveal--right">
           <span class="section-tag">About Our Company</span>
           <h2 class="section-title">
             Providing Tailored <span>Financial Solutions</span> for Business Growth
           </h2>
 
-          <!-- Clients -->
           <div class="about__clients">
             <div class="about__avatars">
               <div class="about__avatar" style="background:var(--clr-primary-pale);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-user" style="color:var(--clr-primary);font-size:1rem"></i></div>
@@ -278,9 +244,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    STATISTICS BAND
-  ===================================================== -->
   <section class="stats-section section--light-blue" aria-label="Statistics">
     <div class="container">
       <div class="stats__grid stagger-children">
@@ -309,9 +272,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    HOW WE WORK - STEPS
-  ===================================================== -->
   <section class="section section--alt" aria-label="How We Work">
     <div class="container">
       <div class="text-center" style="margin-bottom:3rem;">
@@ -346,9 +306,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    SERVICES SECTION - FLIP CARDS
-  ===================================================== -->
   <section class="section" id="services" aria-label="Our Services">
     <div class="container">
       <div class="text-center" style="margin-bottom:3rem;">
@@ -359,7 +316,6 @@
 
       <div class="services__grid stagger-children">
 
-        <!-- Card 1 -->
         <div class="service-card" tabindex="0" role="article" aria-label="Accounting & Bookkeeping">
           <div class="service-card__inner">
             <div class="service-card__front">
@@ -367,7 +323,7 @@
               <h3 class="service-card__title">Accounting & Bookkeeping</h3>
               <p class="service-card__text">Accurate, real-time records of every transaction. We handle your books so you focus on growing your business.</p>
             </div>
-            <div class="service-card__back">
+            <div class="service-card__back" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('assets/img_20.webp') center/cover;">
               <div class="service-card__back-title">Accounting & Bookkeeping</div>
               <p class="service-card__back-text">From ledger maintenance to MIS reports, bank reconciliation, and financial statements - complete end-to-end.</p>
               <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -375,7 +331,6 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
         <div class="service-card" tabindex="0" role="article" aria-label="Tax Planning & Filing">
           <div class="service-card__inner">
             <div class="service-card__front">
@@ -383,7 +338,7 @@
               <h3 class="service-card__title">Tax Planning & Filing</h3>
               <p class="service-card__text">Minimise tax liability legally. Income Tax, GST, TDS - we handle all filings on time, every time.</p>
             </div>
-            <div class="service-card__back">
+            <div class="service-card__back" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('assets/img_18.webp') center/cover;">
               <div class="service-card__back-title">Tax Planning & Filing</div>
               <p class="service-card__back-text">Expert strategies to reduce your tax burden while ensuring 100% compliance with current regulations.</p>
               <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -391,7 +346,6 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
         <div class="service-card" tabindex="0" role="article" aria-label="Audit & Assurance">
           <div class="service-card__inner">
             <div class="service-card__front">
@@ -399,7 +353,7 @@
               <h3 class="service-card__title">Audit & Assurance</h3>
               <p class="service-card__text">Statutory, internal, and forensic audits that give stakeholders confidence in your financial integrity.</p>
             </div>
-            <div class="service-card__back">
+            <div class="service-card__back" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('assets/bg_33.webp') center/cover;">
               <div class="service-card__back-title">Audit & Assurance</div>
               <p class="service-card__back-text">Thorough audit processes with detailed reporting - identify risks before they become problems.</p>
               <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -407,7 +361,6 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
         <div class="service-card" tabindex="0" role="article" aria-label="Payroll Management">
           <div class="service-card__inner">
             <div class="service-card__front">
@@ -415,7 +368,7 @@
               <h3 class="service-card__title">Payroll Management</h3>
               <p class="service-card__text">Accurate, timely payroll processing with full PF, ESI, and TDS compliance. Zero errors guaranteed.</p>
             </div>
-            <div class="service-card__back">
+            <div class="service-card__back" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('assets/img_21.webp') center/cover;">
               <div class="service-card__back-title">Payroll Management</div>
               <p class="service-card__back-text">End-to-end payroll - salary slips, Form 16, statutory filings, and employee portal integration.</p>
               <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -423,7 +376,6 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
         <div class="service-card" tabindex="0" role="article" aria-label="GST Compliance">
           <div class="service-card__inner">
             <div class="service-card__front">
@@ -431,7 +383,7 @@
               <h3 class="service-card__title">GST Compliance</h3>
               <p class="service-card__text">Complete GST registration, return filing, reconciliation, and advisory to keep you penalty-free.</p>
             </div>
-            <div class="service-card__back">
+            <div class="service-card__back" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('assets/img_19.webp') center/cover;">
               <div class="service-card__back-title">GST Compliance</div>
               <p class="service-card__back-text">Monthly GSTR-1, GSTR-3B, annual returns, e-invoicing, and e-way bill management - all handled.</p>
               <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -439,7 +391,6 @@
           </div>
         </div>
 
-        <!-- Card 6 -->
         <div class="service-card" tabindex="0" role="article" aria-label="Financial Advisory">
           <div class="service-card__inner">
             <div class="service-card__front">
@@ -447,7 +398,7 @@
               <h3 class="service-card__title">Financial Advisory</h3>
               <p class="service-card__text">Strategic guidance on investments, funding, business restructuring, and long-term financial planning.</p>
             </div>
-            <div class="service-card__back">
+            <div class="service-card__back" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('assets/img_22.webp') center/cover;">
               <div class="service-card__back-title">Financial Advisory</div>
               <p class="service-card__back-text">CFO-level insights without the full-time cost. We help you make confident business decisions backed by data.</p>
               <a href="service.html" class="btn btn--ghost btn--sm">Learn More <i class="fa-solid fa-arrow-right"></i></a>
@@ -463,9 +414,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    OUR TECHNOLOGIES - SLIDING CARD ANIMATION
-  ===================================================== -->
   <section class="section section--light-orange" id="technologies" aria-label="Our Technologies">
     <div class="container--wide">
 
@@ -572,9 +520,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    PRICING SECTION
-  ===================================================== -->
   <section class="section section--alt" id="pricing" aria-label="Pricing Plans">
     <div class="container">
       <div class="text-center" style="margin-bottom:1.5rem;">
@@ -582,7 +527,6 @@
         <h2 class="section-title reveal">Transparent Plans for <span>Every Business</span></h2>
       </div>
 
-      <!-- Toggle -->
       <div class="pricing__toggle reveal">
         <span class="pricing__toggle-label active" id="monthlyLabel">Monthly</span>
         <div class="toggle-switch" id="billingToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Switch billing period"></div>
@@ -593,7 +537,6 @@
 
       <div class="pricing__grid stagger-children">
 
-        <!-- Basic -->
         <div class="pricing-card">
           <div class="pricing-card__plan">Starter</div>
           <div class="pricing-card__title">Basic Plan</div>
@@ -614,7 +557,6 @@
           <a href="404.html" class="btn btn--outline">Choose Plan</a>
         </div>
 
-        <!-- Standard (Featured) -->
         <div class="pricing-card pricing-card--featured">
           <div class="pricing-card__badge">Most Popular</div>
           <div class="pricing-card__plan">Growth</div>
@@ -636,7 +578,6 @@
           <a href="404.html" class="btn btn--primary">Choose Plan</a>
         </div>
 
-        <!-- Premium -->
         <div class="pricing-card">
           <div class="pricing-card__plan">Enterprise</div>
           <div class="pricing-card__title">Premium Plan</div>
@@ -661,9 +602,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    TESTIMONIALS
-  ===================================================== -->
   <section class="section section--alt" id="testimonials" aria-label="Client Testimonials">
     <div class="container">
       <div class="text-center" style="margin-bottom:2.5rem;">
@@ -725,7 +663,6 @@
         </div>
       </div>
 
-      <!-- Slider Nav -->
       <div class="slider-nav">
         <button class="slider-btn" id="testimonialPrev" aria-label="Previous testimonial">
           <i class="fa-solid fa-arrow-left"></i>
@@ -738,9 +675,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    FAQ SECTION
-  ===================================================== -->
   <section class="section section--light-blue" id="faq" aria-label="FAQ">
     <div class="container">
       <div class="text-center" style="margin-bottom:2.5rem;">
@@ -804,9 +738,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    BLOG SECTION
-  ===================================================== -->
   <section class="section section--alt" id="blog" aria-label="Latest Blog">
     <div class="container">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;">
@@ -874,9 +805,6 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    CTA / NEWSLETTER
-  ===================================================== -->
   <section class="section section--dark-charcoal" aria-label="Newsletter">
     <div class="container">
       <div class="cta-section reveal">
@@ -891,14 +819,10 @@
     </div>
   </section>
 
-  <!-- =====================================================
-    CONTACT QUICK STRIP
-  ===================================================== -->
   <section class="section section--alt" id="contact-strip" aria-label="Contact Information">
     <div class="container">
       <div class="contact__grid">
 
-        <!-- Info -->
         <div class="reveal reveal--left">
           <span class="section-tag">Get In Touch</span>
           <h2 class="section-title">Let's Talk About Your <span>Financial Goals</span></h2>
@@ -945,7 +869,6 @@
           </a>
         </div>
 
-        <!-- Quick Contact Form -->
         <div class="contact-form reveal reveal--right">
           <h3 style="font-size:1.25rem;font-weight:700;color:var(--clr-text-dark);margin-bottom:1.5rem;">Quick Enquiry</h3>
           <form action="404.html">
@@ -991,18 +914,14 @@
 
 </main>
 
-<!-- =========================================================
-  FOOTER
-========================================================= -->
 <footer class="site-footer" style="background: linear-gradient(135deg, #1A3C34 0%, #102820 100%);" aria-label="Site Footer">
   <div class="container">
     <div class="footer__grid">
 
-      <!-- Brand column -->
       <div>
         <div class="footer__brand-logo">
-          <a href="index.html" aria-label="Go to homepage" style="display: flex; align-items: center; gap: 0.55rem;">
-            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" />
+          <a href="index.html" aria-label="Go to homepage" style="display: inline-block; line-height: 0;">
+            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" style="cursor: pointer;" />
           </a>
         </div>
         <p class="footer__desc">
@@ -1021,7 +940,6 @@
         </div>
       </div>
 
-      <!-- Resources -->
       <div>
         <h4 class="footer__col-title">Quick Links</h4>
         <ul class="footer__links">
@@ -1033,7 +951,6 @@
         </ul>
       </div>
 
-      <!-- Services -->
       <div>
         <h4 class="footer__col-title">Services</h4>
         <ul class="footer__links">
@@ -1046,7 +963,6 @@
         </ul>
       </div>
 
-      <!-- Hours -->
       <div>
         <h4 class="footer__col-title">Office Hours</h4>
         <div class="footer__hours">
@@ -1069,7 +985,6 @@
 
     </div>
 
-    <!-- Bottom Bar -->
     <div class="footer__bottom">
       <span>&copy; 2026 Stackly. All rights reserved.</span>
       <div class="footer__bottom-links">
@@ -1080,23 +995,14 @@
   </div>
 </footer>
 
-<!-- =========================================================
-  SCROLL TO TOP
-========================================================= -->
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" style="background: transparent !important; box-shadow: none !important; padding: 0; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; overflow: visible; right: 5px !important; animation: none !important; transform: translateZ(0) !important; will-change: transform;">
   <video id="scrollTopVideo" src="assets/back%20to%20top.webm" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;"></video>
   <img id="scrollTopImg" src="assets/img_14.webp" alt="launching" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none; display: none;" />
 </button>
 
-<!-- =========================================================
-  TOAST NOTIFICATION
-========================================================= -->
 <div class="toast" id="toast" role="alert" aria-live="polite"></div>
-
-<!-- =========================================================
-  JAVASCRIPT
-========================================================= -->
 
 <script src="script.js"></script>
 </body>
 </html>
+

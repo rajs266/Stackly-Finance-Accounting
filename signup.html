@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sign Up for Stackly — Create your free account and start managing your business finances today." />
+  <meta name="description" content="Sign Up for Stackly - Create your free account and start managing your business finances today." />
   <meta name="theme-color" content="#1A6B4A" />
-  <title>Sign Up — Stackly</title>
+  <title>Sign Up - Stackly</title>
+  <link rel="icon" href="assets/top-logo.webp" type="image/webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +15,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ===== SIGN UP PAGE SPECIFIC STYLES ===== */
 
     .signup-page {
       min-height: 100vh;
@@ -24,7 +24,6 @@
       overflow: hidden;
     }
 
-    /* Left Side — Visual (Light theme now) */
     .signup-visual {
       position: relative;
       display: flex;
@@ -83,7 +82,7 @@
       position: relative;
       z-index: 3;
       max-width: 420px;
-      transform: translateY(-20px); /* shift content higher */
+      transform: translateY(-20px); 
     }
 
     .signup-visual__logo {
@@ -147,7 +146,6 @@
       margin-bottom: 2.5rem;
     }
 
-    /* Testimonial card on visual side */
     .signup-visual__testimonial {
       background: var(--clr-white);
       border: 1.5px solid var(--clr-border);
@@ -200,7 +198,6 @@
       color: var(--clr-text-muted);
     }
 
-    /* Back to Home Button (Form Side) */
     .form-back-btn {
       padding: 0.45rem 1rem;
       border-radius: var(--r-full);
@@ -229,7 +226,7 @@
     .form-back-btn:hover i {
       transform: translateX(-3px);
     }
-    /* Right Side — Form (Dark theme gradient now) */
+    
     .signup-form-side {
       display: flex;
       flex-direction: column;
@@ -277,7 +274,6 @@
       line-height: 1.6;
     }
 
-    /* Role Selector */
     .role-selector {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -345,7 +341,6 @@
       transform: translateY(-2px);
     }
 
-    /* Role badge display */
     .role-badge {
       display: inline-flex;
       align-items: center;
@@ -370,7 +365,6 @@
       border: 1.5px solid #C8E6C9;
     }
 
-    /* Form Fields */
     .signup-form-group {
       margin-bottom: 1.1rem;
       position: relative;
@@ -447,7 +441,6 @@
       box-shadow: 0 0 0 3.5px rgba(229, 62, 62, 0.10);
     }
 
-    /* Password field with toggle */
     .password-wrap {
       position: relative;
     }
@@ -470,7 +463,6 @@
       color: var(--clr-primary);
     }
 
-    /* Password strength */
     .password-strength {
       margin-top: 0.5rem;
       display: none;
@@ -508,14 +500,12 @@
     .password-strength__text.medium { color: var(--clr-accent); }
     .password-strength__text.strong { color: var(--clr-primary); }
 
-    /* Form row for two columns */
     .signup-form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
 
-    /* Terms checkbox */
     .terms-group {
       display: flex;
       align-items: flex-start;
@@ -549,11 +539,10 @@
       color: var(--clr-accent);
     }
 
-    /* Submit Button */
     .signup-submit {
       width: 100%;
       padding: 0.9rem;
-      background: var(--clr-primary);
+      background: var(--clr-accent);
       color: var(--clr-white);
       border: none;
       border-radius: var(--r-full);
@@ -599,7 +588,6 @@
       transform: none;
     }
 
-    /* Divider */
     .signup-divider {
       display: flex;
       align-items: center;
@@ -617,7 +605,6 @@
       background: var(--clr-border);
     }
 
-    /* Social Auth */
     .social-auth {
       display: flex;
       gap: 0.75rem;
@@ -654,7 +641,6 @@
     .social-auth-btn.google i { color: #DB4437; }
     .social-auth-btn.microsoft i { color: #0078D4; }
 
-    /* Footer text */
     .signup-footer {
       text-align: center;
       font-size: 0.85rem;
@@ -672,7 +658,6 @@
       color: var(--clr-accent);
     }
 
-    /* Loading spinner */
     .spinner {
       width: 18px;
       height: 18px;
@@ -695,7 +680,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Toast for signup */
     .signup-toast {
       position: fixed;
       top: 1.5rem;
@@ -711,17 +695,22 @@
       z-index: 9999;
       max-width: 320px;
       transform: translateX(120%);
-      transition: transform var(--dur-base) var(--ease-bounce);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform var(--dur-base) var(--ease-bounce), opacity var(--dur-base) var(--ease), visibility var(--dur-base) var(--ease);
     }
 
     .signup-toast.show {
       transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     .signup-toast--success { border-left-color: var(--clr-primary); }
     .signup-toast--error { border-left-color: #E53E3E; }
 
-    /* Benefits list */
     .signup-benefits {
       display: flex;
       flex-direction: column;
@@ -750,7 +739,6 @@
       flex-shrink: 0;
     }
 
-    /* Dark Theme Form Overrides */
     .signup-form-side .signup-form-box__title { color: var(--clr-white); }
     .signup-form-side .signup-form-box__sub { color: rgba(255,255,255,0.7); }
     .signup-form-side .signup-form-label { color: rgba(255,255,255,0.9); }
@@ -781,7 +769,16 @@
     .signup-form-side .signup-form-group__icon {
       color: rgba(255, 255, 255, 0.4);
     }
-    .signup-form-side .signup-form-input:focus + .signup-form-group__icon {
+    .signup-form-side .signup-form-input:focus + .signup-form-group__icon,
+    .signup-form-side .signup-form-group:focus-within .signup-form-group__icon {
+      color: var(--clr-accent);
+    }
+
+    .signup-form-side .password-toggle {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .signup-form-side .password-toggle:hover,
+    .signup-form-side .password-toggle:focus {
       color: var(--clr-accent);
     }
 
@@ -817,7 +814,6 @@
       border-color: rgba(255, 255, 255, 0.25);
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .signup-page { grid-template-columns: 1fr; }
       .signup-visual { display: none; }
@@ -840,12 +836,10 @@
 </head>
 <body>
 
-<!-- Toast Notification -->
 <div class="signup-toast" id="signupToast" role="alert" aria-live="polite"></div>
 
 <div class="signup-page">
 
-  <!-- LEFT SIDE: Visual with Background Image -->
   <div class="signup-visual" aria-hidden="true">
     <div class="signup-visual__bg" style="background: linear-gradient(160deg, rgba(0, 121, 107, 0.88) 0%, rgba(0, 77, 64, 0.92) 60%, rgba(33, 37, 41, 0.95) 100%);"></div>
     <div class="signup-visual__overlay"></div>
@@ -853,7 +847,6 @@
     <div class="signup-visual__decor-circle signup-visual__decor-circle--1"></div>
     <div class="signup-visual__decor-circle signup-visual__decor-circle--2"></div>
 
-    <!-- Back to Home Link -->
     <div class="signup-visual__content">
       <a href="index.html" class="signup-visual__logo">
         <img src="assets/img_30.webp" alt="Stackly" />
@@ -867,7 +860,7 @@
       </p>
 
       <div class="signup-visual__testimonial">
-        <div class="signup-visual__testimonial-stars">★★★★★</div>
+        <div class="signup-visual__testimonial-stars">⭐⭐⭐⭐⭐</div>
         <p class="signup-visual__testimonial-text">"Stackly transformed our messy accounts into a streamlined system. Their GST compliance saved us from a ₹2L penalty. Truly professional."</p>
         <div class="signup-visual__testimonial-author">
           <div class="signup-visual__testimonial-avatar">
@@ -882,7 +875,6 @@
     </div>
   </div>
 
-  <!-- RIGHT SIDE: Form -->
   <div class="signup-form-side">
     <div class="signup-form-side__inner">
 
@@ -899,8 +891,6 @@
         <p class="signup-form-box__sub">Get started with smart financial management for your business. No credit card required.</p>
       </div>
 
-
-      <!-- Role Selector -->
       <div class="role-selector" id="roleSelector">
         <label class="role-option">
           <input type="radio" name="role" value="admin" id="roleAdmin" />
@@ -918,14 +908,12 @@
         </label>
       </div>
 
-      <!-- Selected Role Badge -->
       <div id="roleBadge" class="role-badge role-badge--guest">
         <i class="fa-solid fa-user"></i> Creating account as <strong>Guest</strong>
       </div>
 
       <form id="signupForm" onsubmit="handleSignup(event)" novalidate>
 
-        <!-- Name Row -->
         <div class="signup-form-row">
           <div class="signup-form-group" id="fnameGroup">
             <label class="signup-form-label" for="firstName">First Name <span class="required">*</span></label>
@@ -935,7 +923,7 @@
                 type="text" 
                 id="firstName" 
                 name="firstName" 
-                placeholder="Ramesh" 
+                placeholder="First Name" 
                 required
                 autocomplete="given-name"
               />
@@ -952,7 +940,7 @@
                 type="text" 
                 id="lastName" 
                 name="lastName" 
-                placeholder="Kumar" 
+                placeholder="Last Name" 
                 required
                 autocomplete="family-name"
               />
@@ -962,7 +950,6 @@
           </div>
         </div>
 
-        <!-- Email -->
         <div class="signup-form-group" id="emailGroup">
           <label class="signup-form-label" for="email">Email Address <span class="required">*</span></label>
           <div style="position:relative;">
@@ -971,7 +958,7 @@
               type="email" 
               id="email" 
               name="email" 
-              placeholder="ramesh@company.com" 
+              placeholder="example@mail.com" 
               required
               autocomplete="email"
             />
@@ -980,7 +967,6 @@
           <span class="signup-form-error">Please enter a valid email address</span>
         </div>
 
-        <!-- Phone -->
         <div class="signup-form-group" id="phoneGroup">
           <label class="signup-form-label" for="phone">Phone Number <span class="required">*</span></label>
           <div style="position:relative;">
@@ -998,7 +984,6 @@
           <span class="signup-form-error">Please enter a valid 10-digit phone number</span>
         </div>
 
-        <!-- Company -->
         <div class="signup-form-group" id="companyGroup">
           <label class="signup-form-label" for="company">Company / Business Name</label>
           <div style="position:relative;">
@@ -1014,7 +999,6 @@
           </div>
         </div>
 
-        <!-- Password -->
         <div class="signup-form-group" id="passwordGroup">
           <label class="signup-form-label" for="password">Password <span class="required">*</span></label>
           <div class="password-wrap" style="position:relative;">
@@ -1042,7 +1026,6 @@
           <span class="signup-form-error">Password must be at least 8 characters</span>
         </div>
 
-        <!-- Confirm Password -->
         <div class="signup-form-group" id="confirmPasswordGroup">
           <label class="signup-form-label" for="confirmPassword">Confirm Password <span class="required">*</span></label>
           <div class="password-wrap" style="position:relative;">
@@ -1064,7 +1047,6 @@
           <span class="signup-form-error">Passwords do not match</span>
         </div>
 
-        <!-- Terms -->
         <div class="terms-group" id="termsGroup">
           <input type="checkbox" id="terms" name="terms" required />
           <label for="terms">
@@ -1073,7 +1055,6 @@
         </div>
         <span class="signup-form-error" id="termsError" style="display:none;margin-top:-1rem;margin-bottom:1rem;">You must agree to the terms to continue</span>
 
-        <!-- Submit -->
         <button type="submit" class="signup-submit" id="signupSubmit">
           <span class="spinner"></span>
           <span class="btn-text"><i class="fa-solid fa-user-plus"></i> Create Free Account</span>
@@ -1081,20 +1062,17 @@
 
       </form>
 
-      <!-- Divider -->
       <div class="signup-divider">or sign up with</div>
 
-      <!-- Social Auth -->
       <div class="social-auth">
-        <button type="button" class="social-auth-btn google" onclick="handleSocialSignup('Google')">
+        <button type="button" class="social-auth-btn google" onclick="window.location.href='404.html'">
           <i class="fa-brands fa-google"></i> Google
         </button>
-        <button type="button" class="social-auth-btn microsoft" onclick="handleSocialSignup('Microsoft')">
+        <button type="button" class="social-auth-btn microsoft" onclick="window.location.href='404.html'">
           <i class="fa-brands fa-microsoft"></i> Microsoft
         </button>
       </div>
 
-      <!-- Footer -->
       <p class="signup-footer">
         Already have an account? <a href="signin.html">Sign In</a>
       </p>

@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sign In to Stackly — Finance & Accounting Dashboard" />
+  <meta name="description" content="Sign In to Stackly - Finance & Accounting Dashboard" />
   <meta name="theme-color" content="#1A6B4A" />
-  <title>Sign In — Stackly</title>
+  <title>Sign In - Stackly</title>
+  <link rel="icon" href="assets/top-logo.webp" type="image/webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +15,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ===== SIGN IN PAGE SPECIFIC STYLES ===== */
 
     .signin-page {
       min-height: 100vh;
@@ -24,7 +24,6 @@
       overflow: hidden;
     }
 
-    /* Left Side — Visual (Light theme now) */
     .signin-visual {
       position: relative;
       display: flex;
@@ -84,7 +83,7 @@
       position: relative;
       z-index: 3;
       max-width: 420px;
-      transform: translateY(-20px); /* shift content higher */
+      transform: translateY(-20px); 
     }
 
     .signin-visual__logo {
@@ -148,7 +147,6 @@
       margin-bottom: 2.5rem;
     }
 
-    /* Stats on visual side */
     .signin-visual__stats {
       display: flex;
       gap: 2rem;
@@ -178,7 +176,6 @@
       align-self: stretch;
     }
 
-    /* Back to Home Button (Form Side) */
     .form-back-btn {
       padding: 0.45rem 1rem;
       border-radius: var(--r-full);
@@ -208,7 +205,6 @@
       transform: translateX(-3px);
     }
 
-    /* Right Side — Form (Dark theme gradient now) */
     .signin-form-side {
       display: flex;
       flex-direction: column;
@@ -256,7 +252,6 @@
       line-height: 1.6;
     }
 
-    /* Role Selector */
     .role-selector {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -324,7 +319,6 @@
       transform: translateY(-2px);
     }
 
-    /* Form Fields */
     .signin-form-group {
       margin-bottom: 1.1rem;
       position: relative;
@@ -401,7 +395,6 @@
       box-shadow: 0 0 0 3.5px rgba(229, 62, 62, 0.10);
     }
 
-    /* Password field with toggle */
     .password-wrap {
       position: relative;
     }
@@ -424,7 +417,6 @@
       color: var(--clr-primary);
     }
 
-    /* Remember & Forgot */
     .signin-options {
       display: flex;
       align-items: center;
@@ -464,11 +456,10 @@
       color: var(--clr-accent);
     }
 
-    /* Submit Button */
     .signin-submit {
       width: 100%;
       padding: 0.9rem;
-      background: var(--clr-primary);
+      background: var(--clr-accent);
       color: var(--clr-white);
       border: none;
       border-radius: var(--r-full);
@@ -514,7 +505,6 @@
       transform: none;
     }
 
-    /* Divider */
     .signin-divider {
       display: flex;
       align-items: center;
@@ -532,7 +522,6 @@
       background: var(--clr-border);
     }
 
-    /* Social Auth */
     .social-auth {
       display: flex;
       gap: 0.75rem;
@@ -569,7 +558,6 @@
     .social-auth-btn.google i { color: #DB4437; }
     .social-auth-btn.microsoft i { color: #0078D4; }
 
-    /* Footer text */
     .signin-footer {
       text-align: center;
       font-size: 0.85rem;
@@ -587,7 +575,6 @@
       color: var(--clr-accent);
     }
 
-    /* Role badge display */
     .role-badge {
       display: inline-flex;
       align-items: center;
@@ -612,7 +599,6 @@
       border: 1.5px solid #C8E6C9;
     }
 
-    /* Loading spinner */
     .spinner {
       width: 18px;
       height: 18px;
@@ -635,7 +621,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* Toast for signin */
     .signin-toast {
       position: fixed;
       top: 1.5rem;
@@ -651,17 +636,22 @@
       z-index: 9999;
       max-width: 320px;
       transform: translateX(120%);
-      transition: transform var(--dur-base) var(--ease-bounce);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform var(--dur-base) var(--ease-bounce), opacity var(--dur-base) var(--ease), visibility var(--dur-base) var(--ease);
     }
 
     .signin-toast.show {
       transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     .signin-toast--success { border-left-color: var(--clr-primary); }
     .signin-toast--error { border-left-color: #E53E3E; }
 
-    /* Dark Theme Form Overrides */
     .signin-form-side .signin-form-box__title { color: var(--clr-white); }
     .signin-form-side .signin-form-box__sub { color: rgba(255,255,255,0.7); }
     .signin-form-side .signin-form-label { color: rgba(255,255,255,0.9); }
@@ -689,7 +679,16 @@
     .signin-form-side .signin-form-group__icon {
       color: rgba(255, 255, 255, 0.4);
     }
-    .signin-form-side .signin-form-input:focus + .signin-form-group__icon {
+    .signin-form-side .signin-form-input:focus + .signin-form-group__icon,
+    .signin-form-side .signin-form-group:focus-within .signin-form-group__icon {
+      color: var(--clr-accent);
+    }
+
+    .signin-form-side .password-toggle {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .signin-form-side .password-toggle:hover,
+    .signin-form-side .password-toggle:focus {
       color: var(--clr-accent);
     }
 
@@ -725,7 +724,6 @@
       border-color: rgba(255, 255, 255, 0.25);
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .signin-page { grid-template-columns: 1fr; }
       .signin-visual { display: none; }
@@ -744,12 +742,10 @@
 </head>
 <body>
 
-<!-- Toast Notification -->
 <div class="signin-toast" id="signinToast" role="alert" aria-live="polite"></div>
 
 <div class="signin-page">
 
-  <!-- LEFT SIDE: Visual (Light Theme) -->
   <div class="signin-visual" aria-hidden="true">
     <div class="signin-visual__bg"></div>
     <div class="signin-visual__overlay"></div>
@@ -768,7 +764,7 @@
         Welcome Back to<br><em>Smart Finance</em>
       </h2>
       <p class="signin-visual__text">
-        Sign in to access your personalised dashboard, track your financial health, manage compliance deadlines, and connect with your dedicated CA team — all in one place.
+        Sign in to access your personalised dashboard, track your financial health, manage compliance deadlines, and connect with your dedicated CA team - all in one place.
       </p>
 
       <div class="signin-visual__stats">
@@ -790,7 +786,6 @@
     </div>
   </div>
 
-  <!-- RIGHT SIDE: Form -->
   <div class="signin-form-side">
     <div class="signin-form-side__inner">
 
@@ -807,7 +802,6 @@
         <p class="signin-form-box__sub">Choose your role and enter your credentials to access the dashboard.</p>
       </div>
 
-      <!-- Role Selector -->
       <div class="role-selector" id="roleSelector">
         <label class="role-option">
           <input type="radio" name="role" value="admin" id="roleAdmin" />
@@ -825,14 +819,12 @@
         </label>
       </div>
 
-      <!-- Selected Role Badge -->
       <div id="roleBadge" class="role-badge role-badge--guest">
         <i class="fa-solid fa-user"></i> Signing in as <strong>Guest</strong>
       </div>
 
       <form id="signinForm" onsubmit="handleSignin(event)" novalidate>
 
-        <!-- Full Name -->
         <div class="signin-form-group" id="nameGroup">
           <label class="signin-form-label" for="fullName">Full Name <span class="required">*</span></label>
           <div style="position:relative;">
@@ -841,7 +833,7 @@
               type="text" 
               id="fullName" 
               name="fullName" 
-              placeholder="Ramesh Kumar" 
+              placeholder="Enter your name" 
               required
               autocomplete="name"
             />
@@ -850,7 +842,6 @@
           <span class="signin-form-error">Name contains only alphabets</span>
         </div>
 
-        <!-- Email -->
         <div class="signin-form-group" id="emailGroup">
           <label class="signin-form-label" for="email">Email Address <span class="required">*</span></label>
           <div style="position:relative;">
@@ -859,7 +850,7 @@
               type="email" 
               id="email" 
               name="email" 
-              placeholder="ramesh@company.com" 
+              placeholder="example@mail.com" 
               required
               autocomplete="email"
             />
@@ -868,7 +859,6 @@
           <span class="signin-form-error">Please enter a valid email address</span>
         </div>
 
-        <!-- Password -->
         <div class="signin-form-group" id="passwordGroup">
           <label class="signin-form-label" for="password">Password <span class="required">*</span></label>
           <div class="password-wrap" style="position:relative;">
@@ -890,7 +880,6 @@
           <span class="signin-form-error">Password must be at least 6 characters</span>
         </div>
 
-        <!-- Options -->
         <div class="signin-options">
           <label class="remember-me">
             <input type="checkbox" id="rememberMe" name="rememberMe" />
@@ -899,7 +888,6 @@
           <a href="404.html" class="forgot-link">Forgot password?</a>
         </div>
 
-        <!-- Submit -->
         <button type="submit" class="signin-submit" id="signinSubmit">
           <span class="spinner"></span>
           <span class="btn-text"><i class="fa-solid fa-right-to-bracket"></i> Sign In</span>
@@ -907,20 +895,17 @@
 
       </form>
 
-      <!-- Divider -->
       <div class="signin-divider">or continue with</div>
 
-      <!-- Social Auth -->
       <div class="social-auth">
-        <button type="button" class="social-auth-btn google" onclick="handleSocialSignin('Google')">
+        <button type="button" class="social-auth-btn google" onclick="window.location.href='404.html'">
           <i class="fa-brands fa-google"></i> Google
         </button>
-        <button type="button" class="social-auth-btn microsoft" onclick="handleSocialSignin('Microsoft')">
+        <button type="button" class="social-auth-btn microsoft" onclick="window.location.href='404.html'">
           <i class="fa-brands fa-microsoft"></i> Microsoft
         </button>
       </div>
 
-      <!-- Footer -->
       <p class="signin-footer">
         Don't have an account? <a href="signup.html">Get Started Free</a>
       </p>
@@ -931,7 +916,7 @@
 </div>
 
 <script>
-/* Toast Notification */
+
 function showSigninToast(msg, type = 'success') {
   const t = document.getElementById('signinToast');
   t.textContent = msg;
@@ -939,7 +924,7 @@ function showSigninToast(msg, type = 'success') {
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-/* Role Selector Update */
+
 const roleInputs = document.querySelectorAll('input[name="role"]');
 const roleBadge = document.getElementById('roleBadge');
 
@@ -954,7 +939,7 @@ roleInputs.forEach(input => {
   });
 });
 
-/* Password Toggle */
+
 document.getElementById('passwordToggle').addEventListener('click', function() {
   const pw = document.getElementById('password');
   const icon = this.querySelector('i');
@@ -967,9 +952,9 @@ document.getElementById('passwordToggle').addEventListener('click', function() {
   }
 });
 
-/* Validation Functions */
+
 function validateName(name) {
-  return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 3;
+  return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 1;
 }
 
 function validateEmail(email) {
@@ -980,7 +965,7 @@ function validatePassword(pw) {
   return pw.length >= 6;
 }
 
-/* Handle Sign In */
+
 function handleSignin(e) {
   e.preventDefault();
 
@@ -996,7 +981,7 @@ function handleSignin(e) {
 
   let isValid = true;
 
-  // Validate Name (alphabets only)
+  
   if (!validateName(name)) {
     nameGroup.classList.add('has-error');
     isValid = false;
@@ -1004,7 +989,7 @@ function handleSignin(e) {
     nameGroup.classList.remove('has-error');
   }
 
-  // Validate Email
+  
   if (!validateEmail(email)) {
     emailGroup.classList.add('has-error');
     isValid = false;
@@ -1012,7 +997,7 @@ function handleSignin(e) {
     emailGroup.classList.remove('has-error');
   }
 
-  // Validate Password
+  
   if (!validatePassword(password)) {
     passwordGroup.classList.add('has-error');
     isValid = false;
@@ -1025,16 +1010,16 @@ function handleSignin(e) {
     return;
   }
 
-  // Show loading
+  
   submitBtn.classList.add('loading');
   submitBtn.disabled = true;
 
-  // Simulate login — ANY email works, redirects to dashboard
+  
   setTimeout(() => {
     submitBtn.classList.remove('loading');
     submitBtn.disabled = false;
 
-    // Store login info
+    
     localStorage.setItem('stackly_user', JSON.stringify({
       name: name,
       email: email,
@@ -1045,32 +1030,33 @@ function handleSignin(e) {
 
     showSigninToast('Welcome back, ' + name + '! Redirecting to dashboard...', 'success');
 
-    // Redirect to dashboard after short delay
+    
     setTimeout(() => {
-      window.location.href = 'dashboard.html';
+      window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'guest-dashboard.html';
     }, 1500);
 
   }, 1500);
 }
 
-/* Social Sign In */
+
 function handleSocialSignin(provider) {
   showSigninToast('Signing in with ' + provider + '...', 'success');
 
   setTimeout(() => {
+    const role = document.querySelector('input[name="role"]:checked').value;
     localStorage.setItem('stackly_user', JSON.stringify({
       name: 'Social User',
       email: 'user@' + provider.toLowerCase() + '.com',
-      role: document.querySelector('input[name="role"]:checked').value,
+      role: role,
       loggedIn: true,
       loginTime: new Date().toISOString(),
       provider: provider
     }));
-    window.location.href = 'dashboard.html';
+    window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'guest-dashboard.html';
   }, 1500);
 }
 
-/* Real-time validation on blur */
+
 document.getElementById('fullName').addEventListener('blur', function() {
   const group = document.getElementById('nameGroup');
   if (this.value.trim() && !validateName(this.value.trim())) {
@@ -1098,7 +1084,7 @@ document.getElementById('password').addEventListener('blur', function() {
   }
 });
 
-/* Clear error on input */
+
 document.querySelectorAll('.signin-form-input').forEach(input => {
   input.addEventListener('input', function() {
     this.closest('.signin-form-group').classList.remove('has-error');

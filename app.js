@@ -1,7 +1,3 @@
-/* ============================================================
-   Stackly — Premium UI (Pure JS)
-   Shared behaviours for all pages (feature-detected).
-   ============================================================ */
 
 (function () {
   'use strict';
@@ -12,21 +8,18 @@
   const $id = (id) => document.getElementById(id);
   const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
 
-  /* ============================================================
-     1) Toast helpers (shared)
-     ============================================================ */
   function baseToast(el, msg, type = 'success') {
     if (!el) return;
     el.textContent = msg;
 
-    // Support both patterns used across the site
+    
     if (el.id === 'toast') {
       el.className = 'toast toast--' + type + ' show';
       window.setTimeout(() => el.classList.remove('show'), 3500);
       return;
     }
 
-    // signin/signup toasts
+    
     const base = el.className.split(' ')[0] || 'toast';
     el.className = base + ' ' + base + '--' + type + ' show';
     window.setTimeout(() => el.classList.remove('show'), 3500);
@@ -44,18 +37,13 @@
     baseToast($id('signupToast'), msg, type);
   };
 
-  /* ============================================================
-     2) Preloader
-     ============================================================ */
   window.addEventListener('load', () => {
     const pre = $id('preloader');
     if (!pre) return;
     window.setTimeout(() => pre.classList.add('hide'), 500);
   });
 
-  /* ============================================================
-     3) Header scroll state + Scroll-to-top
-     ============================================================ */
+
   (function initHeaderScroll() {
     const header = $id('siteHeader');
     const scrollTopBtn = $id('scrollTop');
@@ -72,9 +60,7 @@
     on(scrollTopBtn, 'click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   })();
 
-  /* ============================================================
-     4) Mobile overlay menu
-     ============================================================ */
+ 
   (function initMobileMenu() {
     const hamburger = $id('hamburger');
     const overlay = $id('mobileOverlay');
@@ -103,14 +89,12 @@
     });
   })();
 
-  /* ============================================================
-     5) Scroll reveal (IntersectionObserver) + stagger
-     ============================================================ */
+
   (function initReveal() {
     const els = document.querySelectorAll('.reveal, .stagger-children');
     if (!els.length) return;
 
-    // Reduced motion → instantly show
+    
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('in-view'));
       return;
@@ -130,9 +114,7 @@
     els.forEach((el) => obs.observe(el));
   })();
 
-  /* ============================================================
-     6) Subtle cursor glow (premium effect)
-     ============================================================ */
+
   (function initCursorGlow() {
     if (prefersReducedMotion) return;
     const hasTouch =
@@ -156,9 +138,7 @@
     }, { passive: true });
   })();
 
-  /* ============================================================
-     7) FAQ accordion (pages that have it)
-     ============================================================ */
+
   (function initFaq() {
     const headers = document.querySelectorAll('.faq-item__header');
     if (!headers.length) return;
@@ -183,9 +163,7 @@
     });
   })();
 
-  /* ============================================================
-     8) Pricing toggle (index)
-     ============================================================ */
+
   (function initPricingToggle() {
     const toggle = $id('billingToggle');
     const monthlyLabel = $id('monthlyLabel');
@@ -223,9 +201,7 @@
     updatePricing();
   })();
 
-  /* ============================================================
-     9) Testimonial slider (index)
-     ============================================================ */
+
   (function initTestimonialSlider() {
     const track = $id('testimonialTrack');
     const dotsEl = $id('testimonialDots');
@@ -253,7 +229,7 @@
 
     function goTo(idx) {
       current = Math.max(0, Math.min(idx, total - 1));
-      const gap = 24; // 1.5rem approx
+      const gap = 24; 
       const cardW = cards[0].offsetWidth + gap;
       track.style.transform = 'translateX(-' + current * cardW + 'px)';
       dotsEl &&
@@ -299,9 +275,7 @@
     startAuto();
   })();
 
-  /* ============================================================
-     10) Blog: category filter + search
-     ============================================================ */
+
   (function initBlogFilters() {
     const catButtons = document.querySelectorAll('.blog-cat-btn');
     const search = $id('blogSearch');
@@ -332,29 +306,27 @@
     });
   })();
 
-  /* ============================================================
-     11) Forms used on multiple pages
-     ============================================================ */
+
   window.handleNewsletter = function handleNewsletter(e) {
     e.preventDefault();
     window.showToast('✅ Subscribed! Welcome to Stackly Insights.');
     e.target && e.target.reset && e.target.reset();
   };
 
-  // Index quick enquiry (light validation)
+  
   window.handleContact = function handleContact(e) {
     e.preventDefault();
-    window.showToast("✅ Enquiry sent! We'll contact you within 24 hours.");
+    window.showToast();
     e.target && e.target.reset && e.target.reset();
   };
 
-  /* Contact page full validation */
+  
   (function initContactPageValidation() {
     const form = $id('contactForm');
     if (!form) return;
 
     function validateName(name) {
-      return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 2;
+      return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 1;
     }
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -369,11 +341,13 @@
       let isValid = true;
 
       const fname = $id('fname');
+      const lname = $id('lname');
       const email = $id('email');
       const phone = $id('phone');
       const message = $id('message');
 
       const fnameGroup = $id('fnameGroup');
+      const lnameGroup = $id('lnameGroup');
       const emailGroup = $id('emailGroup');
       const phoneGroup = $id('phoneGroup');
       const messageGroup = $id('messageGroup');
@@ -382,6 +356,11 @@
         fnameGroup.classList.add('error');
         isValid = false;
       } else fnameGroup && fnameGroup.classList.remove('error');
+
+      if (lname && lnameGroup && !validateName(lname.value.trim())) {
+        lnameGroup.classList.add('error');
+        isValid = false;
+      } else lnameGroup && lnameGroup.classList.remove('error');
 
       if (email && emailGroup && !validateEmail(email.value.trim())) {
         emailGroup.classList.add('error');
@@ -399,16 +378,22 @@
       } else messageGroup && messageGroup.classList.remove('error');
 
       if (isValid) {
-        window.showToast("✅ Enquiry sent successfully! We'll contact you within 24 hours.");
-        e.target && e.target.reset && e.target.reset();
+        window.location.href = '404.html';
       } else {
         window.showToast('❌ Please fix the errors in the form.', 'error');
       }
     };
 
-    // realtime blur validation (only if fields exist)
+    
     on($id('fname'), 'blur', function () {
       const group = $id('fnameGroup');
+      if (!group) return;
+      if (this.value.trim() && !validateName(this.value.trim())) group.classList.add('error');
+      else group.classList.remove('error');
+    });
+
+    on($id('lname'), 'blur', function () {
+      const group = $id('lnameGroup');
       if (!group) return;
       if (this.value.trim() && !validateName(this.value.trim())) group.classList.add('error');
       else group.classList.remove('error');
@@ -435,7 +420,7 @@
       else group.classList.remove('error');
     });
 
-    // Highlight today's day in hours table (if present)
+    
     (function highlightToday() {
       const table = document.querySelector('.hours-table');
       if (!table) return;
@@ -450,9 +435,7 @@
     })();
   })();
 
-  /* ============================================================
-     12) Index: counters + tech physics (pure JS)
-     ============================================================ */
+
   (function initCounters() {
     const grids = document.querySelectorAll('.stats__grid');
     if (!grids.length) return;
@@ -711,7 +694,7 @@
 
     layoutCards();
 
-    // Start only when visible (performance)
+    
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver(
         ([entry]) => (entry.isIntersecting ? start() : stop()),
@@ -737,17 +720,15 @@
     }
   })();
 
-  /* ============================================================
-     13) Sign in / Sign up logic (shared)
-     ============================================================ */
+ 
   (function initAuthPages() {
     const signinForm = $id('signinForm');
     const signupForm = $id('signupForm');
     if (!signinForm && !signupForm) return;
 
-    // Role badge (used on both pages)
+    
     (function roleBadgeInit() {
-      const inputs = document.querySelectorAll('input[name="role"]');
+      const inputs = document.querySelectorAll('input[name=]');
       const badge = $id('roleBadge');
       if (!inputs.length || !badge) return;
       inputs.forEach((input) => {
@@ -757,13 +738,13 @@
           badge.className = 'role-badge ' + (isAdmin ? 'role-badge--admin' : 'role-badge--guest');
           const action = signupForm ? 'Creating account as' : 'Signing in as';
           badge.innerHTML = isAdmin
-            ? '<i class="fa-solid fa-user-shield"></i> ' + action + ' <strong>Admin</strong>'
-            : '<i class="fa-solid fa-user"></i> ' + action + ' <strong>Guest</strong>';
+            ? '<i class=></i> ' + action + ' <strong>Admin</strong>'
+            : '<i class=></i> ' + action + ' <strong>Guest</strong>';
         });
       });
     })();
 
-    // Password toggles (signin: #passwordToggle, signup: #passwordToggle + #confirmToggle)
+    
     function bindPasswordToggle(btnId, inputId) {
       const btn = $id(btnId);
       const pw = $id(inputId);
@@ -782,7 +763,7 @@
     bindPasswordToggle('passwordToggle', 'password');
     bindPasswordToggle('confirmToggle', 'confirmPassword');
 
-    // Password strength (signup)
+    
     (function passwordStrength() {
       const pw = $id('password');
       const meter = $id('passwordStrength');
@@ -841,7 +822,7 @@
       return s.length >= 8 && /[a-zA-Z]/.test(s) && /[0-9]/.test(s);
     }
 
-    /* Social buttons */
+    
     window.handleSocialSignin = function handleSocialSignin(provider) {
       window.showSigninToast('Redirecting to ' + provider + '… (demo)', 'success');
     };
@@ -849,7 +830,7 @@
       window.showSignupToast('Redirecting to ' + provider + '… (demo)', 'success');
     };
 
-    /* Sign in submit (demo) */
+    
     window.handleSignin = function handleSignin(e) {
       e.preventDefault();
 
@@ -861,7 +842,7 @@
       const fullName = ($id('fullName')?.value || '').trim();
       const email = ($id('email')?.value || '').trim();
       const password = $id('password')?.value || '';
-      const role = document.querySelector('input[name="role"]:checked')?.value || 'guest';
+      const role = document.querySelector('input[name=]:checked')?.value || 'guest';
 
       let isValid = true;
       if (nameGroup && !validateName(fullName)) {
@@ -908,7 +889,7 @@
       }, 900);
     };
 
-    /* Sign up submit (demo) */
+    
     window.handleSignup = function handleSignup(e) {
       e.preventDefault();
 
@@ -928,7 +909,7 @@
       const password = $id('password')?.value || '';
       const confirmPassword = $id('confirmPassword')?.value || '';
       const terms = Boolean($id('terms')?.checked);
-      const role = document.querySelector('input[name="role"]:checked')?.value || 'guest';
+      const role = document.querySelector('input[name=]:checked')?.value || 'guest';
 
       let isValid = true;
 

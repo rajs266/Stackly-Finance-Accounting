@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Stackly Blog — Finance, Tax, GST, and Accounting insights for businesses in Tamil Nadu." />
+  <meta name="description" content="Stackly Blog - Finance, Tax, GST, and Accounting insights for businesses in Tamil Nadu." />
   <meta name="theme-color" content="#1A6B4A" />
-  <title>Blog — Stackly Finance & Accounting</title>
+  <title>Blog - Stackly Finance & Accounting</title>
+  <link rel="icon" href="assets/top-logo.webp" type="image/webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,9 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ===== BLOG PAGE SPECIFIC STYLES ===== */
-    
-    /* Search & Filter Bar */
+
     .blog-filter-bar {
       background: var(--clr-white);
       border: 1.5px solid var(--clr-border);
@@ -26,6 +25,7 @@
       align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
+      margin-top: 2rem;
       margin-bottom: 2.5rem;
       box-shadow: var(--shadow-sm);
       animation: slide-up 0.7s var(--ease) 0.3s both;
@@ -36,9 +36,12 @@
       flex: 1;
       min-width: 240px;
       position: relative;
+      display: flex;
+      gap: 1.5rem;
     }
     
     .blog-search input {
+      flex: 1;
       width: 100%;
       padding: 0.75rem 1rem 0.75rem 2.75rem;
       background: var(--clr-bg-alt);
@@ -62,6 +65,22 @@
       transform: translateY(-50%);
       color: var(--clr-text-muted);
       font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .blog-search__btn {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+      border: none;
+      border-radius: var(--r-full);
+      padding: 0 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--dur-base) var(--ease);
+    }
+
+    .blog-search__btn:hover {
+      background: var(--clr-accent);
     }
     
     .blog-categories {
@@ -95,8 +114,7 @@
       border-color: var(--clr-primary);
       box-shadow: var(--shadow-green);
     }
-    
-    /* Featured Post Card */
+
     .featured-post {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
@@ -214,16 +232,14 @@
       font-size: 0.78rem;
       color: var(--clr-text-muted);
     }
-    
-    /* Blog Grid */
+
     .blog-page__grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.75rem;
       margin-bottom: 3rem;
     }
-    
-    /* Enhanced Blog Card */
+
     .blog-page-card {
       background: var(--clr-white);
       border: 1.5px solid var(--clr-border);
@@ -366,8 +382,7 @@
     .blog-page-card__link:hover {
       gap: 0.75rem;
     }
-    
-    /* Pagination */
+
     .blog-pagination {
       display: flex;
       align-items: center;
@@ -409,8 +424,7 @@
     .blog-page-btn.arrow {
       font-size: 0.75rem;
     }
-    
-    /* Newsletter CTA in Blog */
+
     .blog-newsletter {
       background: linear-gradient(135deg, var(--clr-primary) 0%, #0A3D27 100%);
       border-radius: var(--r-xl);
@@ -507,8 +521,7 @@
       background: #D49200;
       transform: scale(1.03);
     }
-    
-    /* Popular Tags Cloud */
+
     .tags-cloud {
       display: flex;
       flex-wrap: wrap;
@@ -534,8 +547,7 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow-green);
     }
-    
-    /* ===== RESPONSIVE ===== */
+
     @media (max-width: 1024px) {
       .blog-page__grid { grid-template-columns: repeat(2, 1fr); }
       .featured-post { grid-template-columns: 1fr; }
@@ -545,8 +557,9 @@
     
     @media (max-width: 768px) {
       .blog-page__grid { grid-template-columns: 1fr; }
-      .blog-filter-bar { flex-direction: column; align-items: stretch; }
+      .blog-filter-bar { flex-direction: column; align-items: stretch; padding: 1rem; }
       .blog-search { min-width: 100%; }
+      .blog-search__btn { padding: 0 1rem; font-size: 0.8rem; }
       .blog-categories { justify-content: center; }
       .featured-post__content { padding: 1.75rem; }
       .blog-newsletter__form { flex-direction: column; border-radius: var(--r-md); }
@@ -581,6 +594,11 @@
   <button class="mobile-overlay__close" id="overlayClose" aria-label="Close menu">
     <i class="fa-solid fa-xmark"></i>
   </button>
+
+  <a href="index.html" class="mobile-overlay__logo" aria-label="Stackly Home">
+    <img src="assets/logo1.webp" alt="Stackly" width="100" height="100" />
+  </a>
+
   <nav class="mobile-nav" aria-label="Mobile Navigation">
     <a href="index.html"   class="mobile-nav__link">Home</a>
     <a href="about.html"   class="mobile-nav__link">About</a>
@@ -644,24 +662,23 @@
   <section class="section" style="padding-top:0;">
     <div class="container">
 
-      <!-- Filter Bar -->
       <div class="blog-filter-bar reveal">
         <div class="blog-search">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" placeholder="Search articles, topics, tips..." id="blogSearch" />
+          <button class="blog-search__btn" onclick="window.location.href='404.html'">Search</button>
         </div>
         <div class="blog-categories">
-          <button class="blog-cat-btn active" data-cat="all">All</button>
-          <button class="blog-cat-btn" data-cat="tax">Tax</button>
-          <button class="blog-cat-btn" data-cat="gst">GST</button>
-          <button class="blog-cat-btn" data-cat="accounting">Accounting</button>
-          <button class="blog-cat-btn" data-cat="payroll">Payroll</button>
-          <button class="blog-cat-btn" data-cat="audit">Audit</button>
-          <button class="blog-cat-btn" data-cat="startup">Startup</button>
+          <button class="blog-cat-btn active" onclick="window.location.href='404.html'">All</button>
+          <button class="blog-cat-btn" onclick="window.location.href='404.html'">Tax</button>
+          <button class="blog-cat-btn" onclick="window.location.href='404.html'">GST</button>
+          <button class="blog-cat-btn" onclick="window.location.href='404.html'">Accounting</button>
+          <button class="blog-cat-btn" onclick="window.location.href='404.html'">Payroll</button>
+          <button class="blog-cat-btn" onclick="window.location.href='404.html'">Audit</button>
+          <button class="blog-cat-btn" onclick="window.location.href='404.html'">Startup</button>
         </div>
       </div>
 
-      <!-- Featured Post -->
       <article class="featured-post reveal">
         <div class="featured-post__img-wrap">
           <img src="assets/img_17.webp" alt="Budget 2026 Tax Updates" class="featured-post__img" />
@@ -691,10 +708,8 @@
         </div>
       </article>
 
-      <!-- Blog Grid -->
       <div class="blog-page__grid stagger-children" id="blogGrid">
 
-        <!-- Card 1 -->
         <article class="blog-page-card" data-category="tax">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_18.webp" alt="Tax Saving" class="blog-page-card__img" />
@@ -714,7 +729,6 @@
           </div>
         </article>
 
-        <!-- Card 2 -->
         <article class="blog-page-card" data-category="gst">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_19.webp" alt="GST Filing" class="blog-page-card__img" />
@@ -734,7 +748,6 @@
           </div>
         </article>
 
-        <!-- Card 3 -->
         <article class="blog-page-card" data-category="accounting">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_20.webp" alt="Financial Statements" class="blog-page-card__img" />
@@ -746,7 +759,7 @@
               <span><i class="fa-regular fa-clock"></i> 6 min</span>
             </div>
             <h3 class="blog-page-card__title">How to Read Your Financial Statements Like a Pro</h3>
-            <p class="blog-page-card__text">Balance sheets, P&L, and cash flow statements decoded — learn to understand what your numbers are truly telling you.</p>
+            <p class="blog-page-card__text">Balance sheets, P&L, and cash flow statements decoded - learn to understand what your numbers are truly telling you.</p>
             <div class="blog-page-card__footer">
               <span class="blog-page-card__read-time"><i class="fa-solid fa-eye"></i> 1.8K views</span>
               <a href="404.html" class="blog-page-card__link">Read More <i class="fa-solid fa-arrow-right"></i></a>
@@ -754,7 +767,6 @@
           </div>
         </article>
 
-        <!-- Card 4 -->
         <article class="blog-page-card" data-category="payroll">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_21.webp" alt="Payroll Management" class="blog-page-card__img" />
@@ -774,7 +786,6 @@
           </div>
         </article>
 
-        <!-- Card 5 -->
         <article class="blog-page-card" data-category="startup">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_22.webp" alt="Startup Registration" class="blog-page-card__img" />
@@ -794,10 +805,9 @@
           </div>
         </article>
 
-        <!-- Card 6 -->
         <article class="blog-page-card" data-category="audit">
           <div class="blog-page-card__img-wrap">
-            <img src="assets/img_23.webp" alt="Audit Process" class="blog-page-card__img" />
+            <img src="assets/img_19.webp" alt="Audit Process" class="blog-page-card__img" />
             <span class="blog-page-card__cat">Audit</span>
           </div>
           <div class="blog-page-card__body">
@@ -814,7 +824,6 @@
           </div>
         </article>
 
-        <!-- Card 7 -->
         <article class="blog-page-card" data-category="tax">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_24.webp" alt="TDS Filing" class="blog-page-card__img" />
@@ -834,7 +843,6 @@
           </div>
         </article>
 
-        <!-- Card 8 -->
         <article class="blog-page-card" data-category="gst">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_25.webp" alt="E-Invoicing" class="blog-page-card__img" />
@@ -854,7 +862,6 @@
           </div>
         </article>
 
-        <!-- Card 9 -->
         <article class="blog-page-card" data-category="accounting">
           <div class="blog-page-card__img-wrap">
             <img src="assets/img_26.webp" alt="Cloud Accounting" class="blog-page-card__img" />
@@ -876,42 +883,39 @@
 
       </div>
 
-      <!-- Newsletter CTA -->
       <div class="blog-newsletter reveal">
         <h3 class="blog-newsletter__title">Never Miss a Finance Update</h3>
-        <p class="blog-newsletter__text">Join 5,000+ business owners who receive our weekly insights on tax, GST, audit, and financial planning — completely free.</p>
-        <form class="blog-newsletter__form" onsubmit="handleNewsletter(event)" novalidate>
+        <p class="blog-newsletter__text">Join 5,000+ business owners who receive our weekly insights on tax, GST, audit, and financial planning - completely free.</p>
+        <form class="blog-newsletter__form" action="404.html">
           <input type="email" placeholder="Enter your email address" aria-label="Email address" required />
           <button type="submit">Subscribe Free</button>
         </form>
       </div>
 
-      <!-- Pagination -->
       <div class="blog-pagination reveal">
-        <button class="blog-page-btn arrow" aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="blog-page-btn active">1</button>
-        <button class="blog-page-btn">2</button>
-        <button class="blog-page-btn">3</button>
-        <button class="blog-page-btn arrow" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></button>
+        <a href="404.html" class="blog-page-btn arrow" aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></a>
+        <a href="404.html" class="blog-page-btn active">1</a>
+        <a href="404.html" class="blog-page-btn">2</a>
+        <a href="404.html" class="blog-page-btn">3</a>
+        <a href="404.html" class="blog-page-btn arrow" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></a>
       </div>
 
-      <!-- Popular Tags -->
       <div class="text-center" style="margin-top:3rem;">
         <span class="section-tag reveal">Popular Topics</span>
         <h3 class="section-title reveal" style="margin-bottom:1.5rem;">Browse by <span>Category</span></h3>
         <div class="tags-cloud reveal">
-          <span class="tag-pill">Income Tax</span>
-          <span class="tag-pill">GST Filing</span>
-          <span class="tag-pill">TDS</span>
-          <span class="tag-pill">Bookkeeping</span>
-          <span class="tag-pill">Payroll</span>
-          <span class="tag-pill">Company Registration</span>
-          <span class="tag-pill">Audit</span>
-          <span class="tag-pill">MSME</span>
-          <span class="tag-pill">Startups</span>
-          <span class="tag-pill">Investment</span>
-          <span class="tag-pill">Digital India</span>
-          <span class="tag-pill">Compliance</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Income Tax</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">GST Filing</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">TDS</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Bookkeeping</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Payroll</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Company Registration</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Audit</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">MSME</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Startups</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Investment</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Digital India</span>
+          <span class="tag-pill" onclick="window.location.href='404.html'">Compliance</span>
         </div>
       </div>
 
@@ -924,11 +928,10 @@
   <div class="container">
     <div class="footer__grid">
 
-      <!-- Brand column -->
       <div>
         <div class="footer__brand-logo">
-          <a href="index.html" aria-label="Go to homepage" style="display: flex; align-items: center; gap: 0.55rem;">
-            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" />
+          <a href="index.html" aria-label="Go to homepage" style="display: inline-block; line-height: 0;">
+            <img src="assets/img_2.webp" alt="Stackly" width="100" height="100" style="cursor: pointer;" />
           </a>
         </div>
         <p class="footer__desc">
@@ -947,7 +950,6 @@
         </div>
       </div>
 
-      <!-- Resources -->
       <div>
         <h4 class="footer__col-title">Quick Links</h4>
         <ul class="footer__links">
@@ -959,7 +961,6 @@
         </ul>
       </div>
 
-      <!-- Services -->
       <div>
         <h4 class="footer__col-title">Services</h4>
         <ul class="footer__links">
@@ -972,13 +973,12 @@
         </ul>
       </div>
 
-      <!-- Hours -->
       <div>
         <h4 class="footer__col-title">Office Hours</h4>
         <div class="footer__hours">
-          <div class="footer__hour-item"><strong>Mon – Wed</strong><span>9:00 AM – 7:00 PM</span></div>
-          <div class="footer__hour-item"><strong>Thu – Fri</strong><span>8:00 AM – 6:00 PM</span></div>
-          <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM – 5:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Mon - Wed</strong><span>9:00 AM - 7:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Thu - Fri</strong><span>8:00 AM - 6:00 PM</span></div>
+          <div class="footer__hour-item"><strong>Saturday</strong><span>9:00 AM - 5:00 PM</span></div>
           <div class="footer__hour-item"><strong>Sunday</strong><span>Closed</span></div>
         </div>
 
@@ -995,7 +995,6 @@
 
     </div>
 
-    <!-- Bottom Bar -->
     <div class="footer__bottom">
       <span>&copy; 2026 Stackly. All rights reserved.</span>
       <div class="footer__bottom-links">
@@ -1017,3 +1016,4 @@
 
 </body>
 </html>
+

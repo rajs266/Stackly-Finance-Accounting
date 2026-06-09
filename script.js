@@ -1,8 +1,3 @@
-/* ============================================================
-   STACKLY - MAIN SCRIPT
-   ============================================================ */
-
-/* ── Utility ── */
 function showToast(msg, type = 'success') {
   const t = document.getElementById('toast');
   if (!t) return;
@@ -11,13 +6,13 @@ function showToast(msg, type = 'success') {
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-/* ── Preloader ── */
+
 window.addEventListener('load', () => {
   const pre = document.getElementById('preloader');
   if (pre) setTimeout(() => pre.classList.add('hide'), 500);
 });
 
-/* ── Navbar Scroll ── */
+
 const header = document.getElementById('siteHeader');
 const scrollTopBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => {
@@ -25,7 +20,7 @@ window.addEventListener('scroll', () => {
   if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
 }, { passive: true });
 
-/* ── Hamburger + Mobile Overlay ── */
+
 const hamburger = document.getElementById('hamburger');
 const overlay = document.getElementById('mobileOverlay');
 const overlayClose = document.getElementById('overlayClose');
@@ -34,14 +29,14 @@ function openMenu() {
   if (hamburger) hamburger.classList.add('open');
   if (overlay) overlay.classList.add('open');
   if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('menu-open');
 }
 
 function closeMenu() {
   if (hamburger) hamburger.classList.remove('open');
   if (overlay) overlay.classList.remove('open');
   if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
+  document.body.classList.remove('menu-open');
 }
 
 if (hamburger) hamburger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
@@ -50,14 +45,14 @@ if (overlayClose) overlayClose.addEventListener('click', closeMenu);
 document.querySelectorAll('.mobile-nav__link').forEach(link => link.addEventListener('click', closeMenu));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-/* Close menu on window resize if transitioned to desktop view */
+
 window.addEventListener('resize', () => {
   if (window.innerWidth > 768) {
     closeMenu();
   }
 }, { passive: true });
 
-/* ── Scroll to Top ── */
+
 if (scrollTopBtn) {
   scrollTopBtn.addEventListener('click', () => {
     scrollTopBtn.classList.add('launching');
@@ -68,18 +63,18 @@ if (scrollTopBtn) {
       video.style.display = 'none';
       img.style.display = 'block';
       
-      // Force reflow to ensure the transition plays
+    
       void img.offsetWidth;
       
       img.style.transition = 'transform 1.5s ease-in';
       img.style.transform = 'translateY(-1000px)';
       
-      // Hack to restart webp animation
+      
       img.src = 'assets/launching.webp?' + new Date().getTime();
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // reset after scrolling
+    
     setTimeout(() => {
       scrollTopBtn.classList.remove('launching');
       if (video && img) {
@@ -92,7 +87,7 @@ if (scrollTopBtn) {
   });
 }
 
-/* ── Scroll-triggered Reveal (Intersection Observer) ── */
+
 const revealEls = document.querySelectorAll('.reveal, .stagger-children');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -104,7 +99,7 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.02, rootMargin: '0px 0px -20px 0px' });
 revealEls.forEach(el => revealObs.observe(el));
 
-/* ── Counter animation for stats ── */
+
 function animateCounter(el) {
   const target = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
   const suffix = el.textContent.replace(/[0-9.,]/g, '').trim();
@@ -134,7 +129,7 @@ const statsObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.stats-section').forEach(el => statsObs.observe(el));
 
-/* ── Testimonial Slider ── */
+
 (function () {
   const track = document.getElementById('testimonialTrack');
   const cards = track ? Array.from(track.children) : [];
@@ -187,7 +182,7 @@ document.querySelectorAll('.stats-section').forEach(el => statsObs.observe(el));
   startAuto();
 })();
 
-/* ── Pricing Toggle ── */
+
 const toggle = document.getElementById('billingToggle');
 const monthlyLabel = document.getElementById('monthlyLabel');
 const yearlyLabel = document.getElementById('yearlyLabel');
@@ -217,7 +212,7 @@ if (toggle && monthlyLabel && yearlyLabel) {
   });
 }
 
-/* ── FAQ Accordion ── */
+
 document.querySelectorAll('.faq-item__header').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
@@ -235,20 +230,20 @@ document.querySelectorAll('.faq-item__header').forEach(btn => {
   });
 });
 
-/* ── Forms (Newsletter & Contact) ── */
+
 window.handleNewsletter = function(e) {
   e.preventDefault();
-  showToast('âœ… Subscribed! Welcome to Stackly Insights.');
+  showToast('✅ Subscribed! Welcome to Stackly Insights.');
   e.target.reset();
 }
 
 window.handleContact = function(e) {
   e.preventDefault();
-  showToast('âœ… Enquiry sent! We\'ll contact you within 24 hours.');
+  showToast();
   e.target.reset();
 }
 
-/* ── Auth Guard for Dashboards ── */
+
 if (window.location.pathname.includes('dashboard')) {
   const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
   if (!user || !user.loggedIn) {
@@ -271,15 +266,15 @@ if (window.location.pathname.includes('dashboard')) {
     updateText('profileEmail', email);
 
     if (window.location.pathname.includes('admin')) {
-      updateText('welcomeEmail', email + ' Â· Last login: Today, 9:42 AM');
+      updateText('welcomeEmail', email + ' · Last login: Today, 9:42 AM');
       document.title = 'Admin Dashboard — ' + name;
     } else {
-      updateText('welcomeEmail', email + ' Â· View-only access');
+      updateText('welcomeEmail', email + ' · View-only access');
       document.title = 'Guest Dashboard — ' + name;
     }
   }
 
-  /* Sidebar Toggle */
+  
   let sidebarOpen = false;
   window.toggleSidebar = function() {
     sidebarOpen = !sidebarOpen;
@@ -334,7 +329,7 @@ if (window.location.pathname.includes('dashboard')) {
   });
 }
 
-/* === Tech Grid Physics === */
+
 
 (function () {
   'use strict';
@@ -493,7 +488,7 @@ if (window.location.pathname.includes('dashboard')) {
     items.forEach(item => {
       if (item === dragging) return;
 
-      // Apply gravity
+      
       item.vy += 980 * dt;
 
       item.x += item.vx * dt;
@@ -617,11 +612,9 @@ if (window.location.pathname.includes('dashboard')) {
   }
 })();
 
-/* ============================================================
-   PAGE-SPECIFIC FUNCTIONS (consolidated from all pages)
-   ============================================================ */
 
-/* ── Image Reveal Observer ── */
+
+
 (function() {
   const imgRevealEls = document.querySelectorAll('.img-reveal');
   if (!imgRevealEls.length) return;
@@ -636,7 +629,7 @@ if (window.location.pathname.includes('dashboard')) {
   imgRevealEls.forEach(el => imgObs.observe(el));
 })();
 
-/* ── Blog Category Filter ── */
+
 (function() {
   const catBtns = document.querySelectorAll('.blog-cat-btn');
   if (!catBtns.length) return;
@@ -657,7 +650,7 @@ if (window.location.pathname.includes('dashboard')) {
   });
 })();
 
-/* ── Blog Search ── */
+
 (function() {
   const blogSearch = document.getElementById('blogSearch');
   if (!blogSearch) return;
@@ -673,12 +666,12 @@ if (window.location.pathname.includes('dashboard')) {
   });
 })();
 
-/* ── Contact Form Validation ── */
+
 (function() {
   const contactForm = document.getElementById('contactForm');
   if (!contactForm) return;
 
-  function validateName(name) { return /^[a-zA-Z\s]+$/.test(name) && name.length >= 2; }
+  function validateName(name) { return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 1; }
   function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
   function validatePhone(phone) { return phone.replace(/\D/g, '').length === 10; }
 
@@ -688,6 +681,7 @@ if (window.location.pathname.includes('dashboard')) {
 
     const fields = [
       { id: 'fname', groupId: 'fnameGroup', validate: v => validateName(v) },
+      { id: 'lname', groupId: 'lnameGroup', validate: v => validateName(v) },
       { id: 'email', groupId: 'emailGroup', validate: v => validateEmail(v) },
       { id: 'phone', groupId: 'phoneGroup', validate: v => validatePhone(v) },
       { id: 'message', groupId: 'messageGroup', validate: v => v.trim().length >= 10 },
@@ -706,15 +700,14 @@ if (window.location.pathname.includes('dashboard')) {
     });
 
     if (isValid) {
-      showToast('âœ… Enquiry sent! We\'ll contact you within 24 hours.');
-      e.target.reset();
+      window.location.href = '404.html';
     } else {
-      showToast('âŒ Please fix the errors in the form.', 'error');
+      showToast('Please fix the errors in the form.', 'error');
     }
   };
 
-  // Real-time validation
-  ['fname', 'email', 'phone', 'message'].forEach(id => {
+  
+  ['fname', 'lname', 'email', 'phone', 'message'].forEach(id => {
     const el = document.getElementById(id);
     const group = document.getElementById(id + 'Group');
     if (!el || !group) return;
@@ -723,7 +716,7 @@ if (window.location.pathname.includes('dashboard')) {
     });
   });
 
-  // Highlight today in hours table
+  
   (function highlightToday() {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = days[new Date().getDay()];
@@ -736,9 +729,9 @@ if (window.location.pathname.includes('dashboard')) {
   })();
 })();
 
-/* ── Sign In Page Logic ── */
+
 (function() {
-  // Toast for sign in page (has own toast element)
+  
   window.showSigninToast = function(msg, type = 'success') {
     const t = document.getElementById('signinToast');
     if (!t) return;
@@ -747,7 +740,7 @@ if (window.location.pathname.includes('dashboard')) {
     setTimeout(() => t.classList.remove('show'), 3500);
   };
 
-  // Role Selector
+  
   const roleInputs = document.querySelectorAll('input[name="role"]');
   const roleBadge = document.getElementById('roleBadge');
   if (roleInputs.length && roleBadge) {
@@ -763,7 +756,7 @@ if (window.location.pathname.includes('dashboard')) {
     });
   }
 
-  // Password Toggle
+
   const pwToggle = document.getElementById('passwordToggle');
   if (pwToggle) {
     pwToggle.addEventListener('click', function() {
@@ -783,7 +776,7 @@ if (window.location.pathname.includes('dashboard')) {
   const signinForm = document.getElementById('signinForm');
   if (!signinForm) return;
 
-  function validateName(name) { return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 3; }
+  function validateName(name) { return /^[a-zA-Z\s]+$/.test(name) && name.trim().length >= 1; }
   function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
   function validatePassword(pw) { return pw.length >= 6; }
 
@@ -814,15 +807,16 @@ if (window.location.pathname.includes('dashboard')) {
       if (submitBtn) { submitBtn.classList.remove('loading'); submitBtn.disabled = false; }
       localStorage.setItem('stackly_user', JSON.stringify({ name: name.trim(), email: email.trim(), role, loggedIn: true, loginTime: new Date().toISOString() }));
       window.showSigninToast('Welcome back, ' + name.trim().split(' ')[0] + '! Redirecting...', 'success');
-      setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
+      setTimeout(() => { window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'guest-dashboard.html'; }, 1500);
     }, 1500);
   };
 
   window.handleSocialSignin = function(provider) {
     window.showSigninToast('Signing in with ' + provider + '...', 'success');
     setTimeout(() => {
-      localStorage.setItem('stackly_user', JSON.stringify({ name: 'Social User', email: 'user@' + provider.toLowerCase() + '.com', role: (document.querySelector('input[name="role"]:checked') || {}).value || 'guest', loggedIn: true, loginTime: new Date().toISOString(), provider }));
-      window.location.href = 'dashboard.html';
+      const role = (document.querySelector('input[name="role"]:checked') || {}).value || 'guest';
+      localStorage.setItem('stackly_user', JSON.stringify({ name: 'Social User', email: 'user@' + provider.toLowerCase() + '.com', role, loggedIn: true, loginTime: new Date().toISOString(), provider }));
+      window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'guest-dashboard.html';
     }, 1500);
   };
 
@@ -834,7 +828,7 @@ if (window.location.pathname.includes('dashboard')) {
   });
 })();
 
-/* ── Button Ripple Effect ── */
+
 (function() {
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
@@ -854,7 +848,7 @@ if (window.location.pathname.includes('dashboard')) {
     });
   });
 
-  // Add ripple keyframe if not exists
+  
   if (!document.getElementById('ripple-style')) {
     const s = document.createElement('style');
     s.id = 'ripple-style';
@@ -863,7 +857,7 @@ if (window.location.pathname.includes('dashboard')) {
   }
 })();
 
-/* ── Card Tilt Effect ── */
+
 (function() {
   const tiltCards = document.querySelectorAll('.service-card, .pricing-card, .blog-card, .team-card');
   if (window.matchMedia('(hover: hover)').matches) {
@@ -883,11 +877,11 @@ if (window.location.pathname.includes('dashboard')) {
   }
 })();
 
-/* ── Typing Animation for Hero Title ── */
+
 (function() {
   const typingEl = document.querySelector('.typewriter-text');
   if (!typingEl) return;
-  const words = ["Modern Business", "Growing Brands", "Agile Operations"];
+  const words = ["Modern Business", "Strategic Growth", "Financial Success"];
   let wordIndex = 0;
   let charIndex = words[0].length;
   let isDeleting = true;
@@ -908,41 +902,34 @@ if (window.location.pathname.includes('dashboard')) {
     let typeSpeed = isDeleting ? 50 : 100;
     
     if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000; // Pause at end of word
+      typeSpeed = 2000; 
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       wordIndex = (wordIndex + 1) % words.length;
-      typeSpeed = 500; // Pause before typing new word
+      typeSpeed = 500; 
     }
     
     setTimeout(type, typeSpeed);
   }
   
-  // Wait 2 seconds before starting to delete the initial word
+  
   setTimeout(type, 2000);
 })();
 
-/* ── Newsletter form handler (global) ── */
-window.handleNewsletter = function(e) {
-  e.preventDefault();
-  showToast('âœ… Subscribed! Welcome to Stackly Insights.');
-  e.target.reset();
-};
 
-/* ── Smooth page transition ── */
 (function() {
   document.querySelectorAll('a[href]').forEach(link => {
     if (link.hostname !== location.hostname) return;
     if (link.href.includes('#') || link.target === '_blank') return;
     link.addEventListener('click', function(e) {
       if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-      // No page transition needed; CSS handles opacity
+      
     });
   });
 })();
 
-/* ── Sign Up Page Logic ── */
+
 (function() {
   window.showSignupToast = function(msg, type = 'success') {
     const t = document.getElementById('signupToast');
@@ -955,7 +942,7 @@ window.handleNewsletter = function(e) {
   const signupForm = document.getElementById('signupForm');
   if (!signupForm) return;
 
-  // Role Selector for signup
+  
   const roleInputs = document.querySelectorAll('input[name="role"]');
   const roleBadge = document.getElementById('roleBadge');
   if (roleInputs.length && roleBadge) {
@@ -971,7 +958,7 @@ window.handleNewsletter = function(e) {
     });
   }
 
-  // Confirm Password Toggle
+  
   const confirmToggle = document.getElementById('confirmToggle');
   if (confirmToggle) {
     confirmToggle.addEventListener('click', function() {
@@ -983,7 +970,7 @@ window.handleNewsletter = function(e) {
     });
   }
 
-  // Password Strength Meter
+  
   const pwInput = document.getElementById('password');
   if (pwInput) {
     pwInput.addEventListener('input', function() {
@@ -1007,7 +994,7 @@ window.handleNewsletter = function(e) {
     });
   }
 
-  function validateName(n) { return /^[a-zA-Z\s]+$/.test(n) && n.trim().length >= 3; }
+  function validateName(n) { return /^[a-zA-Z\s]+$/.test(n) && n.trim().length >= 1; }
   function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
   function validatePhone(p) { return p.replace(/\D/g, '').length === 10; }
   function validatePassword(p) { return p.length >= 8; }
@@ -1065,7 +1052,7 @@ window.handleNewsletter = function(e) {
     }, 1500);
   };
 
-  // Real-time blur validation for signup
+  
   document.querySelectorAll('.signup-form-input').forEach(input => {
     input.addEventListener('input', function() {
       const g = this.closest('.signup-form-group');
