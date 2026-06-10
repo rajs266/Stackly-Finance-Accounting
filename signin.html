@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -415,6 +415,12 @@
 
     .password-toggle:hover {
       color: var(--clr-primary);
+    }
+
+    /* Hide Edge's native reveal/clear eye icon in password fields */
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none;
     }
 
     .signin-options {
