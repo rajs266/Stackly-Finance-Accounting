@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -803,6 +804,7 @@
 <body>
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <div class="toast-popup" id="toastPopup">
   <strong>Feature Unavailable</strong>
@@ -910,7 +912,6 @@
           🔔
           <span class="header-notif-badge">3</span>
         </a>
-        <a href="#" class="header-icon-btn" title="Logout" onclick="handleLogout(); return false;">🚪</a>
       </div>
     </header>
 
@@ -1225,7 +1226,7 @@
               <div style="font-size:0.78rem;color:var(--text-light);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Monthly Service Spend (₹) & Credits History</div>
               <div class="chart-container" style="position:relative; width:100%; margin-top:10px; margin-bottom:20px; overflow:visible;">
                 
-                <svg viewBox="0 0 500 185" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" style="display:block; overflow:visible;">
+                <svg viewBox="0 0 500 185" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block; overflow:visible; height:auto;">
                   <defs>
                     
                     <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
@@ -1592,6 +1593,7 @@ function showSection(sectionId, event) {
     setActiveLink(event);
     updateBreadcrumb('Dashboard');
     if (document.getElementById('sidebar').classList.contains('open')) toggleSidebar();
+    if (document.getElementById('sidebar').classList.contains('open')) closeSidebar();
     return;
   }
 
@@ -1619,6 +1621,7 @@ function showSection(sectionId, event) {
   setActiveLink(event);
   updateBreadcrumb(SECTION_NAMES[sectionId] || 'Dashboard');
   if (document.getElementById('sidebar').classList.contains('open')) toggleSidebar();
+  if (document.getElementById('sidebar').classList.contains('open')) closeSidebar();
 }
 
 function setActiveLink(event) {
@@ -1649,6 +1652,26 @@ function toggleSidebar() {
   document.body.classList.toggle('no-scroll', isOpen);
 }
 
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const toggle  = document.getElementById('menuToggle');
+  
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('show');
+  if (toggle) {
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+  document.body.classList.remove('no-scroll');
+}
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 992) {
+    closeSidebar();
+  }
+});
 
 function handleLogout() {
   localStorage.removeItem('stackly_user');
