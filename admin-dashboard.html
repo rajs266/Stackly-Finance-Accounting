@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -83,7 +83,7 @@
     .sidebar {
       width: var(--sidebar-w);
       background: linear-gradient(180deg, #1b2a22 0%, #243a2e 100%);
-      min-height: 100vh;
+      height: calc(100vh - var(--topbar-h));
       display: flex;
       flex-direction: column;
       position: fixed;
@@ -676,17 +676,7 @@
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-<div class="modal-backdrop" id="logoutModal">
-  <div class="modal">
-    <div class="modal__icon"><i class="fa-solid fa-right-from-bracket"></i></div>
-    <div class="modal__title">Confirm Logout</div>
-    <p class="modal__text">Are you sure you want to sign out? You'll be redirected to the sign-in page.</p>
-    <div class="modal__actions">
-      <button class="modal__btn modal__btn--cancel" onclick="closeLogoutModal()">Cancel</button>
-      <button class="modal__btn modal__btn--logout" onclick="confirmLogout()">Yes, Logout</button>
-    </div>
-  </div>
-</div>
+
 
 <div class="modal-backdrop modal-404" id="modal404">
   <div class="modal">
@@ -710,7 +700,7 @@
     </button>
 
     <div class="topbar__logo-zone">
-      <a href="javascript:void(0)" class="topbar__logo" onclick="show404Modal()" aria-label="Stackly Finance">
+      <a href="index.html" class="topbar__logo" onclick="show404Modal()" aria-label="Stackly Finance">
         <img src="assets/logo.webp" alt="Stackly Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
         <div style="display:none;align-items:center;gap:0.5rem;">
           <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;"><i class="fa-solid fa-chart-line"></i></div>
@@ -800,8 +790,9 @@
     </nav>
 
     <div class="sidebar__bottom">
-      <button class="sidebar__logout" onclick="showLogoutModal()">
-        🚪 Logout
+      <button class="sidebar__logout" onclick="handleLogout()">
+        <span style="font-size:1.1rem;">🚪</span>
+        <span>Logout</span>
       </button>
     </div>
   </aside>
@@ -1721,19 +1712,11 @@
   }
 
   
-  function showLogoutModal() {
-    document.getElementById('logoutModal').classList.add('active');
-  }
-  function closeLogoutModal() {
-    document.getElementById('logoutModal').classList.remove('active');
-  }
-  function confirmLogout() {
+  function handleLogout() {
     localStorage.removeItem('stackly_user');
-    window.location.replace('signin.html');
+    sessionStorage.removeItem('stackly_user');
+    window.location.href = 'signin.html';
   }
-  document.getElementById('logoutModal').addEventListener('click', function(e) {
-    if (e.target === this) closeLogoutModal();
-  });
 
   
   function show404Modal() {
